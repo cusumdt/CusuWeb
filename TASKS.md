@@ -46,13 +46,13 @@ Working list. Each task names the agent that should own it. Check items off as t
 
 ## Phase 3 — Media pipeline  · `media-pipeline`
 
-- [ ] **3.1** Run `node scripts/optimize-media.mjs`. 214 MB of PNG → AVIF + WebP in `public/work/`.
-- [ ] **3.2** Review the output visually. `waifu/1.png` is 12 MB and `Materials/0.png` is 5.5 MB — check for banding and normal-map smearing at the chosen quality, raise it per-file where needed.
-- [ ] **3.3** Wire `blur-placeholders.json` into `projects.ts` so every image has a `blurDataURL`.
+- [x] **3.1** Run `node scripts/optimize-media.mjs` — 88 images, **213.8 MB → 4.2 MB AVIF** (98.0% smaller). `public/work/` totals 10 MB including WebP fallbacks.
+- [ ] **3.2** Full visual review of the output. Spot-checked 2 of 88 at 100% crop (marble material for banding, character for smearing) — both clean at AVIF q62. Still needs a pass over the remaining 86.
+- [ ] **3.3** Wire `src/content/blur-placeholders.json` (88 entries, generated) into `projects.ts` so every image has a `blurDataURL`.
 - [ ] **3.4** Transcode `Peakmines/enanos.mp4` to MP4 + WebM, extract a poster frame.
 - [ ] **3.5** Confirm no project page exceeds 1.5 MB on first view.
 
-**Done when:** total `public/work/` is under 25 MB and every image in `projects.ts` resolves.
+**Done when:** total `public/work/` is under 25 MB (currently 10 MB ✅) and every image in `projects.ts` resolves.
 
 ---
 
@@ -116,9 +116,9 @@ Working list. Each task names the agent that should own it. Check items off as t
 
 ## Phase 9 — Ship  · `deploy-ops`
 
-- [ ] **9.1** Verify `.gitignore` excludes `_legacy-scrape/`, `node_modules/`, `.next/`, `.env*`.
-- [ ] **9.2** First commit and push to `github.com/cusumdt/CusuWeb`. **Ask before pushing.**
-- [ ] **9.3** Import into Vercel, Next.js preset, confirm the production build.
+- [x] **9.1** `.gitignore` excludes `_legacy-scrape/`, `node_modules/`, `.next/`, `.env*` — verified against `git status`.
+- [x] **9.2** Pushed to `github.com/cusumdt/CusuWeb` (`main`). Ask before every subsequent push.
+- [!] **9.3** Import into Vercel at vercel.com/new, Next.js preset — needs Cusu's account login; the CLI cannot authenticate here.
 - [ ] **9.4** Verify the live site — not just a green build.
 - [ ] **9.5** Custom domain (see blockers below).
 - [ ] **9.6** Redirect or retire `cristiancusu.netlify.app` so there is one canonical portfolio.
