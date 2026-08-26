@@ -20,21 +20,23 @@ Working list. Each task names the agent that should own it. Check items off as t
 
 ---
 
-## Phase 1, Design system  · `design-system`
+## Phase 1, Design system  · `design-system` ✅
 
 - [ ] **1.1** Choose and wire the typefaces via `next/font`: one grotesque for display/body, one mono for data. Subset, `display: swap`, self-hosted.
-- [ ] **1.2** Write the `@theme` block in `globals.css`: color, fluid type scale, spacing, radii, easing. Every token from `docs/DESIGN.md`.
-- [ ] **1.3** Pick the single accent color and verify contrast numerically against `--color-ink` at every size it will be used.
-- [ ] **1.4** Base layer: selection color, focus ring, scrollbar, `::marker`, reduced-motion global.
-- [ ] **1.5** Build a `/styleguide` route rendering every token and primitive on one page. Dev-only, excluded from the sitemap.
+- [x] **1.2** `@theme` block written in `globals.css`: 9 colors, 8 fluid type steps, spacing, measure, radii, easings.
+- [x] **1.3** Accent is `#FC7816`, the CusuTools brand orange, sampled from the product logo. 8 contrast pairs verified by `scripts/check-contrast.mjs`, all passing. Accent on ink is 7.35:1.
+- [x] **1.4** Base layer: selection, designed focus ring, scrollbar, `::marker`, `:target` scroll offset, global reduced-motion floor.
+- [x] **1.5** `/styleguide` renders color, contrast, type scale, mono data, interaction, surfaces and motion. `robots: noindex`. Primitives get added in Phase 2.
 
-**Done when:** a headline, body paragraph, mono label, rule and button rendered together read as one coherent system, and no component contains a literal hex or px.
+**Done when:** a headline, body paragraph, mono label, rule and button rendered together read as one coherent system, and no component contains a literal hex or px. **Met.**
+
+Verified in the browser at 1280 and 375: no horizontal overflow, hero clamps 48px to 115px, reading measure lands at 60 to 69 characters per line, fonts and tokens resolve, heading order is clean, skip link present.
 
 ---
 
 ## Phase 2, Shell & primitives  · `frontend-builder`
 
-- [ ] **2.1** `layout.tsx`: fonts, metadata base, skip link, `<main>` landmark, theme color.
+- [x] **2.1** `layout.tsx`: fonts, `metadataBase`, title template, skip link, `<main>` landmark. Theme color still to add.
 - [ ] **2.2** Header + nav. Sticky, hairline rule, current-route state, keyboard operable, mobile menu that traps focus and closes on Escape.
 - [ ] **2.3** Footer, contact, LinkedIn / ArtStation / GitHub, location, availability line.
 - [ ] **2.4** UI primitives in `components/ui/`: `Button`, `Tag`, `MonoLabel`, `Rule`, `Reveal` (scroll fade-in, reduced-motion aware), `Figure` (next/image + caption + aspect box).
@@ -110,6 +112,7 @@ Working list. Each task names the agent that should own it. Check items off as t
 
 - [ ] **8.1** `npm run build`: record the route size table in this file as the baseline.
 - [ ] **8.2** Lighthouse on `/`, `/work`, and one project page. Target ≥ 95 performance, 100 accessibility.
+- [ ] **8.7** Screenshot pass. The browser pane could not composite frames during Phase 1, so every visual check so far is computed-style based, not seen. Confirm the design visually before Phase 5 sign-off.
 - [ ] **8.3** Full keyboard pass on every interactive element.
 - [ ] **8.4** Reduced-motion pass, confirm the canvas stops and reveals disable.
 - [ ] **8.5** Responsive pass at 375 / 768 / 1280 / 1920. No horizontal scroll anywhere.

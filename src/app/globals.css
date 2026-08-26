@@ -1,26 +1,192 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* ---------------------------------------------------------------------------
+   Design tokens. See docs/DESIGN.md.
+   Nothing below should ever be re-declared as a literal inside a component.
+   Contrast of every text pair is verified by scripts/check-contrast.mjs.
+--------------------------------------------------------------------------- */
+
+@theme {
+  /* Color. The site is dark by design, not by preference, so there is one
+     palette. The accent is CusuTools' brand orange. */
+  --color-ink: #0a0b0d;
+  --color-surface: #121317;
+  --color-surface-2: #1a1b20;
+  --color-line: #2a2c33;
+  --color-line-soft: #1e1f25;
+  --color-text: #ededf0;
+  --color-muted: #9b9da6;
+  --color-accent: #fc7816;
+  --color-accent-dim: #b75510;
+
+  /* Type families */
+  --font-display: var(--font-space-grotesk), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-space-grotesk), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains-mono), ui-monospace, "SFMono-Regular", monospace;
+
+  /* Fluid type scale. Clamps, never breakpoint jumps.
+     Display sizes are deliberately a touch too large. */
+  --text-hero: clamp(3rem, 1.2rem + 7.5vw, 8.5rem);
+  --text-hero--line-height: 0.92;
+  --text-hero--letter-spacing: -0.04em;
+
+  --text-display: clamp(2.25rem, 1.1rem + 4.6vw, 5rem);
+  --text-display--line-height: 0.98;
+  --text-display--letter-spacing: -0.035em;
+
+  --text-title: clamp(1.75rem, 1.2rem + 2.2vw, 3rem);
+  --text-title--line-height: 1.06;
+  --text-title--letter-spacing: -0.025em;
+
+  --text-heading: clamp(1.25rem, 1rem + 1vw, 1.75rem);
+  --text-heading--line-height: 1.2;
+  --text-heading--letter-spacing: -0.015em;
+
+  --text-lead: clamp(1.0625rem, 0.98rem + 0.45vw, 1.375rem);
+  --text-lead--line-height: 1.55;
+
+  --text-body: 1rem;
+  --text-body--line-height: 1.68;
+
+  --text-small: 0.875rem;
+  --text-small--line-height: 1.6;
+
+  /* Mono is for data: dates, versions, poly counts, stack tags. */
+  --text-label: 0.75rem;
+  --text-label--line-height: 1.4;
+  --text-label--letter-spacing: 0.12em;
+
+  --text-meta: 0.8125rem;
+  --text-meta--line-height: 1.5;
+
+  /* Rhythm. 4px base; section spacing is generous on purpose. */
+  --spacing-section: clamp(4.5rem, 2rem + 9vw, 10rem);
+  --spacing-gutter: clamp(1.25rem, 0.6rem + 2.4vw, 3.5rem);
+
+  /* Reading measure, capped so long-form stays readable. */
+  --container-measure: 68ch;
+  --container-page: 88rem;
+
+  /* Radii stay small. Nothing here should look like a rounded card UI. */
+  --radius-xs: 2px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+
+  /* Motion. Entrances ease out hard and settle. Nothing bounces. */
+  --ease-out-quint: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out-quart: cubic-bezier(0.76, 0, 0.24, 1);
+  --duration-fast: 160ms;
+  --duration-base: 260ms;
+  --duration-slow: 400ms;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+/* ---------------------------------------------------------------------------
+   Base layer
+--------------------------------------------------------------------------- */
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  html {
+    background-color: var(--color-ink);
+    color-scheme: dark;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* Anchor targets clear the sticky header instead of hiding under it. */
+  :target {
+    scroll-margin-top: 6rem;
+  }
+
+  body {
+    background-color: var(--color-ink);
+    color: var(--color-text);
+    font-family: var(--font-sans);
+    font-size: var(--text-body);
+    line-height: var(--text-body--line-height);
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    background-color: var(--color-accent);
+    color: var(--color-ink);
+  }
+
+  /* Designed, not defaulted, and never removed. */
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
+    border-radius: var(--radius-xs);
+  }
+  :focus:not(:focus-visible) {
+    outline: none;
+  }
+
+  ::marker {
+    color: var(--color-accent-dim);
+  }
+
+  hr {
+    border: 0;
+    border-top: 1px solid var(--color-line);
+  }
+
+  /* Headings inherit the display family; sizes are applied per use, not here. */
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    font-weight: 500;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  a {
+    color: inherit;
+    text-underline-offset: 0.2em;
+  }
+
+  img,
+  video,
+  canvas {
+    display: block;
+    max-width: 100%;
+  }
+
+  * {
+    scrollbar-color: var(--color-line) var(--color-ink);
+  }
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--color-ink);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-line);
+    border: 2px solid var(--color-ink);
+    border-radius: 999px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-accent-dim);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* ---------------------------------------------------------------------------
+   Reduced motion. This is a global floor, not a per-component courtesy.
+   The WebGL loop must stop on its own too; see the three-scene agent.
+--------------------------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
