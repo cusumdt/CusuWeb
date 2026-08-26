@@ -34,15 +34,20 @@ Verified in the browser at 1280 and 375: no horizontal overflow, hero clamps 48p
 
 ---
 
-## Phase 2, Shell & primitives  · `frontend-builder`
+## Phase 2, Shell & primitives  · `frontend-builder` ✅
 
-- [x] **2.1** `layout.tsx`: fonts, `metadataBase`, title template, skip link, `<main>` landmark. Theme color still to add.
-- [ ] **2.2** Header + nav. Sticky, hairline rule, current-route state, keyboard operable, mobile menu that traps focus and closes on Escape.
-- [ ] **2.3** Footer, contact, LinkedIn / ArtStation / GitHub, location, availability line.
-- [ ] **2.4** UI primitives in `components/ui/`: `Button`, `Tag`, `MonoLabel`, `Rule`, `Reveal` (scroll fade-in, reduced-motion aware), `Figure` (next/image + caption + aspect box).
-- [ ] **2.5** 404 and `error.tsx`, both in the site's voice.
+- [x] **2.1** `layout.tsx`: fonts, `metadataBase`, title template, skip link, `<main>` landmark, `themeColor` and `colorScheme` via the viewport export.
+- [x] **2.2** Sticky header on a solid ground with a hairline rule, no blur panel. `DesktopNav` and `MobileMenu` split so only the nav is client-side. Verified: focus enters the panel, Tab and Shift+Tab wrap, Escape closes, focus returns to the trigger, background scroll locks and unlocks.
+- [x] **2.3** Footer: availability, five contact links, location and languages, all from `site.ts`. External links carry `rel="noopener noreferrer"`.
+- [x] **2.4** `Button`, `Tag`, `MonoLabel`, `Rule`, `Reveal`, `Figure`. All rendered on `/styleguide`. `Figure` reserves the aspect ratio and pulls its blur placeholder from the generated map via `src/lib/media.ts`.
+- [x] **2.5** `not-found.tsx` and `error.tsx`, both `noindex`, both using the real primitives.
 
-**Done when:** every route can be reached and operated with the keyboard alone, and the tab order matches the visual order.
+**Done when:** every route can be reached and operated with the keyboard alone, and the tab order matches the visual order. **Met for the shell.**
+
+Two things found and fixed while verifying:
+
+- `Reveal` left every element at `opacity: 0` when IntersectionObserver never fired. It only had fallbacks for reduced motion and for a missing observer, not for an observer that exists but never reports. Content must never be permanently hidden by a progressive enhancement, so it now renders shown on the server, hides only after mount when it can actually animate, and has a 1200ms failsafe. Confirmed the server HTML contains no `opacity-0`, so no-JS readers see everything.
+- `MobileMenu` closed the panel from an effect on pathname change. Reworked to adjust state during render, which also covers browser back and forward.
 
 ---
 
@@ -50,7 +55,7 @@ Verified in the browser at 1280 and 375: no horizontal overflow, hero clamps 48p
 
 - [x] **3.1** Run `node scripts/optimize-media.mjs`: 88 images, **213.8 MB → 4.2 MB AVIF** (98.0% smaller). `public/work/` totals 10 MB including WebP fallbacks.
 - [ ] **3.2** Full visual review of the output. Spot-checked 2 of 88 at 100% crop (marble material for banding, character for smearing), both clean at AVIF q62. Still needs a pass over the remaining 86.
-- [ ] **3.3** Wire `src/content/blur-placeholders.json` (88 entries, generated) into `projects.ts` so every image has a `blurDataURL`.
+- [x] **3.3** Blur placeholders wired through `src/lib/media.ts` and consumed by `Figure`, rather than duplicated into every entry in `projects.ts`. The generated map stays the single source.
 - [ ] **3.4** Transcode `Peakmines/enanos.mp4` to MP4 + WebM, extract a poster frame.
 - [ ] **3.5** Confirm no project page exceeds 1.5 MB on first view.
 
@@ -74,7 +79,8 @@ Verified in the browser at 1280 and 375: no horizontal overflow, hero clamps 48p
 
 ## Phase 5, Pages  · `frontend-builder`
 
-- [ ] **5.1** `/`: hero, selected work, capability summary, current role, contact CTA.
+- [ ] **5.1** `/`: hero, selected work, capability summary, current role, contact CTA. A holding hero is in place.
+- [ ] **5.0** The header links to `/work`, `/tools`, `/about` and `/contact`, which do not exist yet and currently 404. Building them is this phase.
 - [ ] **5.2** `/work`: full index, filterable by discipline (`engine`, `technical-art`, `3d-art`, `web-3d`, `tooling`, `art-direction`). Filter must work without JS or degrade honestly. Handle `visuals: withheld` cards, see B.1c.
 - [ ] **5.3** `/work/[slug]`: `generateStaticParams`, editorial case-study layout, full-bleed hero, mono metadata block, gallery, prev/next.
 - [ ] **5.4** `/about`: narrative, experience timeline from `experience.ts`, skills, education, languages.

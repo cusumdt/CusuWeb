@@ -110,9 +110,13 @@
     color: var(--color-ink);
   }
 
-  /* Designed, not defaulted, and never removed. */
+  /* Designed, not defaulted, and never removed.
+     Longhands rather than the shorthand: outline-color's initial value is
+     currentColor, and a shorthand makes it harder to see which part won. */
   :focus-visible {
-    outline: 2px solid var(--color-accent);
+    outline-width: 2px;
+    outline-style: solid;
+    outline-color: var(--color-accent);
     outline-offset: 3px;
     border-radius: var(--radius-xs);
   }

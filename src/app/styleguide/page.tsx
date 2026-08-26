@@ -1,4 +1,10 @@
 import type { Metadata } from "next";
+import { Button } from "@/components/ui/Button";
+import { Tag } from "@/components/ui/Tag";
+import { MonoLabel } from "@/components/ui/MonoLabel";
+import { Rule } from "@/components/ui/Rule";
+import { Figure } from "@/components/ui/Figure";
+import { Reveal } from "@/components/ui/Reveal";
 
 export const metadata: Metadata = {
   title: "Styleguide",
@@ -145,19 +151,77 @@ export default function StyleguidePage() {
         </div>
       </Section>
 
-      <Section label="Interaction">
-        <div className="flex flex-wrap items-center gap-6">
-          <button className="bg-accent px-6 py-3 font-mono text-label uppercase text-ink transition-colors duration-fast ease-out-quint hover:bg-accent-dim">
-            Primary action
-          </button>
-          <button className="border border-line px-6 py-3 font-mono text-label uppercase text-text transition-colors duration-fast ease-out-quint hover:border-accent hover:text-accent">
-            Secondary action
-          </button>
-          <a href="#main" className="text-accent underline decoration-accent-dim hover:decoration-accent">
-            An inline link
-          </a>
+      <Section label="Primitives">
+        <div className="space-y-10">
+          <div>
+            <p className="mb-4 font-mono text-meta text-muted">Button</p>
+            <div className="flex flex-wrap items-center gap-6">
+              <Button href="/">Primary</Button>
+              <Button href="/" variant="secondary">
+                Secondary
+              </Button>
+              <Button href="/" variant="ghost">
+                Ghost
+              </Button>
+            </div>
+          </div>
+
+          <div>
+            <p className="mb-4 font-mono text-meta text-muted">Tag</p>
+            <div className="flex flex-wrap gap-2">
+              <Tag active>Technical art</Tag>
+              {["Unreal Engine 5", "C++", "Lumen", "Nanite"].map((s) => (
+                <Tag key={s}>{s}</Tag>
+              ))}
+            </div>
+          </div>
+
+          <div>
+            <p className="mb-4 font-mono text-meta text-muted">MonoLabel</p>
+            <div className="flex flex-wrap gap-8">
+              <MonoLabel tone="accent">Accent</MonoLabel>
+              <MonoLabel>Muted</MonoLabel>
+              <MonoLabel tone="text">Text</MonoLabel>
+            </div>
+          </div>
+
+          <div>
+            <p className="mb-4 font-mono text-meta text-muted">Rule</p>
+            <Rule />
+            <Rule soft className="mt-4" />
+          </div>
+
+          <div>
+            <p className="mb-4 font-mono text-meta text-muted">
+              Figure, with generated blur placeholder
+            </p>
+            <Figure
+              media={{
+                kind: "image",
+                src: "/work/cusutools/08-panel-export.avif",
+                alt: "TexelPack statistics and export panel reporting 61.5 percent efficiency, 230 of 230 islands packed across 9 objects in 1643 milliseconds with zero overlaps.",
+                width: 538,
+                height: 720,
+                caption: "Aspect ratio is reserved before decode, so nothing shifts.",
+              }}
+              sizes="(min-width: 768px) 22rem, 100vw"
+              className="max-w-[22rem]"
+            />
+          </div>
+
+          <div>
+            <p className="mb-4 font-mono text-meta text-muted">Reveal</p>
+            <Reveal className="border border-line p-6">
+              <p className="text-small text-muted">
+                Faded and translated in on scroll. Renders visible immediately under{" "}
+                <code className="font-mono text-meta text-text">prefers-reduced-motion</code>, or
+                if IntersectionObserver is unavailable.
+              </p>
+            </Reveal>
+          </div>
         </div>
-        <p className="mt-8 max-w-measure text-small text-muted">
+
+        <p className="mt-12 max-w-measure text-small text-muted">
           Tab through the controls above. Every focus ring is a 2px accent outline at 3px offset,
           declared once in the base layer. Nothing on this site sets{" "}
           <code className="font-mono text-meta text-text">outline: none</code>.
@@ -201,7 +265,7 @@ export default function StyleguidePage() {
 
       <footer className="border-t border-line py-12">
         <p className="font-mono text-meta text-muted">
-          Phase 1 tokens. Primitives land in Phase 2 and get added here as they are built.
+          Phase 1 tokens and Phase 2 primitives. Section components get added as they are built.
         </p>
       </footer>
     </main>

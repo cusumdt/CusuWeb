@@ -1,6 +1,8 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Space_Grotesk, JetBrains_Mono } from "next/font/google";
 import { site } from "@/content/site";
+import { Header } from "@/components/layout/Header";
+import { Footer } from "@/components/layout/Footer";
 import "./globals.css";
 
 const spaceGrotesk = Space_Grotesk({
@@ -26,6 +28,11 @@ export const metadata: Metadata = {
   description: site.description,
 };
 
+export const viewport: Viewport = {
+  themeColor: "#0a0b0d",
+  colorScheme: "dark",
+};
+
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
@@ -39,7 +46,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         >
           Skip to content
         </a>
+        <Header />
         {children}
+        <Footer />
       </body>
     </html>
   );
