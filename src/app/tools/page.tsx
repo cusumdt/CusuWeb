@@ -7,12 +7,18 @@ import { Button } from "@/components/ui/Button";
 import { Tag } from "@/components/ui/Tag";
 import { Figure } from "@/components/ui/Figure";
 import { VideoFacade } from "@/components/sections/VideoFacade";
+import { TexelPackJsonLd } from "@/components/seo/JsonLd";
 
 export const metadata: Metadata = {
   title: "Tools",
   description:
     "TexelPack and PreflightKit: commercial Blender addons for UV packing, texel density and game-ready asset validation. Built and supported by Cristian Cusumano.",
   alternates: { canonical: "/tools" },
+  openGraph: {
+    title: "Tools, Cristian Cusumano",
+    url: "/tools",
+  },
+  twitter: { title: "Tools, Cristian Cusumano" },
 };
 
 /** Facts from the TexelPack product site, recorded in docs/CONTENT.md. */
@@ -41,6 +47,7 @@ export default function ToolsPage() {
 
   return (
     <main id="main" className="mx-auto w-full max-w-page flex-1 px-gutter">
+      <TexelPackJsonLd />
       <PageHeader
         eyebrow="CusuTools"
         title="Tools I sell"

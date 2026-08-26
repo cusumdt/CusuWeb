@@ -8,6 +8,7 @@ import { Tag } from "@/components/ui/Tag";
 import { Figure } from "@/components/ui/Figure";
 import { Gallery } from "@/components/sections/Lightbox";
 import { VideoFacade } from "@/components/sections/VideoFacade";
+import { ProjectJsonLd } from "@/components/seo/JsonLd";
 
 export function generateStaticParams() {
   return publishedProjects.map((p) => ({ slug: p.slug }));
@@ -22,10 +23,24 @@ export async function generateMetadata({
   const project = getProject(slug);
   if (!project) return {};
 
+  const description = project.metaDescription ?? project.tagline;
+
   return {
     title: project.title,
-    description: project.metaDescription ?? project.tagline,
+    description,
     alternates: { canonical: `/work/${project.slug}` },
+    // Next does not derive openGraph.title from title, so a project that omits
+    // it inherits the site-wide one and every share preview looks identical.
+    openGraph: {
+      type: "article",
+      title: `${project.title}, Cristian Cusumano`,
+      description,
+      url: `/work/${project.slug}`,
+    },
+    twitter: {
+      title: `${project.title}, Cristian Cusumano`,
+      description,
+    },
   };
 }
 
@@ -50,6 +65,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
 
   return (
     <main id="main" className="flex-1">
+      <ProjectJsonLd project={project} />
       <div className="mx-auto w-full max-w-page px-gutter">
         <header className="py-section">
           <MonoLabel tone="accent">{project.client}</MonoLabel>

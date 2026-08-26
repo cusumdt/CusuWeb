@@ -13,6 +13,11 @@ export const metadata: Metadata = {
   description:
     "Senior Game Engineer and Technical Artist in Santos, Brazil. Nine years across Unreal Engine 5 VR, Unity mobile, web 3D and commercial Blender tooling.",
   alternates: { canonical: "/about" },
+  openGraph: {
+    title: "About, Cristian Cusumano",
+    url: "/about",
+  },
+  twitter: { title: "About, Cristian Cusumano" },
 };
 
 export default function AboutPage() {

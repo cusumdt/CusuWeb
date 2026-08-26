@@ -26,6 +26,32 @@ export const metadata: Metadata = {
     template: `%s, ${site.name}`,
   },
   description: site.description,
+  alternates: { canonical: "/" },
+  openGraph: {
+    type: "website",
+    siteName: site.name,
+    locale: "en_US",
+    url: site.url,
+    title: `${site.name}, ${site.shortRole}`,
+    description: site.description,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `${site.name}, ${site.shortRole}`,
+    description: site.description,
+  },
+  authors: [{ name: site.name, url: site.url }],
+  creator: site.name,
+  keywords: [
+    "Unreal Engine 5",
+    "technical artist",
+    "game engineer",
+    "VR",
+    "Three.js",
+    "Blender addon",
+    "Unity",
+    "real-time rendering",
+  ],
 };
 
 export const viewport: Viewport = {

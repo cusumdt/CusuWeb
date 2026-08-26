@@ -10,6 +10,12 @@ export const metadata: Metadata = {
   title: "Work",
   description:
     "Unreal Engine 5 VR, real-time web 3D, mobile game art and Blender tooling, for Mercedes-Benz, Disney, Chevrolet and IPs like SpongeBob and Tower of God.",
+  alternates: { canonical: "/work" },
+  openGraph: {
+    title: "Work, Cristian Cusumano",
+    url: "/work",
+  },
+  twitter: { title: "Work, Cristian Cusumano" },
 };
 
 /**

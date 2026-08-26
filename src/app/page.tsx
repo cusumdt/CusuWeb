@@ -7,6 +7,7 @@ import { MonoLabel } from "@/components/ui/MonoLabel";
 import { Button } from "@/components/ui/Button";
 import { Reveal } from "@/components/ui/Reveal";
 import { ProjectCard } from "@/components/sections/ProjectCard";
+import { PersonJsonLd } from "@/components/seo/JsonLd";
 
 export default function Home() {
   const current = experience.filter((r) => r.current);
@@ -14,6 +15,7 @@ export default function Home() {
 
   return (
     <main id="main" className="mx-auto w-full max-w-page flex-1 px-gutter">
+      <PersonJsonLd />
       {/* Hero */}
       <section className="flex min-h-[70vh] flex-col justify-center py-section">
         <Reveal>

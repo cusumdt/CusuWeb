@@ -116,13 +116,20 @@ One bug found: the lightbox re-ran its open effect on every arrow press, tearing
 
 ---
 
-## Phase 7, SEO & sharing  · `seo-schema`
+## Phase 7, SEO & sharing  · `seo-schema` ✅
 
-- [ ] **7.1** `metadataBase`, canonicals, per-route titles and descriptions.
-- [ ] **7.2** `opengraph-image.tsx` generated with `next/og`, including per-project variants.
-- [ ] **7.3** JSON-LD: `Person` on home, `CreativeWork` on each project.
-- [ ] **7.4** `sitemap.ts` and `robots.ts`, generated from `src/content/`, never hand-listed.
-- [ ] **7.5** Verify the rendered `<head>` on three routes and preview the OG card.
+- [x] **7.1** `metadataBase`, canonical on every route, unique title and description everywhere, plus site-wide Open Graph and Twitter defaults, author, creator and keywords.
+- [x] **7.2** 18 OG cards generated with `next/og`: 5 static routes plus one per project. One shared layout so a shared link always reads as this site. Space Grotesk and JetBrains Mono instanced from their variable sources to static weights and subset to full Latin, 103 KB total.
+- [x] **7.3** `Person` on home, `CreativeWork` on each project, and a `SoftwareApplication` for TexelPack on `/tools`. No price and no rating, since neither is a fact this repo holds. PreflightKit gets no schema because it is unreleased.
+- [x] **7.4** `sitemap.ts` and `robots.ts` generated from the content modules. 17 URLs, `/styleguide` excluded from both.
+- [x] **7.5** Verified in the rendered HTML, not assumed. Two OG cards rendered and inspected as images. Found and fixed two defects, see below.
+
+**Done when:** every route has a unique title, description, canonical and OG card, and the structured data describes what is actually on the page. **Met.**
+
+Two defects caught by checking the rendered output rather than trusting the config:
+
+- **Every page shared the same `og:title`.** Next does not derive `openGraph.title` from `title`, so the root value was inheriting down and every LinkedIn preview would have read "Cristian Cusumano, Game Engineer & Technical Artist" whatever page it pointed at. Each route now sets its own. Verified: 8 of 8 unique.
+- **The first font subset was missing 5 glyphs**, including uppercase E-circumflex, which "AGÊNCIA DADS" needs on the Mercedes OG card. It happened to render, but by luck rather than coverage. Re-subset to full Latin, 0 missing.
 
 ---
 
@@ -144,7 +151,7 @@ One bug found: the lightbox re-ran its open effect on every arrow press, tearing
 - [x] **9.2** Pushed to `github.com/cusumdt/CusuWeb` (`main`). Ask before every subsequent push.
 - [x] **9.3** Deployed on Vercel, **https://cusu-dev.vercel.app**
 - [ ] **9.4** Verify the live site once real pages exist, not just a green build.
-- [ ] **9.5** Custom domain (see B.3).
+- [x] **9.5** No custom domain. `cusu-dev.vercel.app` is canonical, see B.3.
 - [ ] **9.7** Set the repo's About → Website field on GitHub to `https://cusu-dev.vercel.app`. Needs Cusu's account, no `gh` CLI authenticated here.
 - [ ] **9.6** Redirect or retire `cristiancusu.netlify.app` so there is one canonical portfolio.
 
@@ -158,8 +165,10 @@ One bug found: the lightbox re-ran its open effect on every arrow press, tearing
 - [x] ~~**B.1b** CusuTools captures~~, **resolved 2026-08-26.** 8 images sourced from the UVPackerPro repo plus the YouTube demo. Now `visuals: public`.
 - [ ] **B.1c** Design how a `withheld` project renders. It must read as deliberate and confidential, not as a broken image. This is a `design-system` decision before `frontend-builder` implements it.
 - [x] ~~**B.2** PreflightKit URL~~, **resolved 2026-08-26.** There is no URL because PreflightKit has not been released. It is marked `in-development` and `/tools` presents it as such, with no buy link.
-- [!] **B.7** **The résumé claims PreflightKit is released.** `Cristian_Cusumano_Resume_2026.pdf` says "Released PreflightKit" under CusuTools. It is not released. The site is correct; the PDF needs fixing before it goes to anyone.
-- [!] **B.3** **Domain.** `cusumano.dev`, `cusu.dev`, something else? Vercel gives a `.vercel.app` in the meantime.
+- [x] ~~**B.7** Résumé claims PreflightKit is released~~, **fixed 2026-08-26.** The PDF now reads "Currently developing PreflightKit". Verified by re-extracting the text.
+
+- [x] ~~**B.3** Domain~~, **decided 2026-08-26.** Staying on `cusu-dev.vercel.app`. A custom domain is a purchase Cusu is not making right now; the Vercel subdomain is the canonical URL and `site.url` points at it.
+
 - [!] **B.4** **A photo of you.** The recovered `cusu.jpg` is a 1024×1024 avatar. A real portrait would carry the About page better.
 - [!] **B.5** **Résumé PDF.** Decide whether to offer a download on the site.
 - [!] **B.6** **Analytics** Vercel Analytics or nothing. Your call.

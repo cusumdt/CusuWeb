@@ -8,6 +8,11 @@ export const metadata: Metadata = {
   description:
     "Get in touch with Cristian Cusumano, Senior Game Engineer and Technical Artist, based in Santos, Brazil and working with studios and teams internationally.",
   alternates: { canonical: "/contact" },
+  openGraph: {
+    title: "Contact, Cristian Cusumano",
+    url: "/contact",
+  },
+  twitter: { title: "Contact, Cristian Cusumano" },
 };
 
 /** No contact form. There is no backend to receive one, and a mailto works. */
