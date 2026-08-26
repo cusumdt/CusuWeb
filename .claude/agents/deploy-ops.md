@@ -25,7 +25,7 @@ Repo: `https://github.com/cusumdt/CusuWeb.git` · Host: Vercel · Framework pres
 3. `git status` shows nothing unexpected staged.
 4. Commit with a real message.
 5. Ask before `git push`.
-6. After deploy, open the Vercel URL and verify the live page actually renders — not just that the build went green.
+6. After deploy, open the Vercel URL and verify the live page actually renders, not just that the build went green.
 
 ## When a build fails
 

@@ -4,7 +4,7 @@
 
 Everything is static. There is no database, no CMS and no API route. Project pages are generated at build time from `src/content/projects.ts` via `generateStaticParams`, so the whole site ships as HTML and immutable assets on Vercel's edge.
 
-The only client-side JavaScript is: the mobile nav, the gallery lightbox, scroll reveals, and the WebGL canvas. Each is an isolated `"use client"` leaf — the page shells stay Server Components.
+The only client-side JavaScript is: the mobile nav, the gallery lightbox, scroll reveals, and the WebGL canvas. Each is an isolated `"use client"` leaf. The page shells stay Server Components.
 
 ## Content flow
 
@@ -12,14 +12,14 @@ The only client-side JavaScript is: the mobile nav, the gallery lightbox, scroll
 docs/CONTENT.md          the facts, human-readable, the thing to argue with
         │
         ▼
-src/content/*.ts         typed modules — projects, experience, skills, site
+src/content/*.ts         typed modules, projects, experience, skills, site
         │
         ├──► pages (Server Components read them directly, no fetching)
         ├──► sitemap.ts / robots.ts
         └──► opengraph-image.tsx
 ```
 
-Nothing reads content from anywhere else. Adding a project means adding an object to `projects.ts` and running the media script — no route, no config, no sitemap edit.
+Nothing reads content from anywhere else. Adding a project means adding an object to `projects.ts` and running the media script. No route, no config, no sitemap edit.
 
 ## Media flow
 
@@ -33,9 +33,9 @@ scripts/optimize-media.mjs     sharp: resize, AVIF + WebP, blur placeholder
 public/work/<slug>/            what actually ships
 ```
 
-The manifest is committed so the conversion is reproducible. The originals are not committed — they are an archive of a lost repository and live only on disk. **Back them up somewhere off this machine.**
+The manifest is committed so the conversion is reproducible. The originals are not committed. They are an archive of a lost repository and live only on disk. **Back them up somewhere off this machine.**
 
-`scripts/bootstrap-projects.py` was the one-shot generator that produced `projects.ts` from the recovered site. It is kept for reference. Re-running it overwrites hand-written copy — don't, unless you mean it.
+`scripts/bootstrap-projects.py` was the one-shot generator that produced `projects.ts` from the recovered site. It is kept for reference. Re-running it overwrites hand-written copy. Don't, unless you mean it.
 
 ## Route map
 

@@ -55,7 +55,7 @@ export const strengths = [
   },
   {
     title: "Full pipeline ownership",
-    body: "Works end to end — database architecture, engine code, and the final render.",
+    body: "Works end to end, from database architecture to engine code to the final render.",
   },
   {
     title: "Engine-level problem solving",

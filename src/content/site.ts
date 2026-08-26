@@ -8,7 +8,7 @@ export const site = {
   phone: "+55 13 9 8192 3786",
   url: "https://cusu-dev.vercel.app",
   description:
-    "Senior Game Engineer and Technical Artist with 9+ years bridging code and art — Unreal Engine 5 VR, real-time web 3D, and shipped Blender tooling.",
+    "Senior Game Engineer and Technical Artist with 9+ years bridging code and art. Unreal Engine 5 VR, real-time web 3D, and shipped Blender tooling.",
   availability: "Open to senior engine and technical art roles",
   languages: [
     { name: "Spanish", level: "Native" },

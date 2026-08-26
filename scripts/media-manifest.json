@@ -1,5 +1,95 @@
 [
  {
+  "project": "cusutools",
+  "source": "_source-assets/cusutools/before-after.png",
+  "dest": "/work/cusutools/01-before-after.avif",
+  "kind": "image",
+  "sourceWidth": 1672,
+  "sourceHeight": 941,
+  "sourceBytes": 1850376
+ },
+ {
+  "project": "cusutools",
+  "source": "_source-assets/cusutools/density-overlay.png",
+  "dest": "/work/cusutools/02-density-overlay.avif",
+  "kind": "image",
+  "sourceWidth": 720,
+  "sourceHeight": 406,
+  "sourceBytes": 123123
+ },
+ {
+  "project": "cusutools",
+  "source": "_source-assets/cusutools/island-colors.png",
+  "dest": "/work/cusutools/03-island-colors.avif",
+  "kind": "image",
+  "sourceWidth": 720,
+  "sourceHeight": 406,
+  "sourceBytes": 131082
+ },
+ {
+  "project": "cusutools",
+  "source": "_source-assets/cusutools/packed-result.png",
+  "dest": "/work/cusutools/04-packed-result.avif",
+  "kind": "image",
+  "sourceWidth": 720,
+  "sourceHeight": 406,
+  "sourceBytes": 173809
+ },
+ {
+  "project": "cusutools",
+  "source": "_source-assets/cusutools/panel-islands.png",
+  "dest": "/work/cusutools/05-panel-islands.avif",
+  "kind": "image",
+  "sourceWidth": 552,
+  "sourceHeight": 343,
+  "sourceBytes": 44641
+ },
+ {
+  "project": "cusutools",
+  "source": "_source-assets/cusutools/panel-align.png",
+  "dest": "/work/cusutools/06-panel-align.avif",
+  "kind": "image",
+  "sourceWidth": 538,
+  "sourceHeight": 303,
+  "sourceBytes": 20207
+ },
+ {
+  "project": "cusutools",
+  "source": "_source-assets/cusutools/panel-presets.png",
+  "dest": "/work/cusutools/07-panel-presets.avif",
+  "kind": "image",
+  "sourceWidth": 541,
+  "sourceHeight": 297,
+  "sourceBytes": 24172
+ },
+ {
+  "project": "cusutools",
+  "source": "_source-assets/cusutools/panel-export.png",
+  "dest": "/work/cusutools/08-panel-export.avif",
+  "kind": "image",
+  "sourceWidth": 538,
+  "sourceHeight": 720,
+  "sourceBytes": 72977
+ },
+ {
+  "project": "cusutools",
+  "source": "_source-assets/cusutools/video-poster.jpg",
+  "dest": "/work/cusutools/09-video-poster.avif",
+  "kind": "image",
+  "sourceWidth": 1280,
+  "sourceHeight": 720,
+  "sourceBytes": 178783
+ },
+ {
+  "project": "cusutools",
+  "source": "_source-assets/cusutools/logo-mark.png",
+  "dest": "/work/cusutools/10-logo-mark.avif",
+  "kind": "image",
+  "sourceWidth": 1024,
+  "sourceHeight": 1024,
+  "sourceBytes": 9898
+ },
+ {
   "project": "ohbb-kart-spongebob",
   "source": "_legacy-scrape/assets/image/Secret-Map.jpg",
   "dest": "/work/ohbb-kart-spongebob/01-secret-map.avif",

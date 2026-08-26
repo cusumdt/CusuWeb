@@ -38,6 +38,16 @@ async function blurPlaceholder(input) {
   return `data:image/webp;base64,${buf.toString("base64")}`;
 }
 
+const BLUR_PATH = path.join(ROOT, "src", "content", "blur-placeholders.json");
+
+async function readBlurMap() {
+  try {
+    return JSON.parse(await readFile(BLUR_PATH, "utf8"));
+  } catch {
+    return {};
+  }
+}
+
 async function main() {
   const manifest = JSON.parse(await readFile(MANIFEST, "utf8"));
   const entries = projectFilter ? manifest.filter((m) => m.project === projectFilter) : manifest;
@@ -46,7 +56,8 @@ async function main() {
   let outBytes = 0;
   let converted = 0;
   let skipped = 0;
-  const blur = {};
+  // Merged, never replaced — a --project run must not drop other projects' placeholders.
+  const blur = await readBlurMap();
   const videos = [];
 
   const seenProject = new Set();
@@ -73,6 +84,8 @@ async function main() {
 
     const webpDest = dest.replace(/\.avif$/, ".webp");
     if (!FORCE && existsSync(dest) && existsSync(webpDest)) {
+      // Already converted — but backfill the placeholder if it went missing.
+      if (!blur[entry.dest]) blur[entry.dest] = await blurPlaceholder(source);
       skipped++;
       continue;
     }

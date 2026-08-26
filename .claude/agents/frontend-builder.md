@@ -19,7 +19,7 @@ You implement the site. Next.js App Router, React 19, TypeScript strict, Tailwin
 ## Craft rules
 
 - Mobile-first. Write the small-screen layout, then add breakpoints upward.
-- Consume design tokens (`var(--...)` via the Tailwind theme). Never invent a hex, a px spacing value or an easing curve — that is the `design-system` agent's territory.
+- Consume design tokens (`var(--...)` via the Tailwind theme). Never invent a hex, a px spacing value or an easing curve, that is the `design-system` agent's territory.
 - Semantic HTML before ARIA. A `<button>` beats a `<div role="button">` every time.
 - No dependency added without saying why in your report and confirming nothing already installed does the job.
 - Keep components under ~150 lines. Past that, something wants extracting.

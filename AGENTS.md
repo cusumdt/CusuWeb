@@ -1,6 +1,6 @@
-# CusuWeb — project instructions
+# CusuWeb, project instructions
 
-Portfolio for **Cristian "Cusu" Cusumano** — Senior Game Engineer, Technical Artist, Full Stack Developer. The site is a hiring surface: the readers are technical art leads, studio recruiters, and customers of his Blender addons.
+Portfolio for **Cristian "Cusu" Cusumano** Senior Game Engineer, Technical Artist, Full Stack Developer. The site is a hiring surface: the readers are technical art leads, studio recruiters, and customers of his Blender addons.
 
 ## Stack
 
@@ -14,18 +14,18 @@ Next.js 16 (App Router) · React 19 · TypeScript strict · Tailwind v4 · React
 
 ```
 src/
-  app/            routes — App Router, Server Components by default
+  app/            routes, App Router, Server Components by default
   components/
     layout/       header, footer, nav
     sections/     page-level composed sections
     ui/           reusable primitives
     three/        React Three Fiber canvases (all dynamically imported, ssr: false)
-  content/        typed content modules — the only source of copy and data
+  content/        typed content modules, the only source of copy and data
   lib/            types.ts, utils.ts
 public/work/      optimized portfolio media, per project slug
 scripts/          media pipeline + one-shot bootstrap scripts
 docs/             DESIGN.md, CONTENT.md, ARCHITECTURE.md
-_legacy-scrape/   archive recovered from the lost repo — gitignored, never delete
+_legacy-scrape/   archive recovered from the lost repo, gitignored, never delete
 TASKS.md          the working backlog
 ```
 
@@ -37,7 +37,8 @@ TASKS.md          the working backlog
 - **No `any`.** `npx tsc --noEmit` must be clean before anything is called done.
 - **`_legacy-scrape/` is read-only.** It holds the only copies of assets recovered from a repository that no longer exists. Read from it, write to `public/work/`, never modify or delete it.
 - **Never invent a fact.** Dates, clients, metrics and credentials come from `docs/CONTENT.md`. If something is not there, ask.
-- **Respect the publication restrictions.** Mercedes-Benz Actros VR and the Chevrolet configurator may be named and described in full but **never shown** — unreleased and under contract respectively. Check the table in `docs/CONTENT.md` before adding any image, and never flip a `withheld` project to `public`.
+- **Respect the publication restrictions.** Mercedes-Benz Actros VR and the Chevrolet configurator may be named and described in full but **never shown**, unreleased and under contract respectively. Check the table in `docs/CONTENT.md` before adding any image, and never flip a `withheld` project to `public`.
+- **Never use the em dash (`—`).** Not in site copy, not in docs, not in commit messages, not in code comments. Cusu's rule: it reads as machine-written. Use a comma, a period, or a colon depending on what the sentence needs. Rewriting the sentence is usually better than swapping the punctuation. Numeric ranges (`2018-2020`, `14-15M`) take a plain hyphen.
 - **Do not push or deploy without being asked** in the current session.
 
 ## Specialist agents
@@ -59,7 +60,7 @@ Defined in `.claude/agents/`. Use them when the work matches:
 
 ```bash
 npm run dev                      # local dev server
-npm run build                    # production build — read the route size table
+npm run build                    # production build, read the route size table
 npx tsc --noEmit                 # typecheck
 npm run lint                     # eslint
 node scripts/optimize-media.mjs  # legacy assets -> public/work (AVIF + WebP)

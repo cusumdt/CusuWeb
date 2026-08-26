@@ -45,3 +45,6 @@ next-env.d.ts
 
 # intermediate output of scripts/bootstrap-projects.py
 /scripts/_media_by_project.json
+
+# staged master assets for the media pipeline, converted output ships instead
+/_source-assets/
