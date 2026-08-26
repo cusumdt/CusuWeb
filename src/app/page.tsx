@@ -1,19 +1,21 @@
+import Link from "next/link";
 import { site } from "@/content/site";
 import { experience } from "@/content/experience";
+import { strengths } from "@/content/skills";
+import { publishedProjects } from "@/content/projects";
 import { MonoLabel } from "@/components/ui/MonoLabel";
 import { Button } from "@/components/ui/Button";
 import { Reveal } from "@/components/ui/Reveal";
+import { ProjectCard } from "@/components/sections/ProjectCard";
 
-/**
- * Holding hero. Phase 5.1 replaces this with the real home page:
- * selected work, capability summary, current role, contact CTA.
- */
 export default function Home() {
   const current = experience.filter((r) => r.current);
+  const featured = publishedProjects.filter((p) => p.featured).slice(0, 4);
 
   return (
-    <main id="main" className="mx-auto flex w-full max-w-page flex-1 flex-col px-gutter">
-      <div className="flex flex-1 flex-col justify-center py-section">
+    <main id="main" className="mx-auto w-full max-w-page flex-1 px-gutter">
+      {/* Hero */}
+      <section className="flex min-h-[70vh] flex-col justify-center py-section">
         <Reveal>
           <MonoLabel tone="accent">{site.role}</MonoLabel>
         </Reveal>
@@ -35,16 +37,6 @@ export default function Home() {
         </Reveal>
 
         <Reveal delay={180}>
-          <ul className="mt-14 flex flex-wrap gap-x-8 gap-y-3">
-            {current.map((role) => (
-              <li key={role.company} className="font-mono text-meta text-muted">
-                <span className="text-text">{role.company}</span> {role.title}
-              </li>
-            ))}
-          </ul>
-        </Reveal>
-
-        <Reveal delay={240}>
           <div className="mt-14 flex flex-wrap gap-4">
             <Button href="/work">See the work</Button>
             <Button href="/contact" variant="secondary">
@@ -52,7 +44,81 @@ export default function Home() {
             </Button>
           </div>
         </Reveal>
-      </div>
+      </section>
+
+      {/* Current roles */}
+      <section className="border-t border-line py-section">
+        <MonoLabel as="h2" tone="accent">
+          Currently
+        </MonoLabel>
+        <ul className="mt-10 grid gap-8 md:grid-cols-3">
+          {current.map((role) => (
+            <li key={role.company} className="border-t border-line-soft pt-6">
+              <p className="font-mono text-meta text-accent">{role.start} to present</p>
+              <h3 className="mt-3 text-heading">{role.company}</h3>
+              <p className="mt-1 font-mono text-meta text-muted">{role.title}</p>
+              <p className="mt-4 max-w-measure text-small text-muted">{role.summary}</p>
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      {/* Selected work */}
+      <section className="border-t border-line py-section">
+        <div className="flex flex-wrap items-baseline justify-between gap-6">
+          <MonoLabel as="h2" tone="accent">
+            Selected work
+          </MonoLabel>
+          <Link
+            href="/work"
+            className="font-mono text-label uppercase text-muted transition-colors duration-fast ease-out-quint hover:text-accent"
+          >
+            All {publishedProjects.length} projects
+          </Link>
+        </div>
+
+        <div className="mt-12 grid gap-x-8 gap-y-16 md:grid-cols-2">
+          {featured.map((project, i) => (
+            <ProjectCard key={project.slug} project={project} priority={i < 2} />
+          ))}
+        </div>
+      </section>
+
+      {/* Capability */}
+      <section className="border-t border-line py-section">
+        <MonoLabel as="h2" tone="accent">
+          What I bring
+        </MonoLabel>
+        <div className="mt-10 grid gap-10 md:grid-cols-2">
+          {strengths.map((s) => (
+            <div key={s.title}>
+              <h3 className="text-heading">{s.title}</h3>
+              <p className="mt-3 max-w-measure text-body text-muted">{s.body}</p>
+            </div>
+          ))}
+        </div>
+        <div className="mt-12">
+          <Button href="/about" variant="secondary">
+            More about me
+          </Button>
+        </div>
+      </section>
+
+      {/* Contact */}
+      <section className="border-t border-line py-section">
+        <MonoLabel as="h2" tone="accent">
+          Next
+        </MonoLabel>
+        <p className="mt-8 max-w-measure text-title">{site.availability}</p>
+        <div className="mt-12 flex flex-wrap gap-4">
+          <Button href={site.email ? `mailto:${site.email}` : "/contact"}>
+            {site.email}
+          </Button>
+          <Button href="/contact" variant="secondary">
+            Other ways to reach me
+          </Button>
+        </div>
+      </section>
     </main>
   );
 }

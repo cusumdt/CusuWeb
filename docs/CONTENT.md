@@ -101,4 +101,6 @@ Voice is direct and technical. Specifics over adjectives, numbers wherever they 
 
 **Punctuation:** the em dash (`—`) is banned everywhere, in site copy and in these docs alike. It reads as machine-written. Use a comma, a period or a colon, and prefer rewriting the sentence to swapping the character. Numeric ranges use a plain hyphen.
 
-Every project page answers, in order: what it was → his role → the constraint → what he did → the outcome.
+Every project page answers, in order: what it was, the role, the constraint, what he did, the outcome.
+
+**Voice:** the site is written in the first person, because it is his. The section labels rendered on a project page are "What it was", "The constraint", "What I did", "Outcome". These notes describe him in the third person; the site never does.

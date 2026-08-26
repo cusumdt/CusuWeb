@@ -77,17 +77,25 @@ Two things found and fixed while verifying:
 
 ---
 
-## Phase 5, Pages  · `frontend-builder`
+## Phase 5, Pages  · `frontend-builder` ✅
 
-- [ ] **5.1** `/`: hero, selected work, capability summary, current role, contact CTA. A holding hero is in place.
-- [ ] **5.0** The header links to `/work`, `/tools`, `/about` and `/contact`, which do not exist yet and currently 404. Building them is this phase.
-- [ ] **5.2** `/work`: full index, filterable by discipline (`engine`, `technical-art`, `3d-art`, `web-3d`, `tooling`, `art-direction`). Filter must work without JS or degrade honestly. Handle `visuals: withheld` cards, see B.1c.
-- [ ] **5.3** `/work/[slug]`: `generateStaticParams`, editorial case-study layout, full-bleed hero, mono metadata block, gallery, prev/next.
-- [ ] **5.4** `/about`: narrative, experience timeline from `experience.ts`, skills, education, languages.
-- [ ] **5.5** `/tools`: TexelPack and PreflightKit as products, not portfolio pieces. This page sells software. Full TexelPack feature set is in `docs/CONTENT.md`.
-- [ ] **5.6** `/contact`: email, WhatsApp, LinkedIn, availability. No contact form unless there is a real backend for it.
-- [ ] **5.7** Lightbox for gallery images, keyboard navigable, Escape closes, focus restored on close.
-- [ ] **5.8** Click-to-load YouTube facade for the TexelPack demo. Poster is self-hosted at `/work/cusutools/09-video-poster.avif`; no YouTube script loads until the reader clicks.
+- [x] **5.1** `/`: hero, current roles, four selected projects, capability summary, contact CTA.
+- [x] **5.0** Every header link now resolves. No 404s in the nav.
+- [x] **5.2** `/work`: 12 projects, filtered by a search param through plain links, with live counts per discipline. No `"use client"` on the route at all. Verified with `curl`: `?discipline=3d-art` returns 8 cards, `engine` 1, an unknown value falls back to all 12.
+- [x] **5.3** `/work/[slug]`: 12 pages via `generateStaticParams`, case-study layout on the five-beat structure, mono metadata sidebar, gallery, prev/next, per-project canonical.
+- [x] **5.4** `/about`: how I work, the 9-role timeline, skills by group, education and languages.
+- [x] **5.5** `/tools`: TexelPack as a product with a spec strip, the feature list, the Blender panels, the demo video and a buy link. PreflightKit is listed but still has no URL, see B.2.
+- [x] **5.6** `/contact`: five channels, location, languages. No form, since there is no backend to receive one.
+- [x] **5.7** Lightbox: arrow keys step and wrap, Escape closes, Tab holds inside, scroll locks, and focus returns to the thumbnail of the image last viewed rather than the one first clicked.
+- [x] **5.8** YouTube facade on `/work/cusutools` and `/tools`. Verified zero requests to youtube.com, ytimg.com or google.com before the click. Uses `youtube-nocookie.com` and carries a `<noscript>` link.
+
+**Done when:** every route exists, is keyboard operable and renders without JavaScript. **Met.**
+
+Verified: unique title, description and `h1` on all 7 routes, no horizontal overflow at 375 on any of them, and zero em dashes in the rendered HTML.
+
+One bug found: the lightbox re-ran its open effect on every arrow press, tearing down the scroll lock and stealing focus back from the Close button each time. Split into an open/close effect and a keyboard effect.
+
+**Trade-off taken:** `/work` is server-rendered on demand rather than static, because the filter reads a search param. Making it static would mean either client-side filtering, which breaks without JavaScript, or a second route namespace for disciplines. A single dynamic route is the cheaper price.
 
 ---
 
