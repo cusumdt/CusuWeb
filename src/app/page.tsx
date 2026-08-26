@@ -2,7 +2,7 @@ import Link from "next/link";
 import { site } from "@/content/site";
 import { experience } from "@/content/experience";
 import { strengths } from "@/content/skills";
-import { publishedProjects } from "@/content/projects";
+import { publishedProjects, homeProjects } from "@/content/projects";
 import { MonoLabel } from "@/components/ui/MonoLabel";
 import { Button } from "@/components/ui/Button";
 import { Reveal } from "@/components/ui/Reveal";
@@ -11,7 +11,7 @@ import { PersonJsonLd } from "@/components/seo/JsonLd";
 
 export default function Home() {
   const current = experience.filter((r) => r.current);
-  const featured = publishedProjects.filter((p) => p.featured).slice(0, 4);
+
 
   return (
     <main id="main" className="mx-auto w-full max-w-page flex-1 px-gutter">
@@ -80,7 +80,7 @@ export default function Home() {
         </div>
 
         <div className="mt-12 grid gap-x-8 gap-y-16 md:grid-cols-2">
-          {featured.map((project, i) => (
+          {homeProjects.map((project, i) => (
             <ProjectCard key={project.slug} project={project} priority={i < 2} />
           ))}
         </div>

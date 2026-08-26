@@ -4,11 +4,15 @@ import { getBlur } from "@/lib/media";
 import { cn } from "@/lib/utils";
 
 /**
- * A portfolio image with its caption.
+ * A portfolio asset with its caption.
  *
  * Dimensions come from the content module and the aspect ratio is reserved in
- * CSS, so nothing shifts while the image decodes. The blur placeholder is
- * looked up from the generated map rather than stored per entry.
+ * CSS, so nothing shifts while the asset loads.
+ *
+ * Video plays only when the reader presses play. No autoplay, which keeps it
+ * out of the way of `prefers-reduced-motion` without needing client JS, and
+ * `preload="metadata"` means the browser paints the first frame as the poster
+ * rather than us shipping a fabricated one.
  */
 export function Figure({
   media,
@@ -21,7 +25,7 @@ export function Figure({
   sizes?: string;
   className?: string;
 }) {
-  const blur = getBlur(media.src);
+  const blur = media.kind === "image" ? getBlur(media.src) : undefined;
 
   return (
     <figure className={cn("w-full", className)}>
@@ -29,16 +33,31 @@ export function Figure({
         className="relative w-full overflow-hidden bg-surface"
         style={{ aspectRatio: `${media.width} / ${media.height}` }}
       >
-        <Image
-          src={media.src}
-          alt={media.alt}
-          fill
-          sizes={sizes}
-          priority={priority}
-          loading={priority ? undefined : "lazy"}
-          className="object-cover"
-          {...(blur ? { placeholder: "blur" as const, blurDataURL: blur } : {})}
-        />
+        {media.kind === "video" ? (
+          <video
+            controls
+            muted
+            loop
+            playsInline
+            preload="metadata"
+            poster={media.poster}
+            aria-label={media.alt}
+            className="absolute inset-0 h-full w-full object-cover"
+          >
+            <source src={media.src} type="video/mp4" />
+          </video>
+        ) : (
+          <Image
+            src={media.src}
+            alt={media.alt}
+            fill
+            sizes={sizes}
+            priority={priority}
+            loading={priority ? undefined : "lazy"}
+            className="object-cover"
+            {...(blur ? { placeholder: "blur" as const, blurDataURL: blur } : {})}
+          />
+        )}
       </div>
       {media.caption ? (
         <figcaption className="mt-3 font-mono text-meta text-muted">{media.caption}</figcaption>

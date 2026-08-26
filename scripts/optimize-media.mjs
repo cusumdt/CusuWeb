@@ -9,10 +9,11 @@
  * the recovered site) and writes AVIF + WebP into public/work/<project>/.
  * Source files in _legacy-scrape/ are never modified.
  *
- * Video entries are reported but not transcoded here - ffmpeg is not a dependency.
- * See TASKS.md for the video pass.
+ * Videos are copied through unconverted. They are already H.264 in an MP4
+ * container, ffmpeg is not a dependency of this project, and the clips are
+ * small enough that a WebM sibling would save bytes nobody is short of.
  */
-import { readFile, writeFile, mkdir, stat } from "node:fs/promises";
+import { readFile, writeFile, mkdir, stat, copyFile } from "node:fs/promises";
 import { existsSync } from "node:fs";
 import path from "node:path";
 import sharp from "sharp";
@@ -72,6 +73,20 @@ async function main() {
     }
 
     if (entry.kind === "video") {
+      // No ffmpeg in this project, so no transcode. The recovered clips are
+      // already H.264 in an MP4 container, which every current browser plays,
+      // and they are small enough that a WebM sibling would save bytes nobody
+      // is short of. Copy them through so the pipeline stays the single path
+      // from source to public/.
+      await mkdir(path.dirname(dest), { recursive: true });
+      if (FORCE || !existsSync(dest)) {
+        await copyFile(source, dest);
+        const s = await stat(dest);
+        console.log(`  ${entry.dest}  copied, ${fmt(s.size)}`);
+        converted++;
+      } else {
+        skipped++;
+      }
       videos.push(entry);
       continue;
     }

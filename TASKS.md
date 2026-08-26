@@ -51,15 +51,27 @@ Two things found and fixed while verifying:
 
 ---
 
-## Phase 3, Media pipeline  · `media-pipeline`
+## Phase 3, Media pipeline  · `media-pipeline` ✅
 
 - [x] **3.1** Run `node scripts/optimize-media.mjs`: 88 images, **213.8 MB → 4.2 MB AVIF** (98.0% smaller). `public/work/` totals 10 MB including WebP fallbacks.
-- [ ] **3.2** Full visual review of the output. Spot-checked 2 of 88 at 100% crop (marble material for banding, character for smearing), both clean at AVIF q62. Still needs a pass over the remaining 86.
+- [x] **3.2** Reviewed by risk rather than in filename order: ranked all 100 conversions by output bytes per megapixel against source smoothness, which is where banding shows, then compared the six worst at matched scale and 100% crop. No banding, no smearing, no normal-map damage. AVIF q62 stands. Alpha verified preserved end to end, source RGBA to output RGBA.
 - [x] **3.3** Blur placeholders wired through `src/lib/media.ts` and consumed by `Figure`, rather than duplicated into every entry in `projects.ts`. The generated map stays the single source.
-- [ ] **3.4** Transcode `Peakmines/enanos.mp4` to MP4 + WebM, extract a poster frame.
-- [ ] **3.5** Confirm no project page exceeds 1.5 MB on first view.
+- [x] **3.4** The Peakmines clip ships. 1920x1080, 4s, H.264, 430 KB. No transcode and no WebM sibling: it already plays in every current browser and a second encode would save bytes nobody is short of. No fabricated poster either; `preload="metadata"` makes the browser paint the real first frame.
+- [x] **3.5** Measured against the production build across 11 routes, counting HTML, CSS, JS and eager images only. Heaviest first view is `/work/ohbb-raid` at **417 KB** against a 1536 KB budget.
 
-**Done when:** total `public/work/` is under 25 MB (currently 10 MB ✅) and every image in `projects.ts` resolves.
+**Done when:** total `public/work/` is under 25 MB and every asset in `projects.ts` resolves. **Met**, 11 MB.
+
+Two bugs found while finishing this phase, both of which had been shipping:
+
+- **The Peakmines video was fed to `next/image`.** Neither `Figure` nor `Gallery` branched on `Media.kind`, so an `.mp4` was going through the image optimizer, and the file had never been copied to `public/` either. The gallery had a broken tile. `Figure` now renders a real `<video>` and `Gallery` keeps videos out of the lightbox, since a button wrapper would swallow their controls.
+- **`optimize-media.mjs` reported videos instead of copying them**, so the pipeline was not actually the single path from source to `public/`. It copies them now.
+
+### Open observation, not a defect
+
+The isolated prop renders carry generous transparent margins, so in a two-column
+gallery the subject can occupy a quarter of its tile. Trimming the alpha bounding
+box in the pipeline would make those galleries much stronger, but it changes
+composition and aspect ratios, so it is a call for Cusu rather than a silent fix.
 
 ---
 

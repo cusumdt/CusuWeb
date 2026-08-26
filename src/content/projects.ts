@@ -1077,6 +1077,28 @@ export const projects: Project[] = [
 export const featuredProjects = projects.filter((p) => p.featured && !p.draft);
 export const publishedProjects = projects.filter((p) => !p.draft);
 
+/**
+ * The four projects that lead the home page, in order, chosen by hand.
+ *
+ * Deliberately not `featured.slice(0, 4)`. `featured` marks strong work and
+ * drives sitemap priority; this is a separate editorial call about what should
+ * carry the first screen. Chevrolet is strong but publishes no imagery, and a
+ * "visuals withheld" card is a weak opening beat. The licensed IPs earn the
+ * slots because they are recognisable and they have images.
+ */
+const HOME_SELECTION = [
+  "mercedes-actros-vr",
+  "cusutools",
+  "ohbb-kart-spongebob",
+  "ohbb-kart-invader-zim",
+] as const;
+
+export const homeProjects = HOME_SELECTION.map((slug) => {
+  const project = publishedProjects.find((p) => p.slug === slug);
+  if (!project) throw new Error(`HOME_SELECTION references unknown project: ${slug}`);
+  return project;
+});
+
 /** Projects that can carry imagery. The rest are described in text only. */
 export const illustratedProjects = publishedProjects.filter(
   (p) => p.visuals.status === "public" && p.cover,

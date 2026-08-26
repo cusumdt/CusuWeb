@@ -22,6 +22,10 @@ export function Gallery({ media }: { media: Media[] }) {
   const closeRef = useRef<HTMLButtonElement>(null);
   const triggersRef = useRef<(HTMLButtonElement | null)[]>([]);
 
+  // The lightbox navigates images only. A video carries its own controls, and
+  // wrapping one in a button would swallow them.
+  const images = media.filter((m) => m.kind === "image");
+
   const isOpen = index !== null;
 
   // Tracked in a ref so stepping through images does not re-run the effect
@@ -35,8 +39,8 @@ export function Gallery({ media }: { media: Media[] }) {
   const close = useCallback(() => setIndex(null), []);
   const step = useCallback(
     (delta: number) =>
-      setIndex((i) => (i === null ? i : (i + delta + media.length) % media.length)),
-    [media.length],
+      setIndex((i) => (i === null ? i : (i + delta + images.length) % images.length)),
+    [images.length],
   );
 
   // Open and close: scroll lock, initial focus, focus restore.
@@ -81,31 +85,40 @@ export function Gallery({ media }: { media: Media[] }) {
     return () => document.removeEventListener("keydown", onKeyDown);
   }, [isOpen, close, step]);
 
-  const current = index === null ? null : media[index];
+  const current = index === null ? null : images[index];
   const blur = current ? getBlur(current.src) : undefined;
 
   return (
     <>
       <div className="grid gap-8 md:grid-cols-2">
-        {media.map((item, i) => (
-          <button
-            key={item.src}
-            ref={(el) => {
-              triggersRef.current[i] = el;
-            }}
-            type="button"
-            onClick={() => setIndex(i)}
-            aria-haspopup="dialog"
-            className="group block cursor-zoom-in text-left"
-          >
-            <Figure
-              media={item}
-              sizes="(min-width: 768px) 40rem, 100vw"
-              className="transition-opacity duration-fast ease-out-quint group-hover:opacity-90 motion-reduce:transition-none"
-            />
-            <span className="sr-only">Open larger view</span>
-          </button>
-        ))}
+        {media.map((item) => {
+          if (item.kind === "video") {
+            return (
+              <Figure key={item.src} media={item} sizes="(min-width: 768px) 40rem, 100vw" />
+            );
+          }
+
+          const i = images.indexOf(item);
+          return (
+            <button
+              key={item.src}
+              ref={(el) => {
+                triggersRef.current[i] = el;
+              }}
+              type="button"
+              onClick={() => setIndex(i)}
+              aria-haspopup="dialog"
+              className="group block cursor-zoom-in text-left"
+            >
+              <Figure
+                media={item}
+                sizes="(min-width: 768px) 40rem, 100vw"
+                className="transition-opacity duration-fast ease-out-quint group-hover:opacity-90 motion-reduce:transition-none"
+              />
+              <span className="sr-only">Open larger view</span>
+            </button>
+          );
+        })}
       </div>
 
       {current ? (
@@ -117,7 +130,7 @@ export function Gallery({ media }: { media: Media[] }) {
         >
           <div className="flex items-center justify-between border-b border-line px-gutter py-4">
             <p className="font-mono text-meta text-muted">
-              {(index ?? 0) + 1} / {media.length}
+              {(index ?? 0) + 1} / {images.length}
             </p>
             <button
               ref={closeRef}
