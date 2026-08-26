@@ -171,10 +171,11 @@ export const education = [
 export const tools: Tool[] = [
   {
     name: "TexelPack",
-    tagline: "UV packing and texel density for Blender",
+    tagline: "One-click UV packing, with the texel density toolkit built in",
     description:
-      "Packs UVs and normalizes texel density across a scene, and exports the texel density map as an image so layout problems are visible before they reach the engine.",
+      "Packs UV islands into a tight atlas across one object or a whole selection, holds texel density consistent by measuring real 3D surface area, and draws the result as a viewport overlay so wasted space and stretching are visible before a bake. Four packing algorithms, mirrored-island stacking, UDIM and group packing, pixel-exact padding, and JSON / CSV / SVG layout export. Runs on Blender's bundled Python with zero external dependencies.",
     marketplace: "Superhive Market",
+    href: "https://superhivemarket.com/products/texelpack",
     status: "released",
   },
   {

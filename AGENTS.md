@@ -37,6 +37,7 @@ TASKS.md          the working backlog
 - **No `any`.** `npx tsc --noEmit` must be clean before anything is called done.
 - **`_legacy-scrape/` is read-only.** It holds the only copies of assets recovered from a repository that no longer exists. Read from it, write to `public/work/`, never modify or delete it.
 - **Never invent a fact.** Dates, clients, metrics and credentials come from `docs/CONTENT.md`. If something is not there, ask.
+- **Respect the publication restrictions.** Mercedes-Benz Actros VR and the Chevrolet configurator may be named and described in full but **never shown** — unreleased and under contract respectively. Check the table in `docs/CONTENT.md` before adding any image, and never flip a `withheld` project to `public`.
 - **Do not push or deploy without being asked** in the current session.
 
 ## Specialist agents

@@ -30,17 +30,12 @@ export const projects: Project[] = [
       "Owned the UE 5.5 to 5.7 migration and revalidated lighting, materials and performance.",
     ],
     outcome: "In production.",
-    cover: {
-      kind: "image",
-      src: "/work/mercedes-actros-vr/cover.avif",
-      alt: "TODO: cover image pending - no asset recovered for this project",
-      width: 1600,
-      height: 900,
+    media: [],
+    visuals: {
+      status: "withheld",
+      reason: "In development — no imagery can be shown until the project ships.",
     },
-    media: [
-    ],
     featured: true,
-    draft: true,
   },
   {
     slug: "cusutools",
@@ -52,27 +47,27 @@ export const projects: Project[] = [
     platform: "Blender (Python / bpy)",
     role: "Founder, developer, support",
     disciplines: ["tooling"],
-    stack: ["Python", "bpy", "Blender"],
+    stack: ["Python", "bpy", "Blender 3.6 LTS / 4.x / 5.x"],
     summary:
-      "Two commercial Blender addons sold on Superhive Market. TexelPack handles UV packing and texel density normalization, including exporting the texel density map as an image for layout inspection. PreflightKit validates and exports game-ready assets, catching pipeline errors before they reach an engine.",
+      "Two commercial Blender addons sold on Superhive Market. TexelPack packs UV islands into a tight atlas, holds texel density consistent across a whole selection, and draws the result as a viewport overlay so wasted space and stretching are visible before a bake. PreflightKit validates and exports game-ready assets, catching pipeline errors before they reach an engine.",
     constraint:
-      "Shipping software to strangers means the failure modes are theirs, not yours - scenes you will never see, Blender versions you did not test.",
+      "Shipping software to strangers means the failure modes are theirs, not yours - scenes you will never see, on Blender versions you did not test. TexelPack runs on Blender's bundled Python with zero external dependencies for exactly that reason: nothing to pip-install, nothing to break in someone else's environment.",
     contribution: [
-      "Full product cycle: market research, development, release, support and updates.",
-      "Storefront, pricing, refunds, and affiliate and creator outreach.",
+      "Four packing algorithms - MAXRECTS, Guillotine, Shelf, and a Max Quality mode that packs by real island shape so small pieces fill concavities.",
+      "Texel density normalized against each object's real 3D surface area, object scale included, with a color-coded viewport overlay grading every face against the target.",
+      "Vectorized island extraction: 100k polygons in under a second, with pixel-exact ±1px padding for clean bake bleeding.",
+      "UDIM and group packing, mirrored-island stacking, reserved atlas regions, presets, and JSON / CSV / SVG layout export for Substance and Photoshop.",
+      "Full product cycle: market research, development, release, support and updates - plus storefront, pricing, refunds and creator outreach.",
     ],
-    outcome: "Both addons released and in active use.",
-    cover: {
-      kind: "image",
-      src: "/work/cusutools/cover.avif",
-      alt: "TODO: cover image pending - no asset recovered for this project",
-      width: 1600,
-      height: 900,
-    },
-    media: [
+    outcome: "Both addons released and in active use. TexelPack is GPL-3.0-or-later.",
+    media: [],
+    visuals: { status: "pending" },
+    links: [
+      { label: "TexelPack", href: "https://texelpack.vercel.app/" },
+      { label: "Buy on Superhive Market", href: "https://superhivemarket.com/products/texelpack" },
+      { label: "Documentation", href: "https://texelpack.vercel.app/docs/index.html" },
     ],
     featured: true,
-    draft: true,
   },
   {
     slug: "chevrolet-configurator",
@@ -95,17 +90,12 @@ export const projects: Project[] = [
       "Iterated with design and product against client feedback.",
     ],
     outcome: "Delivered.",
-    cover: {
-      kind: "image",
-      src: "/work/chevrolet-configurator/cover.avif",
-      alt: "TODO: cover image pending - no asset recovered for this project",
-      width: 1600,
-      height: 900,
+    media: [],
+    visuals: {
+      status: "withheld",
+      reason: "Client contract — the work can be described but not shown.",
     },
-    media: [
-    ],
     featured: true,
-    draft: true,
   },
   {
     slug: "ohbb-raid",
@@ -263,6 +253,7 @@ export const projects: Project[] = [
         height: 901,
       },
     ],
+    visuals: { status: "public" },
     featured: true,
   },
   {
@@ -365,6 +356,7 @@ export const projects: Project[] = [
         height: 715,
       },
     ],
+    visuals: { status: "public" },
     featured: true,
   },
   {
@@ -488,6 +480,7 @@ export const projects: Project[] = [
         height: 1080,
       },
     ],
+    visuals: { status: "public" },
     featured: true,
   },
   {
@@ -521,6 +514,7 @@ export const projects: Project[] = [
     },
     media: [
     ],
+    visuals: { status: "public" },
     featured: true,
   },
   {
@@ -602,6 +596,7 @@ export const projects: Project[] = [
         height: 1080,
       },
     ],
+    visuals: { status: "public" },
     featured: false,
   },
   {
@@ -683,6 +678,7 @@ export const projects: Project[] = [
         height: 720,
       },
     ],
+    visuals: { status: "public" },
     featured: false,
   },
   {
@@ -770,6 +766,7 @@ export const projects: Project[] = [
         height: 1920,
       },
     ],
+    visuals: { status: "public" },
     featured: false,
   },
   {
@@ -899,6 +896,7 @@ export const projects: Project[] = [
         height: 1920,
       },
     ],
+    visuals: { status: "public" },
     featured: false,
   },
   {
@@ -951,12 +949,18 @@ export const projects: Project[] = [
         height: 1920,
       },
     ],
+    visuals: { status: "public" },
     featured: false,
   },
 ];
 
 export const featuredProjects = projects.filter((p) => p.featured && !p.draft);
 export const publishedProjects = projects.filter((p) => !p.draft);
+
+/** Projects that can carry imagery. The rest are described in text only. */
+export const illustratedProjects = publishedProjects.filter(
+  (p) => p.visuals.status === "public" && p.cover,
+);
 
 export function getProject(slug: string) {
   return projects.find((p) => p.slug === slug);

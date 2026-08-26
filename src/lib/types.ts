@@ -25,6 +25,19 @@ export interface Media {
   caption?: string;
 }
 
+/**
+ * Whether a project's visuals can be published.
+ *
+ * `withheld` is a contractual or pre-release restriction — the project is still
+ * listed and described in full, it simply carries no imagery, and the reason is
+ * shown to the reader. Never downgrade a `withheld` project to `public` without
+ * Cusu confirming the restriction has lifted.
+ */
+export type VisualPolicy =
+  | { status: "public" }
+  | { status: "withheld"; reason: string }
+  | { status: "pending" };
+
 export interface Project {
   slug: string;
   title: string;
@@ -43,8 +56,10 @@ export interface Project {
   constraint?: string;
   contribution?: string[];
   outcome?: string;
-  cover: Media;
+  /** Absent when `visuals.status` is not `public`. */
+  cover?: Media;
   media: Media[];
+  visuals: VisualPolicy;
   featured: boolean;
   /** Hidden from listings while assets or copy are still missing */
   draft?: boolean;

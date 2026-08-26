@@ -2,6 +2,8 @@
 
 Portfolio for **Cristian "Cusu" Cusumano** — Senior Game Engineer, Technical Artist, Full Stack Developer.
 
+**Live:** https://cusu-dev.vercel.app
+
 Next.js 16 · React 19 · TypeScript · Tailwind v4 · React Three Fiber · deployed on Vercel.
 
 ## Getting started
@@ -29,6 +31,10 @@ npm run dev
 - `docs/ARCHITECTURE.md` — rendering model, content and media flow, performance budgets.
 - `TASKS.md` — the working backlog.
 - `.claude/agents/` — specialist agents for design, 3D, copy, media, performance, SEO and deploys.
+
+## Publication restrictions
+
+The **Mercedes-Benz Actros VR** and **Chevrolet configurator** projects may be named and described in full but **never shown** — the first is unreleased, the second is under contract. They are modelled as `visuals: { status: "withheld" }` in `src/content/projects.ts`. Read `docs/CONTENT.md` before adding any image.
 
 ## A note on assets
 

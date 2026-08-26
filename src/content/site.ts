@@ -6,7 +6,7 @@ export const site = {
   location: "Santos, São Paulo, Brazil",
   email: "cusumdt@gmail.com",
   phone: "+55 13 9 8192 3786",
-  url: "https://cusuweb.vercel.app",
+  url: "https://cusu-dev.vercel.app",
   description:
     "Senior Game Engineer and Technical Artist with 9+ years bridging code and art — Unreal Engine 5 VR, real-time web 3D, and shipped Blender tooling.",
   availability: "Open to senior engine and technical art roles",

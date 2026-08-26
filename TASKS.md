@@ -71,10 +71,10 @@ Working list. Each task names the agent that should own it. Check items off as t
 ## Phase 5 — Pages  · `frontend-builder`
 
 - [ ] **5.1** `/` — hero, selected work, capability summary, current role, contact CTA.
-- [ ] **5.2** `/work` — full index, filterable by discipline (`engine`, `technical-art`, `3d-art`, `web-3d`, `tooling`, `art-direction`). Filter must work without JS or degrade honestly.
+- [ ] **5.2** `/work` — full index, filterable by discipline (`engine`, `technical-art`, `3d-art`, `web-3d`, `tooling`, `art-direction`). Filter must work without JS or degrade honestly. Handle `visuals: withheld` cards — see B.1c.
 - [ ] **5.3** `/work/[slug]` — `generateStaticParams`, editorial case-study layout, full-bleed hero, mono metadata block, gallery, prev/next.
 - [ ] **5.4** `/about` — narrative, experience timeline from `experience.ts`, skills, education, languages.
-- [ ] **5.5** `/tools` — TexelPack and PreflightKit as products, not portfolio pieces. This page sells software.
+- [ ] **5.5** `/tools` — TexelPack and PreflightKit as products, not portfolio pieces. This page sells software. Full TexelPack feature set is in `docs/CONTENT.md`.
 - [ ] **5.6** `/contact` — email, WhatsApp, LinkedIn, availability. No contact form unless there is a real backend for it.
 - [ ] **5.7** Lightbox for gallery images — keyboard navigable, Escape closes, focus restored on close.
 
@@ -118,18 +118,20 @@ Working list. Each task names the agent that should own it. Check items off as t
 
 - [x] **9.1** `.gitignore` excludes `_legacy-scrape/`, `node_modules/`, `.next/`, `.env*` — verified against `git status`.
 - [x] **9.2** Pushed to `github.com/cusumdt/CusuWeb` (`main`). Ask before every subsequent push.
-- [!] **9.3** Import into Vercel at vercel.com/new, Next.js preset — needs Cusu's account login; the CLI cannot authenticate here.
-- [ ] **9.4** Verify the live site — not just a green build.
-- [ ] **9.5** Custom domain (see blockers below).
+- [x] **9.3** Deployed on Vercel — **https://cusu-dev.vercel.app**
+- [ ] **9.4** Verify the live site once real pages exist — not just a green build.
+- [ ] **9.5** Custom domain (see B.3).
+- [ ] **9.7** Set the repo's About → Website field on GitHub to `https://cusu-dev.vercel.app`. Needs Cusu's account — no `gh` CLI authenticated here.
 - [ ] **9.6** Redirect or retire `cristiancusu.netlify.app` so there is one canonical portfolio.
 
 ---
 
 ## Blocked on Cusu  `[!]`
 
-- [!] **B.1** **Media for the flagship work.** Mercedes-Benz Actros VR, CusuTools, and the Chevrolet configurator are the strongest things on the résumé and have zero images. These four are `draft: true` and hidden until assets arrive. Screenshots, a screen recording, or an addon UI capture — whatever is not under NDA.
-  - Check what the Mercedes-Benz / Agência DADS work permits publicly *before* anything goes on the site.
-- [!] **B.2** **Superhive Market URLs** for TexelPack and PreflightKit — the `/tools` page needs real buy links.
+- [x] ~~**B.1** Media for the flagship work~~ — **resolved 2026-08-26.** Mercedes-Benz Actros VR and Chevrolet may be **named and described but never shown** (unreleased / under contract). Both are now listed with `visuals: withheld` instead of hidden. See the restrictions table in `docs/CONTENT.md`.
+- [!] **B.1b** **CusuTools captures.** The one flagship project with no imagery that *isn't* restricted. Addon UI panel, the color-coded density overlay in the viewport, an SVG layout export, or a short screen recording of a pack. Marked `visuals: pending`.
+- [ ] **B.1c** Design how a `withheld` project renders. It must read as deliberate and confidential — not as a broken image. This is a `design-system` decision before `frontend-builder` implements it.
+- [!] **B.2** **PreflightKit URL.** TexelPack is confirmed: https://superhivemarket.com/products/texelpack (plus the product site at texelpack.vercel.app). PreflightKit has no confirmed public link — the `/tools` page needs one, and it will not be guessed.
 - [!] **B.3** **Domain.** `cusumano.dev`, `cusu.dev`, something else? Vercel gives a `.vercel.app` in the meantime.
 - [!] **B.4** **A photo of you.** The recovered `cusu.jpg` is a 1024×1024 avatar. A real portrait would carry the About page better.
 - [!] **B.5** **Résumé PDF** — decide whether to offer a download on the site.
