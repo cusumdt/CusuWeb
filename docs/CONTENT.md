@@ -57,15 +57,28 @@ Confirmed by Cusu on 2026-08-26. These are contractual and pre-release limits, n
 
 | Project | May be named | May be shown |
 |---|---|---|
-| **Mercedes-Benz Actros VR** (Agência DADS) | ✅ yes, role, stack and technical detail in full | ❌ **no imagery until the project ships.** Still in development. |
+| **Mercedes-Benz Actros VR** (Agência DADS) | ✅ yes, role, stack and technical detail in full | ⚠️ **two approved images only.** See below. |
 | **Chevrolet configurator** | ✅ yes, role, stack and technical detail in full | ❌ **no imagery, by contract.** No expiry given. |
 | Everything else | ✅ | ✅ |
+
+### Mercedes-Benz Actros VR, approved imagery
+
+On 2026-08-26 Cusu received clearance for **two specific renders**, and only those two:
+
+1. An interior cabin view: steering wheel, instrument cluster and the tan upper dash.
+2. An exterior view: the blue Actros 2653 tractor with a silver trailer, in the dark showroom.
+
+**This is not blanket approval for the project.** Any other Mercedes-Benz render, screenshot or capture stays unpublishable until Cusu confirms clearance for that specific asset. The project remains in development. Do not infer from these two that the restriction has lifted.
 
 Both are modelled as `visuals: { status: "withheld", reason }` in `src/content/projects.ts`: listed and described in full, rendered without media, with the reason shown to the reader. A withheld project is **never** promoted to `public` without Cusu confirming the restriction has lifted.
 
 ## Portfolio media
 
 89 assets recovered from the lost Netlify repo, archived in `_legacy-scrape/assets/image/`, mapped to projects in `scripts/media-manifest.json` and converted into `public/work/`.
+
+**Attribution on Oh Baby Games titles.** The presentation renders for SpongeBob and Invader Zim carry a credit bar reading "BY: STEBAN GOCA - 3D MODEL / CRISTIAN CUSUMANO - TEXTURES". Confirmed by Cusu on 2026-08-26: on those two titles Steban Goca did the modeling, Cusu did UVs and texturing **and programmed the maps in Unity**. The site says so. Never describe Cusu as the modeler on SpongeBob or Invader Zim. On OHBB Raid, Tower Defense, the weapon set and the character work, the modeling is his.
+
+**Map programming.** On SpongeBob, Invader Zim and OHBB Raid, Cusu built and programmed the maps in Unity: layout and route logic, C# gameplay systems, and scene setup including materials and shaders. He did not own lighting or performance optimization on those maps.
 
 **CusuTools media, resolved 2026-08-26.** Sourced from Cusu's UVPackerPro repo at `D:\Repositories\UVPackerPro`: the product banner, four addon UI panels, and three stills pulled from the store screen recordings. Masters staged in `_source-assets/cusutools/` (gitignored), converted into `public/work/cusutools/`.
 
@@ -93,7 +106,9 @@ Facts taken from Cusu's own product site, so all of it is publishable:
 - Presets (3 built-in), export per-island data as JSON / CSV, and a color-coded SVG layout for Substance or Photoshop
 - Product site is localized in English, Spanish, Portuguese and Chinese
 
-**PreflightKit:** pre-flight asset validator that checks and exports game-ready assets. **No public URL confirmed yet**, do not guess one. See TASKS B.2.
+**PreflightKit:** pre-flight asset validator that checks and exports game-ready assets, catching errors in naming, scale, transforms and materials. **Still in development, not released.** Confirmed by Cusu on 2026-08-26.
+
+> **Factual conflict to resolve.** The 2026 résumé states "Released PreflightKit, a pre-flight asset validator that checks and exports game-ready assets" under CusuTools. Cusu has since confirmed it is not released. The site follows Cusu, not the résumé. **The résumé itself should be corrected**, since it currently claims a shipped product that does not exist yet.
 
 ## Copy rules
 

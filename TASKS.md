@@ -67,7 +67,7 @@ Two things found and fixed while verifying:
 
 > **Hard rule:** no em dash anywhere. See `docs/CONTENT.md`.
 
-- [ ] **4.1** Replace the remaining `"TODO:"` alt strings in `projects.ts` with real descriptions of what each asset shows. The 8 CusuTools images are already written; the 88 legacy images are not.
+- [x] **4.1** All 89 alt strings written from the images themselves, reviewed on contact sheets. Zero `TODO:` left in the repo.
 - [ ] **4.2** Home hero copy, the one sentence that has to land. Engineer *and* artist, no adjective padding.
 - [ ] **4.3** About page, long-form, first person, built from `docs/CONTENT.md`.
 - [ ] **4.4** Review the 12 project case studies against the required five-beat structure; sharpen anything vague.
@@ -148,10 +148,16 @@ One bug found: the lightbox re-ran its open effect on every arrow press, tearing
 
 ## Blocked on Cusu  `[!]`
 
+- [!] **B.8** **Save the two approved Mercedes renders to disk.** They were pasted into the chat, which does not leave files on the filesystem. Save them as:
+  - `_source-assets/mercedes-actros-vr/01-exterior.png` (the blue Actros with the trailer in the showroom)
+  - `_source-assets/mercedes-actros-vr/02-cabin.png` (the interior, the corrected second version, not the first one sent)
+
+  Then the pipeline is one command. **Only these two images are cleared**, see the restrictions table in `docs/CONTENT.md`.
 - [x] ~~**B.1** Media for the flagship work~~, **resolved 2026-08-26.** Mercedes-Benz Actros VR and Chevrolet may be **named and described but never shown** (unreleased / under contract). Both are now listed with `visuals: withheld` instead of hidden. See the restrictions table in `docs/CONTENT.md`.
 - [x] ~~**B.1b** CusuTools captures~~, **resolved 2026-08-26.** 8 images sourced from the UVPackerPro repo plus the YouTube demo. Now `visuals: public`.
 - [ ] **B.1c** Design how a `withheld` project renders. It must read as deliberate and confidential, not as a broken image. This is a `design-system` decision before `frontend-builder` implements it.
-- [!] **B.2** **PreflightKit URL.** TexelPack is confirmed: https://superhivemarket.com/products/texelpack (plus the product site at texelpack.vercel.app). PreflightKit has no confirmed public link, the `/tools` page needs one, and it will not be guessed.
+- [x] ~~**B.2** PreflightKit URL~~, **resolved 2026-08-26.** There is no URL because PreflightKit has not been released. It is marked `in-development` and `/tools` presents it as such, with no buy link.
+- [!] **B.7** **The résumé claims PreflightKit is released.** `Cristian_Cusumano_Resume_2026.pdf` says "Released PreflightKit" under CusuTools. It is not released. The site is correct; the PDF needs fixing before it goes to anyone.
 - [!] **B.3** **Domain.** `cusumano.dev`, `cusu.dev`, something else? Vercel gives a `.vercel.app` in the meantime.
 - [!] **B.4** **A photo of you.** The recovered `cusu.jpg` is a 1024×1024 avatar. A real portrait would carry the About page better.
 - [!] **B.5** **Résumé PDF.** Decide whether to offer a download on the site.

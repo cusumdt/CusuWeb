@@ -32,7 +32,7 @@ export const experience: Role[] = [
       "Designs, develops and ships commercial Blender addons for 3D artists and game developers - the full product cycle, from market research to support and updates.",
     highlights: [
       "Released TexelPack: UV packing and texel density tooling distributed on Superhive Market, including texel density map export for UV layout inspection.",
-      "Released PreflightKit: a pre-flight asset validator that checks and exports game-ready assets, catching pipeline errors before they reach the engine.",
+      "Building PreflightKit: a pre-flight asset validator that checks and exports game-ready assets, catching pipeline errors before they reach the engine. In development.",
       "Runs the business end to end - pricing, storefront, customer support, refunds, and affiliate and creator outreach.",
     ],
     stack: ["Python", "bpy", "Blender"],
@@ -61,6 +61,7 @@ export const experience: Role[] = [
       "Shipped work on SpongeBob SquarePants, Invader Zim and Tower of God titles.",
       "Created complete 3D environments from concept to implementation - buildings, props, environmental elements, texturing, lighting and atmospherics.",
       "Optimized assets and the rendering pipeline to hold 60fps on mid-range mobile without losing visual quality.",
+      "Programmed the maps in Unity for the SpongeBob, Invader Zim and Raid titles: layout, collision, route logic, and the C# gameplay systems that sit on top of them.",
       "Programmed gameplay mechanics, UI systems and interactive elements in C#.",
       "Collaborated with an international team across time zones using Agile.",
     ],
@@ -182,8 +183,8 @@ export const tools: Tool[] = [
     name: "PreflightKit",
     tagline: "Pre-flight validation for game-ready assets",
     description:
-      "Checks and exports game-ready assets, catching pipeline errors - naming, scale, transforms, materials - before they reach the engine.",
+      "Checks and exports game-ready assets, catching pipeline errors in naming, scale, transforms and materials before they reach the engine. Still in development, not yet released.",
     marketplace: "Superhive Market",
-    status: "released",
+    status: "in-development",
   },
 ];

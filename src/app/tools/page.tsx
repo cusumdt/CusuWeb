@@ -44,7 +44,7 @@ export default function ToolsPage() {
       <PageHeader
         eyebrow="CusuTools"
         title="Tools I sell"
-        lead="Commercial Blender addons for 3D artists and game developers. Built, released and supported end to end, with customers, refunds and update cycles of their own."
+        lead="Blender addons for 3D artists and game developers, built as products rather than side projects. TexelPack is out on Superhive Market with customers, support and an update cycle of its own. PreflightKit is in development."
       />
 
       <section className="border-t border-line py-section">
@@ -128,11 +128,18 @@ export default function ToolsPage() {
         .filter((t) => t.name !== "TexelPack")
         .map((tool) => (
           <section key={tool.name} className="border-t border-line py-section">
-            <h2 className="text-title">{tool.name}</h2>
+            <div className="flex flex-wrap items-baseline gap-x-6 gap-y-3">
+              <h2 className="text-title">{tool.name}</h2>
+              {tool.status === "in-development" ? (
+                <MonoLabel tone="accent">In development</MonoLabel>
+              ) : null}
+            </div>
             <p className="mt-3 max-w-measure text-lead text-muted">{tool.tagline}</p>
             <p className="mt-8 max-w-measure text-body text-muted">{tool.description}</p>
             <p className="mt-8 font-mono text-meta text-muted">
-              Available on {tool.marketplace}.
+              {tool.status === "in-development"
+                ? `Not released yet. It will go up on ${tool.marketplace} when it ships.`
+                : `Available on ${tool.marketplace}.`}
             </p>
           </section>
         ))}
