@@ -22,7 +22,7 @@ Working list. Each task names the agent that should own it. Check items off as t
 
 ## Phase 1, Design system  · `design-system` ✅
 
-- [ ] **1.1** Choose and wire the typefaces via `next/font`: one grotesque for display/body, one mono for data. Subset, `display: swap`, self-hosted.
+- [x] **1.1** Space Grotesk (display and body) + JetBrains Mono (data), via `next/font/google`. Latin subset, `display: swap`, self-hosted by Next.
 - [x] **1.2** `@theme` block written in `globals.css`: 9 colors, 8 fluid type steps, spacing, measure, radii, easings.
 - [x] **1.3** Accent is `#FC7816`, the CusuTools brand orange, sampled from the product logo. 8 contrast pairs verified by `scripts/check-contrast.mjs`, all passing. Accent on ink is 7.35:1.
 - [x] **1.4** Base layer: selection, designed focus ring, scrollbar, `::marker`, `:target` scroll offset, global reduced-motion floor.
