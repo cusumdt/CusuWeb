@@ -1,0 +1,33 @@
+export const site = {
+  name: "Cristian Cusumano",
+  alias: "Cusu",
+  role: "Senior Game Engineer · Technical Artist",
+  shortRole: "Game Engineer & Technical Artist",
+  location: "Santos, São Paulo, Brazil",
+  email: "cusumdt@gmail.com",
+  phone: "+55 13 9 8192 3786",
+  url: "https://cusuweb.vercel.app",
+  description:
+    "Senior Game Engineer and Technical Artist with 9+ years bridging code and art — Unreal Engine 5 VR, real-time web 3D, and shipped Blender tooling.",
+  availability: "Open to senior engine and technical art roles",
+  languages: [
+    { name: "Spanish", level: "Native" },
+    { name: "Portuguese", level: "Fluent" },
+    { name: "English", level: "Professional working" },
+  ],
+} as const;
+
+export const links = {
+  linkedin: "https://www.linkedin.com/in/cristian-cusumano-524ab1195/",
+  artstation: "https://www.artstation.com/cusumdt",
+  github: "https://github.com/cusumdt",
+  whatsapp: "https://wa.me/5513981923786",
+  email: "mailto:cusumdt@gmail.com",
+} as const;
+
+export const nav = [
+  { label: "Work", href: "/work" },
+  { label: "Tools", href: "/tools" },
+  { label: "About", href: "/about" },
+  { label: "Contact", href: "/contact" },
+] as const;

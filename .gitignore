@@ -39,3 +39,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# recovered legacy assets - archive only, never shipped, never committed (214 MB)
+/_legacy-scrape/
+
+# intermediate output of scripts/bootstrap-projects.py
+/scripts/_media_by_project.json

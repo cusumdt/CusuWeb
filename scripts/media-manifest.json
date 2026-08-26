@@ -1,0 +1,803 @@
+[
+ {
+  "project": "ohbb-kart-spongebob",
+  "source": "_legacy-scrape/assets/image/Secret-Map.jpg",
+  "dest": "/work/ohbb-kart-spongebob/01-secret-map.avif",
+  "kind": "image",
+  "sourceWidth": 812,
+  "sourceHeight": 408,
+  "sourceBytes": 105317
+ },
+ {
+  "project": "ohbb-kart-spongebob",
+  "source": "_legacy-scrape/assets/image/bob.jpg",
+  "dest": "/work/ohbb-kart-spongebob/02-spongebob.avif",
+  "kind": "image",
+  "sourceWidth": 1920,
+  "sourceHeight": 1256,
+  "sourceBytes": 246791
+ },
+ {
+  "project": "ohbb-kart-spongebob",
+  "source": "_legacy-scrape/assets/image/calamardo.jpg",
+  "dest": "/work/ohbb-kart-spongebob/03-squidward.avif",
+  "kind": "image",
+  "sourceWidth": 1920,
+  "sourceHeight": 1256,
+  "sourceBytes": 219686
+ },
+ {
+  "project": "ohbb-kart-spongebob",
+  "source": "_legacy-scrape/assets/image/house.jpg",
+  "dest": "/work/ohbb-kart-spongebob/04-pineapple-house.avif",
+  "kind": "image",
+  "sourceWidth": 1920,
+  "sourceHeight": 1256,
+  "sourceBytes": 136614
+ },
+ {
+  "project": "ohbb-kart-spongebob",
+  "source": "_legacy-scrape/assets/image/houses.jpg",
+  "dest": "/work/ohbb-kart-spongebob/05-bikini-bottom-houses.avif",
+  "kind": "image",
+  "sourceWidth": 1920,
+  "sourceHeight": 1080,
+  "sourceBytes": 334995
+ },
+ {
+  "project": "ohbb-kart-spongebob",
+  "source": "_legacy-scrape/assets/image/patricio.jpg",
+  "dest": "/work/ohbb-kart-spongebob/06-patrick.avif",
+  "kind": "image",
+  "sourceWidth": 1920,
+  "sourceHeight": 1256,
+  "sourceBytes": 298634
+ },
+ {
+  "project": "ohbb-kart-spongebob",
+  "source": "_legacy-scrape/assets/image/plank.jpg",
+  "dest": "/work/ohbb-kart-spongebob/07-plankton-lab.avif",
+  "kind": "image",
+  "sourceWidth": 1920,
+  "sourceHeight": 1256,
+  "sourceBytes": 170821
+ },
+ {
+  "project": "ohbb-kart-spongebob",
+  "source": "_legacy-scrape/assets/image/plank2.jpg",
+  "dest": "/work/ohbb-kart-spongebob/08-plankton-lab-detail.avif",
+  "kind": "image",
+  "sourceWidth": 1920,
+  "sourceHeight": 1080,
+  "sourceBytes": 382960
+ },
+ {
+  "project": "ohbb-kart-spongebob",
+  "source": "_legacy-scrape/assets/image/Arenita.png",
+  "dest": "/work/ohbb-kart-spongebob/09-sandy.avif",
+  "kind": "image",
+  "sourceWidth": 1920,
+  "sourceHeight": 1920,
+  "sourceBytes": 3054962
+ },
+ {
+  "project": "ohbb-kart-spongebob",
+  "source": "_legacy-scrape/assets/image/char_plankton.png",
+  "dest": "/work/ohbb-kart-spongebob/10-plankton-character.avif",
+  "kind": "image",
+  "sourceWidth": 3483,
+  "sourceHeight": 2160,
+  "sourceBytes": 3150852
+ },
+ {
+  "project": "ohbb-kart-spongebob",
+  "source": "_legacy-scrape/assets/image/plankton.jpg",
+  "dest": "/work/ohbb-kart-spongebob/11-plankton.avif",
+  "kind": "image",
+  "sourceWidth": 1280,
+  "sourceHeight": 715,
+  "sourceBytes": 83664
+ },
+ {
+  "project": "ohbb-kart-invader-zim",
+  "source": "_legacy-scrape/assets/image/invzim.jpg",
+  "dest": "/work/ohbb-kart-invader-zim/01-invader-zim-key-art.avif",
+  "kind": "image",
+  "sourceWidth": 1913,
+  "sourceHeight": 881,
+  "sourceBytes": 417206
+ },
+ {
+  "project": "ohbb-kart-invader-zim",
+  "source": "_legacy-scrape/assets/image/zim/10.png",
+  "dest": "/work/ohbb-kart-invader-zim/02-10.avif",
+  "kind": "image",
+  "sourceWidth": 1920,
+  "sourceHeight": 1920,
+  "sourceBytes": 1704254
+ },
+ {
+  "project": "ohbb-kart-invader-zim",
+  "source": "_legacy-scrape/assets/image/zim/2.png",
+  "dest": "/work/ohbb-kart-invader-zim/03-2.avif",
+  "kind": "image",
+  "sourceWidth": 1920,
+  "sourceHeight": 1920,
+  "sourceBytes": 962184
+ },
+ {
+  "project": "ohbb-kart-invader-zim",
+  "source": "_legacy-scrape/assets/image/zim/3.png",
+  "dest": "/work/ohbb-kart-invader-zim/04-3.avif",
+  "kind": "image",
+  "sourceWidth": 1920,
+  "sourceHeight": 1920,
+  "sourceBytes": 1856309
+ },
+ {
+  "project": "ohbb-kart-invader-zim",
+  "source": "_legacy-scrape/assets/image/zim/4.png",
+  "dest": "/work/ohbb-kart-invader-zim/05-4.avif",
+  "kind": "image",
+  "sourceWidth": 1920,
+  "sourceHeight": 1110,
+  "sourceBytes": 2480023
+ },
+ {
+  "project": "ohbb-kart-invader-zim",
+  "source": "_legacy-scrape/assets/image/zim/5.png",
+  "dest": "/work/ohbb-kart-invader-zim/06-5.avif",
+  "kind": "image",
+  "sourceWidth": 1920,
+  "sourceHeight": 1920,
+  "sourceBytes": 621648
+ },
+ {
+  "project": "ohbb-kart-invader-zim",
+  "source": "_legacy-scrape/assets/image/zim/6.png",
+  "dest": "/work/ohbb-kart-invader-zim/07-6.avif",
+  "kind": "image",
+  "sourceWidth": 1920,
+  "sourceHeight": 1920,
+  "sourceBytes": 1869303
+ },
+ {
+  "project": "ohbb-kart-invader-zim",
+  "source": "_legacy-scrape/assets/image/zim/7.png",
+  "dest": "/work/ohbb-kart-invader-zim/08-7.avif",
+  "kind": "image",
+  "sourceWidth": 1920,
+  "sourceHeight": 1920,
+  "sourceBytes": 682420
+ },
+ {
+  "project": "ohbb-kart-invader-zim",
+  "source": "_legacy-scrape/assets/image/zim/8.png",
+  "dest": "/work/ohbb-kart-invader-zim/09-8.avif",
+  "kind": "image",
+  "sourceWidth": 1920,
+  "sourceHeight": 1920,
+  "sourceBytes": 1194236
+ },
+ {
+  "project": "ohbb-kart-invader-zim",
+  "source": "_legacy-scrape/assets/image/zim/9.png",
+  "dest": "/work/ohbb-kart-invader-zim/10-9.avif",
+  "kind": "image",
+  "sourceWidth": 1920,
+  "sourceHeight": 1920,
+  "sourceBytes": 1109562
+ },
+ {
+  "project": "ohbb-kart-invader-zim",
+  "source": "_legacy-scrape/assets/image/zim/CasaZim.png",
+  "dest": "/work/ohbb-kart-invader-zim/11-zim-house.avif",
+  "kind": "image",
+  "sourceWidth": 1920,
+  "sourceHeight": 1920,
+  "sourceBytes": 916461
+ },
+ {
+  "project": "ohbb-kart-invader-zim",
+  "source": "_legacy-scrape/assets/image/zim/Enviro.jpg",
+  "dest": "/work/ohbb-kart-invader-zim/12-environment.avif",
+  "kind": "image",
+  "sourceWidth": 1913,
+  "sourceHeight": 881,
+  "sourceBytes": 417206
+ },
+ {
+  "project": "ohbb-kart-invader-zim",
+  "source": "_legacy-scrape/assets/image/zim/all.jpg",
+  "dest": "/work/ohbb-kart-invader-zim/13-asset-lineup.avif",
+  "kind": "image",
+  "sourceWidth": 1920,
+  "sourceHeight": 1256,
+  "sourceBytes": 467957
+ },
+ {
+  "project": "ohbb-kart-invader-zim",
+  "source": "_legacy-scrape/assets/image/zim/ship.jpg",
+  "dest": "/work/ohbb-kart-invader-zim/14-voot-cruiser.avif",
+  "kind": "image",
+  "sourceWidth": 1920,
+  "sourceHeight": 1080,
+  "sourceBytes": 279174
+ },
+ {
+  "project": "ohbb-kart-tower-of-god",
+  "source": "_legacy-scrape/assets/image/Avance4.png",
+  "dest": "/work/ohbb-kart-tower-of-god/01-character-wip.avif",
+  "kind": "image",
+  "sourceWidth": 2825,
+  "sourceHeight": 1920,
+  "sourceBytes": 2050903
+ },
+ {
+  "project": "ohbb-kart-tower-of-god",
+  "source": "_legacy-scrape/assets/image/BaamFinal_A.png",
+  "dest": "/work/ohbb-kart-tower-of-god/02-baam-final.avif",
+  "kind": "image",
+  "sourceWidth": 1920,
+  "sourceHeight": 1920,
+  "sourceBytes": 2369380
+ },
+ {
+  "project": "ohbb-kart-tower-of-god",
+  "source": "_legacy-scrape/assets/image/Prueba1.png",
+  "dest": "/work/ohbb-kart-tower-of-god/03-wip.avif",
+  "kind": "image",
+  "sourceWidth": 3840,
+  "sourceHeight": 2160,
+  "sourceBytes": 889539
+ },
+ {
+  "project": "ohbb-kart-tower-of-god",
+  "source": "_legacy-scrape/assets/image/Prueba1_002.png",
+  "dest": "/work/ohbb-kart-tower-of-god/04-wip-2.avif",
+  "kind": "image",
+  "sourceWidth": 3840,
+  "sourceHeight": 2160,
+  "sourceBytes": 944685
+ },
+ {
+  "project": "ohbb-kart-tower-of-god",
+  "source": "_legacy-scrape/assets/image/Prueba1_009.png",
+  "dest": "/work/ohbb-kart-tower-of-god/05-wip-9.avif",
+  "kind": "image",
+  "sourceWidth": 3840,
+  "sourceHeight": 2160,
+  "sourceBytes": 1061491
+ },
+ {
+  "project": "ohbb-kart-tower-of-god",
+  "source": "_legacy-scrape/assets/image/Prueba1_010.png",
+  "dest": "/work/ohbb-kart-tower-of-god/06-wip-10.avif",
+  "kind": "image",
+  "sourceWidth": 3840,
+  "sourceHeight": 2160,
+  "sourceBytes": 1032330
+ },
+ {
+  "project": "ohbb-kart-tower-of-god",
+  "source": "_legacy-scrape/assets/image/RakFinal_Full.png",
+  "dest": "/work/ohbb-kart-tower-of-god/07-rak-final.avif",
+  "kind": "image",
+  "sourceWidth": 4408,
+  "sourceHeight": 1584,
+  "sourceBytes": 2174228
+ },
+ {
+  "project": "ohbb-kart-tower-of-god",
+  "source": "_legacy-scrape/assets/image/maxres3.webp",
+  "dest": "/work/ohbb-kart-tower-of-god/08-tower-of-god-key-art.avif",
+  "kind": "image",
+  "sourceWidth": 1280,
+  "sourceHeight": 720,
+  "sourceBytes": 68292
+ },
+ {
+  "project": "ohbb-kart-characters",
+  "source": "_legacy-scrape/assets/image/waifu/0.png",
+  "dest": "/work/ohbb-kart-characters/01-0.avif",
+  "kind": "image",
+  "sourceWidth": 3840,
+  "sourceHeight": 3840,
+  "sourceBytes": 8539170
+ },
+ {
+  "project": "ohbb-kart-characters",
+  "source": "_legacy-scrape/assets/image/waifu/1.png",
+  "dest": "/work/ohbb-kart-characters/02-1.avif",
+  "kind": "image",
+  "sourceWidth": 3840,
+  "sourceHeight": 3840,
+  "sourceBytes": 12969022
+ },
+ {
+  "project": "ohbb-kart-characters",
+  "source": "_legacy-scrape/assets/image/waifu/2.png",
+  "dest": "/work/ohbb-kart-characters/03-2.avif",
+  "kind": "image",
+  "sourceWidth": 3840,
+  "sourceHeight": 3840,
+  "sourceBytes": 6418056
+ },
+ {
+  "project": "ohbb-kart-characters",
+  "source": "_legacy-scrape/assets/image/waifu/3.png",
+  "dest": "/work/ohbb-kart-characters/04-3.avif",
+  "kind": "image",
+  "sourceWidth": 3840,
+  "sourceHeight": 3840,
+  "sourceBytes": 6595949
+ },
+ {
+  "project": "ohbb-kart-characters",
+  "source": "_legacy-scrape/assets/image/Chibben/0.png",
+  "dest": "/work/ohbb-kart-characters/05-0.avif",
+  "kind": "image",
+  "sourceWidth": 1920,
+  "sourceHeight": 1920,
+  "sourceBytes": 5205281
+ },
+ {
+  "project": "ohbb-kart-characters",
+  "source": "_legacy-scrape/assets/image/Chibben/1.png",
+  "dest": "/work/ohbb-kart-characters/06-1.avif",
+  "kind": "image",
+  "sourceWidth": 1920,
+  "sourceHeight": 1920,
+  "sourceBytes": 4561222
+ },
+ {
+  "project": "ohbb-kart-characters",
+  "source": "_legacy-scrape/assets/image/Chibben/2.png",
+  "dest": "/work/ohbb-kart-characters/07-2.avif",
+  "kind": "image",
+  "sourceWidth": 1920,
+  "sourceHeight": 1920,
+  "sourceBytes": 4454329
+ },
+ {
+  "project": "ohbb-kart-characters",
+  "source": "_legacy-scrape/assets/image/Chibben/3.png",
+  "dest": "/work/ohbb-kart-characters/08-3.avif",
+  "kind": "image",
+  "sourceWidth": 1920,
+  "sourceHeight": 1920,
+  "sourceBytes": 4428307
+ },
+ {
+  "project": "ohbb-kart-characters",
+  "source": "_legacy-scrape/assets/image/Chibben/4.png",
+  "dest": "/work/ohbb-kart-characters/09-4.avif",
+  "kind": "image",
+  "sourceWidth": 1920,
+  "sourceHeight": 1920,
+  "sourceBytes": 4336205
+ },
+ {
+  "project": "ohbb-raid",
+  "source": "_legacy-scrape/assets/image/Raid/0-1.png",
+  "dest": "/work/ohbb-raid/01-0-1.avif",
+  "kind": "image",
+  "sourceWidth": 1916,
+  "sourceHeight": 880,
+  "sourceBytes": 3505371
+ },
+ {
+  "project": "ohbb-raid",
+  "source": "_legacy-scrape/assets/image/Raid/0-3.png",
+  "dest": "/work/ohbb-raid/02-0-3.avif",
+  "kind": "image",
+  "sourceWidth": 1916,
+  "sourceHeight": 882,
+  "sourceBytes": 2772803
+ },
+ {
+  "project": "ohbb-raid",
+  "source": "_legacy-scrape/assets/image/Raid/0.png",
+  "dest": "/work/ohbb-raid/03-0.avif",
+  "kind": "image",
+  "sourceWidth": 1916,
+  "sourceHeight": 880,
+  "sourceBytes": 3036470
+ },
+ {
+  "project": "ohbb-raid",
+  "source": "_legacy-scrape/assets/image/Raid/1.png",
+  "dest": "/work/ohbb-raid/04-1.avif",
+  "kind": "image",
+  "sourceWidth": 1920,
+  "sourceHeight": 1920,
+  "sourceBytes": 2750012
+ },
+ {
+  "project": "ohbb-raid",
+  "source": "_legacy-scrape/assets/image/Raid/2.png",
+  "dest": "/work/ohbb-raid/05-2.avif",
+  "kind": "image",
+  "sourceWidth": 1920,
+  "sourceHeight": 1920,
+  "sourceBytes": 2130795
+ },
+ {
+  "project": "ohbb-raid",
+  "source": "_legacy-scrape/assets/image/Raid/3.png",
+  "dest": "/work/ohbb-raid/06-3.avif",
+  "kind": "image",
+  "sourceWidth": 1920,
+  "sourceHeight": 1920,
+  "sourceBytes": 4731149
+ },
+ {
+  "project": "ohbb-raid",
+  "source": "_legacy-scrape/assets/image/Raid/4.png",
+  "dest": "/work/ohbb-raid/07-4.avif",
+  "kind": "image",
+  "sourceWidth": 1920,
+  "sourceHeight": 1920,
+  "sourceBytes": 2796781
+ },
+ {
+  "project": "ohbb-raid",
+  "source": "_legacy-scrape/assets/image/Raid/5.png",
+  "dest": "/work/ohbb-raid/08-5.avif",
+  "kind": "image",
+  "sourceWidth": 1920,
+  "sourceHeight": 1920,
+  "sourceBytes": 2482017
+ },
+ {
+  "project": "ohbb-raid",
+  "source": "_legacy-scrape/assets/image/Raid/6.png",
+  "dest": "/work/ohbb-raid/09-6.avif",
+  "kind": "image",
+  "sourceWidth": 1920,
+  "sourceHeight": 1920,
+  "sourceBytes": 4405763
+ },
+ {
+  "project": "ohbb-raid",
+  "source": "_legacy-scrape/assets/image/Raid/7.png",
+  "dest": "/work/ohbb-raid/10-7.avif",
+  "kind": "image",
+  "sourceWidth": 1920,
+  "sourceHeight": 1920,
+  "sourceBytes": 1357823
+ },
+ {
+  "project": "ohbb-raid",
+  "source": "_legacy-scrape/assets/image/Raid/8.png",
+  "dest": "/work/ohbb-raid/11-8.avif",
+  "kind": "image",
+  "sourceWidth": 1920,
+  "sourceHeight": 1920,
+  "sourceBytes": 5554830
+ },
+ {
+  "project": "ohbb-raid",
+  "source": "_legacy-scrape/assets/image/HeadIce/0.png",
+  "dest": "/work/ohbb-raid/12-0.avif",
+  "kind": "image",
+  "sourceWidth": 1920,
+  "sourceHeight": 1920,
+  "sourceBytes": 4203691
+ },
+ {
+  "project": "ohbb-raid",
+  "source": "_legacy-scrape/assets/image/HeadIce/1.png",
+  "dest": "/work/ohbb-raid/13-1.avif",
+  "kind": "image",
+  "sourceWidth": 1920,
+  "sourceHeight": 1920,
+  "sourceBytes": 4463472
+ },
+ {
+  "project": "ohbb-raid",
+  "source": "_legacy-scrape/assets/image/HeadIce/2.png",
+  "dest": "/work/ohbb-raid/14-2.avif",
+  "kind": "image",
+  "sourceWidth": 1920,
+  "sourceHeight": 1920,
+  "sourceBytes": 3924587
+ },
+ {
+  "project": "ohbb-raid",
+  "source": "_legacy-scrape/assets/image/Materials/0.png",
+  "dest": "/work/ohbb-raid/15-0.avif",
+  "kind": "image",
+  "sourceWidth": 2048,
+  "sourceHeight": 2048,
+  "sourceBytes": 5686913
+ },
+ {
+  "project": "ohbb-raid",
+  "source": "_legacy-scrape/assets/image/Materials/Carpet.png",
+  "dest": "/work/ohbb-raid/16-carpet-material.avif",
+  "kind": "image",
+  "sourceWidth": 1920,
+  "sourceHeight": 1004,
+  "sourceBytes": 1251918
+ },
+ {
+  "project": "ohbb-raid",
+  "source": "_legacy-scrape/assets/image/Materials/Carpet2.png",
+  "dest": "/work/ohbb-raid/17-carpet-material-alt.avif",
+  "kind": "image",
+  "sourceWidth": 1920,
+  "sourceHeight": 1004,
+  "sourceBytes": 1506118
+ },
+ {
+  "project": "ohbb-raid",
+  "source": "_legacy-scrape/assets/image/Materials/Floor.png",
+  "dest": "/work/ohbb-raid/18-floor-material.avif",
+  "kind": "image",
+  "sourceWidth": 1920,
+  "sourceHeight": 1004,
+  "sourceBytes": 1393384
+ },
+ {
+  "project": "ohbb-raid",
+  "source": "_legacy-scrape/assets/image/Materials/Marble4.png",
+  "dest": "/work/ohbb-raid/19-marble-material.avif",
+  "kind": "image",
+  "sourceWidth": 1308,
+  "sourceHeight": 901,
+  "sourceBytes": 5183410
+ },
+ {
+  "project": "tower-defense-props",
+  "source": "_legacy-scrape/assets/image/towerd/0.png",
+  "dest": "/work/tower-defense-props/01-0.avif",
+  "kind": "image",
+  "sourceWidth": 1920,
+  "sourceHeight": 1920,
+  "sourceBytes": 1295507
+ },
+ {
+  "project": "tower-defense-props",
+  "source": "_legacy-scrape/assets/image/towerd/1.png",
+  "dest": "/work/tower-defense-props/02-1.avif",
+  "kind": "image",
+  "sourceWidth": 1920,
+  "sourceHeight": 1920,
+  "sourceBytes": 1932901
+ },
+ {
+  "project": "tower-defense-props",
+  "source": "_legacy-scrape/assets/image/towerd/10.png",
+  "dest": "/work/tower-defense-props/03-10.avif",
+  "kind": "image",
+  "sourceWidth": 1920,
+  "sourceHeight": 1920,
+  "sourceBytes": 3331139
+ },
+ {
+  "project": "tower-defense-props",
+  "source": "_legacy-scrape/assets/image/towerd/11.png",
+  "dest": "/work/tower-defense-props/04-11.avif",
+  "kind": "image",
+  "sourceWidth": 1920,
+  "sourceHeight": 1920,
+  "sourceBytes": 2689641
+ },
+ {
+  "project": "tower-defense-props",
+  "source": "_legacy-scrape/assets/image/towerd/12.png",
+  "dest": "/work/tower-defense-props/05-12.avif",
+  "kind": "image",
+  "sourceWidth": 1920,
+  "sourceHeight": 1920,
+  "sourceBytes": 1789020
+ },
+ {
+  "project": "tower-defense-props",
+  "source": "_legacy-scrape/assets/image/towerd/13.png",
+  "dest": "/work/tower-defense-props/06-13.avif",
+  "kind": "image",
+  "sourceWidth": 1920,
+  "sourceHeight": 1920,
+  "sourceBytes": 1910882
+ },
+ {
+  "project": "tower-defense-props",
+  "source": "_legacy-scrape/assets/image/towerd/2.png",
+  "dest": "/work/tower-defense-props/07-2.avif",
+  "kind": "image",
+  "sourceWidth": 1920,
+  "sourceHeight": 1920,
+  "sourceBytes": 2160592
+ },
+ {
+  "project": "tower-defense-props",
+  "source": "_legacy-scrape/assets/image/towerd/3.1.png",
+  "dest": "/work/tower-defense-props/08-3-1.avif",
+  "kind": "image",
+  "sourceWidth": 1920,
+  "sourceHeight": 1920,
+  "sourceBytes": 2742574
+ },
+ {
+  "project": "tower-defense-props",
+  "source": "_legacy-scrape/assets/image/towerd/3.png",
+  "dest": "/work/tower-defense-props/09-3.avif",
+  "kind": "image",
+  "sourceWidth": 1920,
+  "sourceHeight": 1920,
+  "sourceBytes": 2383069
+ },
+ {
+  "project": "tower-defense-props",
+  "source": "_legacy-scrape/assets/image/towerd/4.png",
+  "dest": "/work/tower-defense-props/10-4.avif",
+  "kind": "image",
+  "sourceWidth": 1920,
+  "sourceHeight": 1920,
+  "sourceBytes": 2182222
+ },
+ {
+  "project": "tower-defense-props",
+  "source": "_legacy-scrape/assets/image/towerd/5.png",
+  "dest": "/work/tower-defense-props/11-5.avif",
+  "kind": "image",
+  "sourceWidth": 1920,
+  "sourceHeight": 1920,
+  "sourceBytes": 2751370
+ },
+ {
+  "project": "tower-defense-props",
+  "source": "_legacy-scrape/assets/image/towerd/6.png",
+  "dest": "/work/tower-defense-props/12-6.avif",
+  "kind": "image",
+  "sourceWidth": 1920,
+  "sourceHeight": 1920,
+  "sourceBytes": 1165193
+ },
+ {
+  "project": "tower-defense-props",
+  "source": "_legacy-scrape/assets/image/towerd/7.png",
+  "dest": "/work/tower-defense-props/13-7.avif",
+  "kind": "image",
+  "sourceWidth": 1920,
+  "sourceHeight": 1920,
+  "sourceBytes": 3974337
+ },
+ {
+  "project": "tower-defense-props",
+  "source": "_legacy-scrape/assets/image/towerd/8.png",
+  "dest": "/work/tower-defense-props/14-8.avif",
+  "kind": "image",
+  "sourceWidth": 1920,
+  "sourceHeight": 1920,
+  "sourceBytes": 1767230
+ },
+ {
+  "project": "tower-defense-props",
+  "source": "_legacy-scrape/assets/image/towerd/9.png",
+  "dest": "/work/tower-defense-props/15-9.avif",
+  "kind": "image",
+  "sourceWidth": 1920,
+  "sourceHeight": 1920,
+  "sourceBytes": 2511776
+ },
+ {
+  "project": "weapons-props",
+  "source": "_legacy-scrape/assets/image/Weapons/Escopeta.png",
+  "dest": "/work/weapons-props/01-shotgun.avif",
+  "kind": "image",
+  "sourceWidth": 1920,
+  "sourceHeight": 1920,
+  "sourceBytes": 2410418
+ },
+ {
+  "project": "weapons-props",
+  "source": "_legacy-scrape/assets/image/Weapons/Gun.png",
+  "dest": "/work/weapons-props/02-pistol.avif",
+  "kind": "image",
+  "sourceWidth": 1920,
+  "sourceHeight": 1920,
+  "sourceBytes": 1879018
+ },
+ {
+  "project": "weapons-props",
+  "source": "_legacy-scrape/assets/image/Weapons/Rifle.png",
+  "dest": "/work/weapons-props/03-rifle.avif",
+  "kind": "image",
+  "sourceWidth": 1920,
+  "sourceHeight": 1920,
+  "sourceBytes": 2311828
+ },
+ {
+  "project": "weapons-props",
+  "source": "_legacy-scrape/assets/image/Weapons/Rocket.png",
+  "dest": "/work/weapons-props/04-rocket-launcher.avif",
+  "kind": "image",
+  "sourceWidth": 1920,
+  "sourceHeight": 1920,
+  "sourceBytes": 2367184
+ },
+ {
+  "project": "peakmines",
+  "source": "_legacy-scrape/assets/image/Peakmines/0.png",
+  "dest": "/work/peakmines/01-0.avif",
+  "kind": "image",
+  "sourceWidth": 3840,
+  "sourceHeight": 2160,
+  "sourceBytes": 8104365
+ },
+ {
+  "project": "peakmines",
+  "source": "_legacy-scrape/assets/image/Peakmines/1.png",
+  "dest": "/work/peakmines/02-1.avif",
+  "kind": "image",
+  "sourceWidth": 3840,
+  "sourceHeight": 2160,
+  "sourceBytes": 7446737
+ },
+ {
+  "project": "peakmines",
+  "source": "_legacy-scrape/assets/image/Peakmines/2.png",
+  "dest": "/work/peakmines/03-2.avif",
+  "kind": "image",
+  "sourceWidth": 3840,
+  "sourceHeight": 2014,
+  "sourceBytes": 7172759
+ },
+ {
+  "project": "peakmines",
+  "source": "_legacy-scrape/assets/image/Peakmines/D-1.png",
+  "dest": "/work/peakmines/04-dwarf-01.avif",
+  "kind": "image",
+  "sourceWidth": 1080,
+  "sourceHeight": 1080,
+  "sourceBytes": 766348
+ },
+ {
+  "project": "peakmines",
+  "source": "_legacy-scrape/assets/image/Peakmines/D-2.png",
+  "dest": "/work/peakmines/05-dwarf-02.avif",
+  "kind": "image",
+  "sourceWidth": 1080,
+  "sourceHeight": 1080,
+  "sourceBytes": 913647
+ },
+ {
+  "project": "peakmines",
+  "source": "_legacy-scrape/assets/image/Peakmines/D-2Short.png",
+  "dest": "/work/peakmines/06-dwarf-02-alt.avif",
+  "kind": "image",
+  "sourceWidth": 1080,
+  "sourceHeight": 748,
+  "sourceBytes": 914591
+ },
+ {
+  "project": "peakmines",
+  "source": "_legacy-scrape/assets/image/Peakmines/D-3.png",
+  "dest": "/work/peakmines/07-dwarf-03.avif",
+  "kind": "image",
+  "sourceWidth": 1080,
+  "sourceHeight": 1080,
+  "sourceBytes": 846738
+ },
+ {
+  "project": "peakmines",
+  "source": "_legacy-scrape/assets/image/Peakmines/enanos.mp4",
+  "dest": "/work/peakmines/08-dwarves-turntable.mp4",
+  "kind": "video",
+  "sourceWidth": 1920,
+  "sourceHeight": 1080,
+  "sourceBytes": 440777
+ },
+ {
+  "project": "historias-para-armar",
+  "source": "_legacy-scrape/assets/image/historias/0.jpg",
+  "dest": "/work/historias-para-armar/01-0.avif",
+  "kind": "image",
+  "sourceWidth": 1280,
+  "sourceHeight": 720,
+  "sourceBytes": 68892
+ }
+]
