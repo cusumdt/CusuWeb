@@ -66,12 +66,10 @@ Two bugs found while finishing this phase, both of which had been shipping:
 - **The Peakmines video was fed to `next/image`.** Neither `Figure` nor `Gallery` branched on `Media.kind`, so an `.mp4` was going through the image optimizer, and the file had never been copied to `public/` either. The gallery had a broken tile. `Figure` now renders a real `<video>` and `Gallery` keeps videos out of the lightbox, since a button wrapper would swallow their controls.
 - **`optimize-media.mjs` reported videos instead of copying them**, so the pipeline was not actually the single path from source to `public/`. It copies them now.
 
-### Open observation, not a defect
+- [x] **3.6** Alpha trim, approved by Cusu and applied. Images with an alpha channel are cropped to their subject with a 4% margin before resizing, skipped when it reclaims under 6% of the frame. The isolated props reclaimed 69 to 87%: a tower that filled a quarter of its tile now fills it.
+- [x] **3.7** `scripts/sync-dimensions.mjs`. The trim changes aspect ratios, and a stale width/height pair is a layout shift. Run without a flag it reports drift and exits non-zero, so it can gate a deploy; `--write` fixes it.
 
-The isolated prop renders carry generous transparent margins, so in a two-column
-gallery the subject can occupy a quarter of its tile. Trimming the alpha bounding
-box in the pipeline would make those galleries much stronger, but it changes
-composition and aspect ratios, so it is a call for Cusu rather than a silent fix.
+This also surfaced a defect that predated the trim: **the declared dimensions were the source file's, not the shipped file's.** A 3840x3840 source resized to 1600x1600 was recorded as 3840x3840. Harmless while the aspect matched, and a real shift the moment it did not. 77 of 98 entries were wrong. Now zero, verified in the browser against the decoded files.
 
 ---
 

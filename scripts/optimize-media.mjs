@@ -9,6 +9,10 @@
  * the recovered site) and writes AVIF + WebP into public/work/<project>/.
  * Source files in _legacy-scrape/ are never modified.
  *
+ * Images with an alpha channel are cropped to their subject first. The isolated
+ * prop renders carry wide empty margins, which left the subject filling a
+ * fraction of its tile in the gallery.
+ *
  * Videos are copied through unconverted. They are already H.264 in an MP4
  * container, ffmpeg is not a dependency of this project, and the clips are
  * small enough that a WebM sibling would save bytes nobody is short of.
@@ -34,8 +38,72 @@ const WEBP = { quality: 80, effort: 5 };
 
 const fmt = (b) => `${(b / 1024 / 1024).toFixed(2)} MB`;
 
-async function blurPlaceholder(input) {
-  const buf = await sharp(input).resize(12, 12, { fit: "inside" }).webp({ quality: 40 }).toBuffer();
+/** Alpha below this counts as empty when measuring the subject's bounds. */
+const ALPHA_THRESHOLD = 8;
+/** Breathing room around the trimmed subject, as a share of its longest edge. */
+const TRIM_PADDING = 0.04;
+/** Skip the trim unless it reclaims at least this share of the frame. */
+const TRIM_MIN_GAIN = 0.06;
+
+/**
+ * Bounding box of the non-transparent pixels.
+ *
+ * The isolated prop renders were exported with generous empty margins, which
+ * left the subject occupying a fraction of its tile in the gallery. Returns
+ * null when there is nothing worth reclaiming, so opaque images and tightly
+ * cropped ones pass through untouched.
+ */
+async function alphaTrimBox(source) {
+  const image = sharp(source);
+  const meta = await image.metadata();
+  if (!meta.hasAlpha || !meta.width || !meta.height) return null;
+
+  const { data, info } = await image
+    .ensureAlpha()
+    .extractChannel("alpha")
+    .raw()
+    .toBuffer({ resolveWithObject: true });
+
+  let top = info.height;
+  let left = info.width;
+  let right = -1;
+  let bottom = -1;
+
+  for (let y = 0; y < info.height; y++) {
+    const row = y * info.width;
+    for (let x = 0; x < info.width; x++) {
+      if (data[row + x] > ALPHA_THRESHOLD) {
+        if (y < top) top = y;
+        if (y > bottom) bottom = y;
+        if (x < left) left = x;
+        if (x > right) right = x;
+      }
+    }
+  }
+
+  if (right < 0 || bottom < 0) return null; // fully transparent
+
+  const pad = Math.round(Math.max(right - left, bottom - top) * TRIM_PADDING);
+  const box = {
+    left: Math.max(left - pad, 0),
+    top: Math.max(top - pad, 0),
+  };
+  box.width = Math.min(right + pad, info.width - 1) - box.left + 1;
+  box.height = Math.min(bottom + pad, info.height - 1) - box.top + 1;
+
+  const gain = 1 - (box.width * box.height) / (info.width * info.height);
+  if (gain < TRIM_MIN_GAIN) return null;
+
+  return { ...box, gain };
+}
+
+/** Must be produced from the same crop that ships, or it will not line up. */
+async function blurPlaceholder(input, trim) {
+  let img = sharp(input);
+  if (trim) {
+    img = img.extract({ left: trim.left, top: trim.top, width: trim.width, height: trim.height });
+  }
+  const buf = await img.resize(12, 12, { fit: "inside" }).webp({ quality: 40 }).toBuffer();
   return `data:image/webp;base64,${buf.toString("base64")}`;
 }
 
@@ -99,13 +167,26 @@ async function main() {
 
     const webpDest = dest.replace(/\.avif$/, ".webp");
     if (!FORCE && existsSync(dest) && existsSync(webpDest)) {
-      // Already converted — but backfill the placeholder if it went missing.
-      if (!blur[entry.dest]) blur[entry.dest] = await blurPlaceholder(source);
+      // Already converted, but backfill the placeholder if it went missing.
+      if (!blur[entry.dest]) {
+        blur[entry.dest] = await blurPlaceholder(source, await alphaTrimBox(source));
+      }
       skipped++;
       continue;
     }
 
-    const pipeline = sharp(source).rotate().resize({
+    const trim = await alphaTrimBox(source);
+
+    let pipeline = sharp(source).rotate();
+    if (trim) {
+      pipeline = pipeline.extract({
+        left: trim.left,
+        top: trim.top,
+        width: trim.width,
+        height: trim.height,
+      });
+    }
+    pipeline = pipeline.resize({
       width: maxEdge,
       height: maxEdge,
       fit: "inside",
@@ -120,12 +201,13 @@ async function main() {
     outBytes += sAvif.size;
     converted++;
 
-    blur[entry.dest] = await blurPlaceholder(source);
+    blur[entry.dest] = await blurPlaceholder(source, trim);
 
     const meta = await sharp(dest).metadata();
+    const trimNote = trim ? `  trimmed ${(trim.gain * 100).toFixed(0)}%` : "";
     console.log(
       `  ${entry.dest}  ${meta.width}x${meta.height}  ` +
-        `${fmt(sIn.size)} -> ${fmt(sAvif.size)} avif / ${fmt(sWebp.size)} webp`,
+        `${fmt(sIn.size)} -> ${fmt(sAvif.size)} avif / ${fmt(sWebp.size)} webp${trimNote}`,
     );
   }
 
@@ -144,8 +226,9 @@ async function main() {
     );
   }
   if (videos.length) {
-    console.log(`\n${videos.length} video entr${videos.length === 1 ? "y" : "ies"} not transcoded:`);
-    for (const v of videos) console.log(`  ${v.source} -> ${v.dest}`);
+    console.log(
+      `${videos.length} video${videos.length === 1 ? "" : "s"} copied as-is, no transcode.`,
+    );
   }
 }
 

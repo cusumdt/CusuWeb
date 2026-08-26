@@ -28,10 +28,16 @@ _legacy-scrape/assets/image/   89 recovered originals, 214 MB, gitignored
         │
         │  scripts/media-manifest.json  (source → destination map)
         ▼
-scripts/optimize-media.mjs     sharp: resize, AVIF + WebP, blur placeholder
+scripts/optimize-media.mjs     sharp: alpha trim, resize, AVIF + WebP, blur
         ▼
 public/work/<slug>/            what actually ships
 ```
+
+Images with an alpha channel are cropped to their subject before resizing, so an
+isolated prop fills its tile instead of floating in the margin its render was
+exported with. Because that changes aspect ratios, `scripts/sync-dimensions.mjs`
+has to run after it: the width and height in `projects.ts` reserve the box before
+an image decodes, and a stale pair is a layout shift.
 
 The manifest is committed so the conversion is reproducible. The originals are not committed. They are an archive of a lost repository and live only on disk. **Back them up somewhere off this machine.**
 
