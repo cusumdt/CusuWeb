@@ -5,8 +5,9 @@
  *   node scripts/optimize-media.mjs --force    # re-convert, overwriting
  *   node scripts/optimize-media.mjs --project ohbb-raid
  *
- * Reads scripts/media-manifest.json (source -> destination map, generated once from
- * the recovered site) and writes AVIF + WebP into public/work/<project>/.
+ * Reads scripts/media-manifest.json (source -> destination map, generated once
+ * from the recovered site) and writes WebP masters into public/work/<project>/.
+ * next/image serves AVIF to browsers that accept it, generated from those.
  * Source files in _legacy-scrape/ are never modified.
  *
  * Images with an alpha channel are cropped to their subject first. The isolated
@@ -33,8 +34,16 @@ const projectFilter = args.includes("--project")
 
 /** Longest edge per role. First asset of a project is its cover/hero. */
 const MAX_EDGE = { hero: 2400, body: 1600 };
-const AVIF = { quality: 62, effort: 6, chromaSubsampling: "4:4:4" };
-const WEBP = { quality: 80, effort: 5 };
+/**
+ * WebP is the master that ships. next/image downsamples and re-encodes from it
+ * to AVIF per device, so quality is set high here: this file is the input to
+ * that second encode, not usually the thing a reader downloads.
+ *
+ * It deliberately does not emit AVIF. next/image cannot resize an AVIF source,
+ * it streams the original back at every width, so an AVIF master silently
+ * defeats responsive images.
+ */
+const WEBP = { quality: 90, effort: 6 };
 
 const fmt = (b) => `${(b / 1024 / 1024).toFixed(2)} MB`;
 
@@ -167,8 +176,7 @@ async function main() {
     // and much smaller than a full-bleed hero.
     const maxEdge = entry.maxEdge ?? (isHero ? MAX_EDGE.hero : MAX_EDGE.body);
 
-    const webpDest = dest.replace(/\.avif$/, ".webp");
-    if (!FORCE && existsSync(dest) && existsSync(webpDest)) {
+    if (!FORCE && existsSync(dest)) {
       // Already converted, but backfill the placeholder if it went missing.
       if (!blur[entry.dest]) {
         blur[entry.dest] = await blurPlaceholder(source, await alphaTrimBox(source));
@@ -195,12 +203,11 @@ async function main() {
       withoutEnlargement: true,
     });
 
-    await pipeline.clone().avif(AVIF).toFile(dest);
-    await pipeline.clone().webp(WEBP).toFile(webpDest);
+    await pipeline.clone().webp(WEBP).toFile(dest);
 
-    const [sIn, sAvif, sWebp] = await Promise.all([stat(source), stat(dest), stat(webpDest)]);
+    const [sIn, sOut] = await Promise.all([stat(source), stat(dest)]);
     srcBytes += sIn.size;
-    outBytes += sAvif.size;
+    outBytes += sOut.size;
     converted++;
 
     blur[entry.dest] = await blurPlaceholder(source, trim);
@@ -209,7 +216,7 @@ async function main() {
     const trimNote = trim ? `  trimmed ${(trim.gain * 100).toFixed(0)}%` : "";
     console.log(
       `  ${entry.dest}  ${meta.width}x${meta.height}  ` +
-        `${fmt(sIn.size)} -> ${fmt(sAvif.size)} avif / ${fmt(sWebp.size)} webp${trimNote}`,
+        `${fmt(sIn.size)} -> ${fmt(sOut.size)}${trimNote}`,
     );
   }
 

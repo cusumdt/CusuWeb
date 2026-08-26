@@ -39,6 +39,17 @@ export function Reveal({
       setState("shown");
       return;
     }
+
+    // Content already on screen is never hidden. Hiding it and fading it back
+    // in delays the largest contentful paint by the whole hydrate-plus-observe
+    // round trip, which on the home page was pushing LCP out by 1.8 seconds
+    // for a fade nobody asked for. A reveal is for content you scroll to.
+    const rect = ref.current?.getBoundingClientRect();
+    if (rect && rect.top < window.innerHeight) {
+      setState("shown");
+      return;
+    }
+
     // Hide before the browser paints, so there is no flash of visible content.
     setState("hidden");
   }, []);

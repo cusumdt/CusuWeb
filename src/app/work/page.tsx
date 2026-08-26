@@ -77,7 +77,12 @@ export default async function WorkPage({
         </nav>
       </PageHeader>
 
-      <section aria-label="Projects" className="border-t border-line pt-16 pb-section">
+      <section aria-labelledby="projects-heading" className="border-t border-line pt-16 pb-section">
+        {/* The cards are h3. Without this the page jumps h1 to h3, which is what
+            Lighthouse's heading-order audit was failing on. */}
+        <h2 id="projects-heading" className="sr-only">
+          Projects
+        </h2>
         <p className="sr-only" role="status">
           {projects.length} project{projects.length === 1 ? "" : "s"}
           {active ? ` in ${DISCIPLINE_LABELS[active]}` : ""}

@@ -143,15 +143,41 @@ Two defects caught by checking the rendered output rather than trusting the conf
 
 ---
 
-## Phase 8, Quality gate  · `perf-a11y`
+## Phase 8, Quality gate  · `perf-a11y` ✅
 
-- [ ] **8.1** `npm run build`: record the route size table in this file as the baseline.
-- [ ] **8.2** Lighthouse on `/`, `/work`, and one project page. Target ≥ 95 performance, 100 accessibility.
+- [x] **8.1** Baseline recorded below. Next 16 with Turbopack no longer prints a size column or writes `app-build-manifest.json`, so `scripts/bundle-report.mjs` measures the real thing against a running production server and exits non-zero over budget.
+- [x] **8.2** Lighthouse on four routes. **Target met on all of them.**
 - [ ] **8.7** Screenshot pass. The browser pane could not composite frames during Phase 1, so every visual check so far is computed-style based, not seen. Confirm the design visually before Phase 5 sign-off.
-- [ ] **8.3** Full keyboard pass on every interactive element.
-- [ ] **8.4** Reduced-motion pass, confirm the canvas stops and reveals disable.
-- [ ] **8.5** Responsive pass at 375 / 768 / 1280 / 1920. No horizontal scroll anywhere.
-- [ ] **8.6** Contrast audit, including text over images.
+- [x] **8.3** Walked the real tab order on the densest page: 24 focusable elements, every one with an accessible name, no positive `tabindex`, no place where DOM order contradicts visual order, skip link first. The mobile menu and lightbox focus traps were verified in phases 2 and 5.
+- [x] **8.4** The global `prefers-reduced-motion` block is present in the compiled production CSS, `Reveal` returns shown without hiding, and nothing on the site autoplays: the Peakmines video waits for a press and the YouTube demo is behind a click-to-load facade. **Live emulation was not available in this environment**, so the behaviour is verified from the shipped CSS and the code path, not observed.
+- [x] **8.5** 9 routes at 4 widths, 36 checks, **zero horizontal overflow**.
+- [x] **8.6** Token pairs verified by `scripts/check-contrast.mjs`. On top of that, every rendered text node on a project page was measured against its composited background, translucent layers included: **zero failures across 80 elements**. No text on this site sits over an image; the only candidate, the Play label, sits on a solid accent chip that clears 7.35:1.
+
+### Baseline, 2026-08-26
+
+| Route | Lighthouse P / A / BP / SEO | LCP | CLS | First-load JS |
+|---|---|---|---|---|
+| `/` | **100 / 100 / 100 / 100** | 1.3s | 0 | 189.7 KB |
+| `/work` | 95 / 100 / 100 / 100 | 3.0s | 0 | 189.3 KB |
+| `/work/cusutools` | 96 / 100 / 100 / 100 | 2.7s | 0 | 203.2 KB |
+| `/about` | 97 / 100 / 100 / 100 | 2.6s | 0 | 189.3 KB |
+
+Budgets: first-load JS under 250 KB gzipped (heaviest 203.2 KB), first-view page weight under 1.5 MB (heaviest 446 KB), `public/work` under 25 MB (9.7 MB).
+
+### Four defects found and fixed
+
+1. **`next/image` cannot resize an AVIF source.** It streamed the original back at every requested width, so a 384px card slot on a phone downloaded the 86 KB file built for a 1877px hero, and the whole `sizes` and `srcset` machinery was inert. The content modules now point at WebP masters and `next.config.ts` declares AVIF output, so Next downsamples and re-encodes per device: that same slot now gets **4.1 KB of AVIF, twenty times smaller**. The pipeline stopped emitting AVIF entirely, since it silently defeated responsive images.
+2. **`Reveal` was delaying the largest contentful paint on the home page.** It hid the hero, which is the LCP element, then faded it back in after hydrating and observing, adding 1.8s for an animation nobody asked for. Content already on screen at mount is no longer hidden. Home LCP went 2.3s to 1.3s and performance 98 to 100.
+3. **`heading-order` violation on `/work`**, h1 straight to h3, because the project cards had no section heading above them. Added a screen-reader-only h2. Accessibility 98 to 100.
+4. **`ProjectCard` declared a `sizes` it did not honour**, 40rem for a box that measures 576px at 1280.
+
+### Open, not fixed
+
+`/work`, `/about` and the project pages report LCP between 2.6s and 3.0s under Lighthouse's throttled mobile simulation, above the 2.0s figure in `docs/ARCHITECTURE.md`. On all three the LCP element is a text block with a large render delay. The fonts are two preloaded woff2 files totalling 53 KB, CLS is 0, and images are no longer the bottleneck, so the cause is **not isolated**. Recorded rather than guessed at.
+
+### Needs a human
+
+The focus ring still has no visual confirmation. The compiled production CSS carries exactly the intended rule, `:focus-visible{outline-width:2px;outline-style:solid;outline-color:var(--color-accent);outline-offset:3px}`, the token resolves to `#fc7816`, and the only `outline:none` in the stylesheet is the correct `:focus:not(:focus-visible)`. But the browser pane in this environment never takes keyboard focus, so **nobody has actually seen the ring**. Tab through the site and look.
 
 ---
 

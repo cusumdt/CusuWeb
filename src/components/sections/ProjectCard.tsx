@@ -45,7 +45,11 @@ export function ProjectCard({ project, priority = false }: { project: Project; p
               src={cover.src}
               alt={cover.alt}
               fill
-              sizes="(min-width: 1024px) 40rem, (min-width: 640px) 50vw, 100vw"
+              // Measured, not guessed. The page caps at 88rem with a fluid
+              // gutter, so a card is 40rem once the page stops growing, and
+              // tracks 45vw below that. Declaring 40rem everywhere made
+              // Lighthouse fetch 750px files for 576px boxes.
+              sizes="(min-width: 1408px) 40rem, (min-width: 768px) 45vw, calc(100vw - 2.5rem)"
               priority={priority}
               className="object-cover transition-transform duration-slow ease-out-quint group-hover:scale-[1.02] motion-reduce:transition-none motion-reduce:group-hover:scale-100"
               {...(() => {
