@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
-import { site } from "@/content/site";
+import { site, portrait } from "@/content/site";
 import { experience, education } from "@/content/experience";
 import { skills, strengths } from "@/content/skills";
 import { aboutLead, aboutNarrative } from "@/content/about";
 import { PageHeader } from "@/components/sections/PageHeader";
 import { MonoLabel } from "@/components/ui/MonoLabel";
+import { Figure } from "@/components/ui/Figure";
 import { Tag } from "@/components/ui/Tag";
 import { formatRange } from "@/lib/utils";
 
@@ -31,9 +32,17 @@ export default function AboutPage() {
 
       <section className="border-t border-line py-section">
         <div className="grid gap-x-16 gap-y-12 lg:grid-cols-[16rem_1fr]">
-          <MonoLabel as="h2" tone="accent" className="lg:sticky lg:top-24 lg:self-start">
-            In my words
-          </MonoLabel>
+          <div className="lg:sticky lg:top-24 lg:self-start">
+            <Figure
+              media={{ kind: "image", ...portrait }}
+              priority
+              sizes="(min-width: 1024px) 16rem, (min-width: 640px) 18rem, 60vw"
+              className="max-w-[18rem]"
+            />
+            <MonoLabel as="h2" tone="accent" className="mt-6">
+              In my words
+            </MonoLabel>
+          </div>
           <div className="space-y-14">
             {aboutNarrative.map((block) => (
               <div key={block.heading}>

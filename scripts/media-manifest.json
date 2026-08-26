@@ -1,5 +1,15 @@
 [
  {
+  "project": "portrait",
+  "source": "_source-assets/portrait/Portrait.jpeg",
+  "dest": "/portrait/cusu.avif",
+  "kind": "image",
+  "maxEdge": 1200,
+  "sourceWidth": 1792,
+  "sourceHeight": 2400,
+  "sourceBytes": 2388264
+ },
+ {
   "project": "mercedes-actros-vr",
   "source": "_source-assets/mercedes-actros-vr/01-exterior.png",
   "dest": "/work/mercedes-actros-vr/01-exterior.avif",

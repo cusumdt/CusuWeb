@@ -179,7 +179,8 @@ Two defects caught by checking the rendered output rather than trusting the conf
 
 - [x] ~~**B.3** Domain~~, **decided 2026-08-26.** Staying on `cusu-dev.vercel.app`. A custom domain is a purchase Cusu is not making right now; the Vercel subdomain is the canonical URL and `site.url` points at it.
 
-- [!] **B.4** **A photo of you.** The recovered `cusu.jpg` is a 1024×1024 avatar. A real portrait would carry the About page better.
+- [x] ~~**B.4** A photo of you~~, **done 2026-08-26.** Shot fresh and now on `/about`, in the left column beside the narrative. 896x1200, 40 KB AVIF. It is the first photograph of Cusu the site has ever published: the 1024px avatar recovered from the old site was never wired in anywhere.
+
 - [!] **B.5** **Résumé PDF.** Decide whether to offer a download on the site.
 - [!] **B.6** **Analytics** Vercel Analytics or nothing. Your call.
 

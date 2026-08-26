@@ -163,7 +163,9 @@ async function main() {
 
     const isHero = !seenProject.has(entry.project);
     seenProject.add(entry.project);
-    const maxEdge = isHero ? MAX_EDGE.hero : MAX_EDGE.body;
+    // A manifest entry can cap itself, for assets whose display size is known
+    // and much smaller than a full-bleed hero.
+    const maxEdge = entry.maxEdge ?? (isHero ? MAX_EDGE.hero : MAX_EDGE.body);
 
     const webpDest = dest.replace(/\.avif$/, ".webp");
     if (!FORCE && existsSync(dest) && existsSync(webpDest)) {

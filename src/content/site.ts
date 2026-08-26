@@ -17,6 +17,14 @@ export const site = {
   ],
 } as const;
 
+/** Shot 2026-08-26. The only photograph of Cusu the site publishes. */
+export const portrait = {
+  src: "/portrait/cusu.avif",
+  alt: "Cristian Cusumano, half-smiling and looking off to one side, wearing round glasses and a pale grey t-shirt, lit by a warm rim light against a dark background.",
+  width: 896,
+  height: 1200,
+} as const;
+
 export const links = {
   linkedin: "https://www.linkedin.com/in/cristian-cusumano-524ab1195/",
   artstation: "https://www.artstation.com/cusumdt",
