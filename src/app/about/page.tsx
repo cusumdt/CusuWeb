@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { site } from "@/content/site";
 import { experience, education } from "@/content/experience";
 import { skills, strengths } from "@/content/skills";
+import { aboutLead, aboutNarrative } from "@/content/about";
 import { PageHeader } from "@/components/sections/PageHeader";
 import { MonoLabel } from "@/components/ui/MonoLabel";
 import { Tag } from "@/components/ui/Tag";
@@ -10,7 +11,7 @@ import { formatRange } from "@/lib/utils";
 export const metadata: Metadata = {
   title: "About",
   description:
-    "Senior Game Engineer and Technical Artist in Santos, Brazil. Nine years across Unreal Engine 5 VR, Unity mobile, web 3D and Blender tooling, for Mercedes-Benz, Disney and Chevrolet.",
+    "Senior Game Engineer and Technical Artist in Santos, Brazil. Nine years across Unreal Engine 5 VR, Unity mobile, web 3D and commercial Blender tooling.",
   alternates: { canonical: "/about" },
 };
 
@@ -20,8 +21,28 @@ export default function AboutPage() {
       <PageHeader
         eyebrow={site.role}
         title="About"
-        lead="I write engine code and I art-direct. Most people do one. Working across both is what lets me fix a pipeline problem at its root instead of working around it downstream."
+        lead={aboutLead}
       />
+
+      <section className="border-t border-line py-section">
+        <div className="grid gap-x-16 gap-y-12 lg:grid-cols-[16rem_1fr]">
+          <MonoLabel as="h2" tone="accent" className="lg:sticky lg:top-24 lg:self-start">
+            In my words
+          </MonoLabel>
+          <div className="space-y-14">
+            {aboutNarrative.map((block) => (
+              <div key={block.heading}>
+                <h3 className="text-heading">{block.heading}</h3>
+                {block.paragraphs.map((para) => (
+                  <p key={para} className="mt-5 max-w-measure text-body text-muted">
+                    {para}
+                  </p>
+                ))}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
       <section className="border-t border-line py-section">
         <MonoLabel as="h2" tone="accent">

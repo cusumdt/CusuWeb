@@ -1,5 +1,23 @@
 [
  {
+  "project": "mercedes-actros-vr",
+  "source": "_source-assets/mercedes-actros-vr/01-exterior.png",
+  "dest": "/work/mercedes-actros-vr/01-exterior.avif",
+  "kind": "image",
+  "sourceWidth": 1877,
+  "sourceHeight": 789,
+  "sourceBytes": 2695826
+ },
+ {
+  "project": "mercedes-actros-vr",
+  "source": "_source-assets/mercedes-actros-vr/02-cabin.png",
+  "dest": "/work/mercedes-actros-vr/02-cabin.avif",
+  "kind": "image",
+  "sourceWidth": 1877,
+  "sourceHeight": 789,
+  "sourceBytes": 2245688
+ },
+ {
   "project": "cusutools",
   "source": "_source-assets/cusutools/before-after.png",
   "dest": "/work/cusutools/01-before-after.avif",

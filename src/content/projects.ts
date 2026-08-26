@@ -5,13 +5,17 @@ import type { Project } from "@/lib/types";
  * Media paths point at optimized output produced by scripts/optimize-media.mjs
  * from scripts/media-manifest.json. Run that script before the images resolve.
  *
- * Every alt string still marked "TODO:" needs a human pass - see TASKS.md.
+ * Alt text is written from the images themselves, not from filenames.
+ * Publication restrictions per project live in docs/CONTENT.md. Read it
+ * before adding any image to a project whose visuals are withheld.
  */
 export const projects: Project[] = [
   {
     slug: "mercedes-actros-vr",
     title: "Mercedes-Benz Actros VR Showroom",
     tagline: "High-fidelity VR truck configurator built in Unreal Engine 5.",
+    metaDescription:
+      "PC VR showroom for the Mercedes-Benz Actros in Unreal Engine 5, rebuilding a 15M triangle CAD pipeline and fixing stereo VR rendering at engine level.",
     client: "Mercedes-Benz",
     studio: "Agência DADS",
     year: "2026",
@@ -30,17 +34,35 @@ export const projects: Project[] = [
       "Owned the UE 5.5 to 5.7 migration and revalidated lighting, materials and performance.",
     ],
     outcome: "In production.",
-    media: [],
-    visuals: {
-      status: "withheld",
-      reason: "In development. No imagery can be shown until the project ships.",
+    // CLEARED IMAGERY: exactly these two renders, approved 2026-08-26. The
+    // project is still unreleased. Do not add another Mercedes-Benz image here
+    // without Cusu confirming clearance for that specific asset. See the
+    // restrictions table in docs/CONTENT.md.
+    cover: {
+      kind: "image",
+      src: "/work/mercedes-actros-vr/01-exterior.avif",
+      alt: "The Mercedes-Benz Actros 2653 tractor unit in blue, coupled to a silver box trailer, parked in the dark showroom environment with reflections running along the polished floor.",
+      width: 1877,
+      height: 789,
     },
+    media: [
+      {
+        kind: "image",
+        src: "/work/mercedes-actros-vr/02-cabin.avif",
+        alt: "Interior of the Actros cabin seen from behind the seats: the steering wheel with the Mercedes-Benz star, the instrument and infotainment screens, and the tan upper dash sweeping across to the passenger side.",
+        width: 1600,
+        height: 673,
+      },
+    ],
+    visuals: { status: "public" },
     featured: true,
   },
   {
     slug: "cusutools",
     title: "CusuTools Blender Addons",
     tagline: "Commercial pipeline tooling for 3D artists. TexelPack is out; PreflightKit is in development.",
+    metaDescription:
+      "TexelPack and PreflightKit, Blender addons built as products: UV packing, texel density normalization and game-ready asset validation, sold and supported.",
     client: "Independent product",
     studio: "CusuTools",
     year: "2026",
@@ -51,13 +73,13 @@ export const projects: Project[] = [
     summary:
       "Blender addons built and sold as products. TexelPack, released on Superhive Market, packs UV islands into a tight atlas, holds texel density consistent across a whole selection, and draws the result as a viewport overlay so wasted space and stretching are visible before a bake. PreflightKit, in development, validates and exports game-ready assets to catch pipeline errors before they reach an engine.",
     constraint:
-      "Shipping software to strangers means the failure modes are theirs, not yours - scenes you will never see, on Blender versions you did not test. TexelPack runs on Blender's bundled Python with zero external dependencies for exactly that reason: nothing to pip-install, nothing to break in someone else's environment.",
+      "Shipping software to strangers means the failure modes are theirs, not yours. They happen in scenes you will never see, on Blender versions you did not test. TexelPack runs on Blender's bundled Python with zero external dependencies for exactly that reason: nothing to pip-install, nothing to break in someone else's environment.",
     contribution: [
-      "Four packing algorithms - MAXRECTS, Guillotine, Shelf, and a Max Quality mode that packs by real island shape so small pieces fill concavities.",
+      "Four packing algorithms: MAXRECTS, Guillotine, Shelf, and a Max Quality mode that packs by real island shape so small pieces fill concavities.",
       "Texel density normalized against each object's real 3D surface area, object scale included, with a color-coded viewport overlay grading every face against the target.",
       "Vectorized island extraction: 100k polygons in under a second, with pixel-exact ±1px padding for clean bake bleeding.",
       "UDIM and group packing, mirrored-island stacking, reserved atlas regions, presets, and JSON / CSV / SVG layout export for Substance and Photoshop.",
-      "Full product cycle: market research, development, release, support and updates - plus storefront, pricing, refunds and creator outreach.",
+      "Full product cycle, from market research through development, release, support and updates, plus storefront, pricing, refunds and creator outreach.",
     ],
     outcome: "TexelPack is released and in active use, under GPL-3.0-or-later. PreflightKit is in development.",
     cover: {
@@ -143,6 +165,8 @@ export const projects: Project[] = [
     slug: "chevrolet-configurator",
     title: "Chevrolet Web 3D Vehicle Configurator",
     tagline: "Real-time car customization in the browser with Three.js and WebGL.",
+    metaDescription:
+      "Interactive web 3D vehicle configurator for Chevrolet in Three.js and WebGL, with real-time colour, wheel and component changes on desktop and mobile.",
     client: "Chevrolet",
     studio: "Freelance",
     year: "2023-2024",
@@ -171,6 +195,8 @@ export const projects: Project[] = [
     slug: "ohbb-raid",
     title: "OHBB Raid Environment, Monster and Materials",
     tagline: "Environment art, a hand-painted ice monster, Substance Designer materials, and the map itself.",
+    metaDescription:
+      "Environment art, a hand-painted ice monster, procedural Substance Designer materials and Unity map programming for OHBB Raid, a mobile Oh Baby Games title.",
     client: "Oh Baby Games",
     studio: "Oh Baby Games",
     year: "2022-2025",
@@ -332,6 +358,8 @@ export const projects: Project[] = [
     slug: "ohbb-kart-spongebob",
     title: "SpongeBob Kart, Bikini Bottom",
     tagline: "Texturing and Unity map programming for a licensed mobile kart racer.",
+    metaDescription:
+      "UV and texture work on the SpongeBob track for OHBB Kart, plus the Unity map programming: Bikini Bottom houses, props and cast running at 60fps on mobile.",
     client: "SpongeBob SquarePants (Nickelodeon)",
     studio: "Oh Baby Games",
     year: "2022-2025",
@@ -436,6 +464,8 @@ export const projects: Project[] = [
     slug: "ohbb-kart-invader-zim",
     title: "Invader Zim Kart Environment",
     tagline: "Texturing and Unity map programming for the Invader Zim track.",
+    metaDescription:
+      "Texturing and Unity map programming for the Invader Zim track in OHBB Kart, covering Zim's house, the Voot Cruiser and the full street set of assets.",
     client: "Invader Zim (Nickelodeon)",
     studio: "Oh Baby Games",
     year: "2022-2025",
@@ -561,6 +591,8 @@ export const projects: Project[] = [
     slug: "historias-para-armar",
     title: "Historias Para Armar for Disney",
     tagline: "Art direction and Unity WebGL for a Disney educational platform.",
+    metaDescription:
+      "Art direction and Unity WebGL development for Historias Para Armar, a Disney educational platform where children aged 8 to 11 build their own narratives.",
     client: "Disney",
     studio: "DIGI Learnnials",
     year: "2020-2021",
@@ -595,6 +627,8 @@ export const projects: Project[] = [
     slug: "peakmines",
     title: "Peakmines Art and Technical Direction",
     tagline: "Art direction, 2D and 3D production for an indie title.",
+    metaDescription:
+      "Art and technical direction on Peakmines at Inflextion Studios, with hands-on 2D and 3D production including the dwarf character set, all built in Unity.",
     client: "Peakmines",
     studio: "Inflextion Studios",
     year: "2021-2022",
@@ -677,6 +711,8 @@ export const projects: Project[] = [
     slug: "ohbb-kart-tower-of-god",
     title: "Tower of God Kart Characters",
     tagline: "Rak, Baam and Ha-Yuri modeled, unwrapped and textured.",
+    metaDescription:
+      "Character modeling, UVs and texturing for Rak, Baam and Ha-Yuri in OHBB Kart, built to share a single kart rig and read clearly at mobile racing speed.",
     client: "Tower of God",
     studio: "Oh Baby Games",
     year: "2022-2025",
@@ -685,13 +721,14 @@ export const projects: Project[] = [
     disciplines: ["3d-art"],
     stack: ["Blender", "Substance Painter", "Unity"],
     summary:
-      "Character work for the Tower of God roster in OHBB Kart: modeling, UVs and textures for Rak, Baam and Ha-Yuri.",
+      "The Tower of God roster for OHBB Kart: modeling, UVs and textures for Rak, Baam and Ha-Yuri, taken from the licensor's model sheets through to game-ready assets.",
     constraint:
-      "Three characters with very different proportions had to sit in the same kart rig and read at the same distance.",
+      "Three bodies that share nothing. Ha-Yuri is a slim human in a school uniform, Baam wears a floor-length coat, and Rak is a heavyset reptilian in armour. All three had to fit one kart rig and read at the same distance on a phone.",
     contribution: [
-      "Modeled and unwrapped each character.",
-      "Textured to match the source illustration style.",
-      "Iterated on proportions through several WIP passes against licensor feedback.",
+      "Modeled and unwrapped each character to the licensor's model sheets.",
+      "Textured to match the source illustration style, holding the flat cel-shaded read under mobile lighting.",
+      "Iterated proportions across several WIP passes against licensor feedback before locking the final silhouettes.",
+      "Reconciled the three body types onto the shared kart rig without redoing the rig per character.",
     ],
     outcome: "Shipped.",
     cover: {
@@ -759,6 +796,8 @@ export const projects: Project[] = [
     slug: "ohbb-kart-characters",
     title: "OHBB Kart Original Characters",
     tagline: "Original character work outside the licensed roster.",
+    metaDescription:
+      "Original character art for OHBB Kart: modeling, UVs and texturing, built to sit alongside the licensed SpongeBob and Invader Zim roster without clashing.",
     client: "Oh Baby Games",
     studio: "Oh Baby Games",
     year: "2022-2025",
@@ -767,12 +806,13 @@ export const projects: Project[] = [
     disciplines: ["3d-art"],
     stack: ["Blender", "Substance Painter", "ZBrush", "Unity"],
     summary:
-      "Original characters designed and built for OHBB Kart, covering modeling, UVs and textures.",
+      "Two original drivers built for OHBB Kart alongside the licensed roster: a kimono-wearing swordfighter in stylised anime proportions, and Chibben, a duck in a leather jacket, gas mask and twin blades. Modeling, UVs and textures on both.",
     constraint:
-      "Original designs still had to sit alongside licensed IP characters without looking like they came from a different game.",
+      "Original designs had to hold their own next to SpongeBob and Invader Zim without looking imported from a different game. Two very different silhouettes, one shared kart rig, one shared material language.",
     contribution: [
-      "Modeled, unwrapped and textured each character.",
-      "Matched the established roster's proportions and material language.",
+      "Modeled, unwrapped and textured both characters, from design through to game-ready asset.",
+      "Matched the licensed roster's proportions, edge density and material response so the grid reads as one cast.",
+      "Kept each silhouette distinct enough to identify from behind at racing distance.",
     ],
     outcome: "Shipped.",
     cover: {
@@ -847,6 +887,8 @@ export const projects: Project[] = [
     slug: "tower-defense-props",
     title: "Tower Defense Prop Library",
     tagline: "A full prop library built for a tower defense prototype.",
+    metaDescription:
+      "A full prop library for a tower defense prototype at Oh Baby Games: towers, structures and set dressing, built as one kit for a fixed top-down camera.",
     client: "Oh Baby Games",
     studio: "Oh Baby Games",
     year: "2022-2025",
@@ -855,12 +897,13 @@ export const projects: Project[] = [
     disciplines: ["3d-art"],
     stack: ["Blender", "Substance Painter", "Unity"],
     summary:
-      "Modeling, UVs and textures for the prop library of a tower defense prototype - towers, structures and set dressing built as a consistent kit.",
+      "The tower library for a tower defense prototype, built as upgrade families rather than one-off props: a serpent tower across three tiers, cannons on wooden platforms, a dragon-head emplacement and an arcane orb tower, all sharing one base module.",
     constraint:
-      "Props had to be readable from a fixed top-down camera at small on-screen size, and reusable across many level layouts.",
+      "Everything is seen from a fixed top-down camera at small on-screen size. A tower has to be identifiable by silhouette and colour alone, and its upgrade tier has to be legible at a glance without a UI label.",
     contribution: [
-      "Built the prop kit to a shared scale and material set.",
-      "Optimized for instancing across dense levels.",
+      "Modeled, unwrapped and textured the tower set on a shared circular base module, so tiers swap without re-authoring the footprint.",
+      "Designed each upgrade tier to escalate visually: the serpent gains frills and scale, the cannon gains barrels and plating.",
+      "Held the kit to one material set and a common scale, so levels instance densely without extra draw calls.",
     ],
     outcome: "Prototype delivered.",
     cover: {
@@ -977,6 +1020,8 @@ export const projects: Project[] = [
     slug: "weapons-props",
     title: "Game-Ready Weapon Set",
     tagline: "Four game-ready weapons: pistol, shotgun, rifle, rocket launcher.",
+    metaDescription:
+      "Four game-ready sci-fi weapons modeled, unwrapped and PBR textured to a shared texel density, staying distinct at thumbnail size in a weapon-select UI.",
     client: "Oh Baby Games",
     studio: "Oh Baby Games",
     year: "2022-2025",
@@ -985,12 +1030,13 @@ export const projects: Project[] = [
     disciplines: ["3d-art"],
     stack: ["Blender", "Substance Painter"],
     summary:
-      "A set of game-ready weapon props: modeling, UVs and PBR texturing, built to a shared texel density and material set.",
+      "Four game-ready sci-fi weapons: a shotgun, a pistol, a rifle and a rocket launcher, modeled, unwrapped and PBR textured to one shared texel density and material library.",
     constraint:
-      "Four silhouettes that had to stay distinguishable at thumbnail size in a weapon-select UI.",
+      "Four silhouettes that stay distinguishable at thumbnail size in a weapon-select UI, and still read as one armoury rather than four unrelated props.",
     contribution: [
-      "Modeled and unwrapped each weapon.",
-      "Textured to a shared PBR material library.",
+      "Modeled and unwrapped each weapon to a common texel density, so no piece looks softer than its neighbour in the same UI.",
+      "Built one shared PBR material library across the set: worn bronze and tan plating with a blue energy cell as the recurring accent.",
+      "Kept the barrel and grip masses distinct per weapon, so each is recognisable in silhouette alone.",
     ],
     outcome: "Prototype delivered.",
     cover: {

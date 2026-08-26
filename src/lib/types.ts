@@ -56,6 +56,8 @@ export interface Project {
   title: string;
   /** One line under the title in listings */
   tagline: string;
+  /** 150 to 160 characters, for search results. Falls back to tagline. */
+  metaDescription?: string;
   client: string;
   studio?: string;
   year: string;

@@ -63,17 +63,21 @@ Two things found and fixed while verifying:
 
 ---
 
-## Phase 4, Copy  · `content-copy`
+## Phase 4, Copy  · `content-copy` ✅
 
 > **Hard rule:** no em dash anywhere. See `docs/CONTENT.md`.
 
 - [x] **4.1** All 89 alt strings written from the images themselves, reviewed on contact sheets. Zero `TODO:` left in the repo.
-- [ ] **4.2** Home hero copy, the one sentence that has to land. Engineer *and* artist, no adjective padding.
-- [ ] **4.3** About page, long-form, first person, built from `docs/CONTENT.md`.
-- [ ] **4.4** Review the 12 project case studies against the required five-beat structure; sharpen anything vague.
-- [ ] **4.5** Meta descriptions for every route, 150–160 characters each.
+- [x] **4.2** Home hero copy written and in place.
+- [x] **4.3** About narrative in `src/content/about.ts`: four blocks, first person, covering the Toyota database years, the hybrid art and code pattern, the current UE5 VR work, and how he works with teams. Every claim traces to `docs/CONTENT.md`.
+- [x] **4.4** All 12 audited against the five beats. None were missing one. The four thinnest (original characters, weapons, tower defense props, Tower of God) were rewritten with specifics taken from the assets themselves.
+- [x] **4.5** All 17 routes measured in the rendered HTML, every one inside 150 to 160 characters. Project pages got a dedicated `metaDescription` field; they were previously falling back to a 61 to 94 character tagline.
 
-**Done when:** no string in the repo starts with `TODO:` and nothing on the page could have been written about a different developer.
+**Done when:** no string in the repo starts with `TODO:` and nothing on the page could have been written about a different developer. **Met.**
+
+Two content corrections came out of reviewing the images rather than the filenames: the Steban Goca modeling credit on SpongeBob and Invader Zim, and the Unity map programming that was missing from three projects entirely. Both are recorded in `docs/CONTENT.md`.
+
+Also cleaned up the hyphens left behind by the em dash purge, in the seven places where the sentence needed rewriting rather than repunctuating.
 
 ---
 
@@ -148,11 +152,8 @@ One bug found: the lightbox re-ran its open effect on every arrow press, tearing
 
 ## Blocked on Cusu  `[!]`
 
-- [!] **B.8** **Save the two approved Mercedes renders to disk.** They were pasted into the chat, which does not leave files on the filesystem. Save them as:
-  - `_source-assets/mercedes-actros-vr/01-exterior.png` (the blue Actros with the trailer in the showroom)
-  - `_source-assets/mercedes-actros-vr/02-cabin.png` (the interior, the corrected second version, not the first one sent)
+- [x] ~~**B.8** Save the two approved Mercedes renders~~, **done 2026-08-26.** Both converted, wired in, and live on `/work/mercedes-actros-vr`. Only these two are cleared.
 
-  Then the pipeline is one command. **Only these two images are cleared**, see the restrictions table in `docs/CONTENT.md`.
 - [x] ~~**B.1** Media for the flagship work~~, **resolved 2026-08-26.** Mercedes-Benz Actros VR and Chevrolet may be **named and described but never shown** (unreleased / under contract). Both are now listed with `visuals: withheld` instead of hidden. See the restrictions table in `docs/CONTENT.md`.
 - [x] ~~**B.1b** CusuTools captures~~, **resolved 2026-08-26.** 8 images sourced from the UVPackerPro repo plus the YouTube demo. Now `visuals: public`.
 - [ ] **B.1c** Design how a `withheld` project renders. It must read as deliberate and confidential, not as a broken image. This is a `design-system` decision before `frontend-builder` implements it.

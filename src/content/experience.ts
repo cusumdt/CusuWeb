@@ -29,11 +29,11 @@ export const experience: Role[] = [
     end: "Present",
     current: true,
     summary:
-      "Designs, develops and ships commercial Blender addons for 3D artists and game developers - the full product cycle, from market research to support and updates.",
+      "Designs, develops and ships commercial Blender addons for 3D artists and game developers, owning the full product cycle from market research to support and updates.",
     highlights: [
       "Released TexelPack: UV packing and texel density tooling distributed on Superhive Market, including texel density map export for UV layout inspection.",
       "Building PreflightKit: a pre-flight asset validator that checks and exports game-ready assets, catching pipeline errors before they reach the engine. In development.",
-      "Runs the business end to end - pricing, storefront, customer support, refunds, and affiliate and creator outreach.",
+      "Runs the business end to end: pricing, storefront, customer support, refunds, and affiliate and creator outreach.",
     ],
     stack: ["Python", "bpy", "Blender"],
   },
@@ -59,7 +59,7 @@ export const experience: Role[] = [
       "Built mobile racing games in Unity for international markets, working with licensed IPs.",
     highlights: [
       "Shipped work on SpongeBob SquarePants, Invader Zim and Tower of God titles.",
-      "Created complete 3D environments from concept to implementation - buildings, props, environmental elements, texturing, lighting and atmospherics.",
+      "Created complete 3D environments from concept to implementation: buildings, props, environmental elements, texturing, lighting and atmospherics.",
       "Optimized assets and the rendering pipeline to hold 60fps on mid-range mobile without losing visual quality.",
       "Programmed the maps in Unity for the SpongeBob, Invader Zim and Raid titles: layout, collision, route logic, and the C# gameplay systems that sit on top of them.",
       "Programmed gameplay mechanics, UI systems and interactive elements in C#.",
@@ -120,7 +120,7 @@ export const experience: Role[] = [
   },
   {
     company: "Image Campus",
-    title: "Professor - 3D Art & Database Programming",
+    title: "Professor of 3D Art and Database Programming",
     location: "Buenos Aires, Argentina",
     start: "Mar 2021",
     end: "Feb 2023",

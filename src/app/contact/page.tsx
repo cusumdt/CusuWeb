@@ -6,7 +6,7 @@ import { MonoLabel } from "@/components/ui/MonoLabel";
 export const metadata: Metadata = {
   title: "Contact",
   description:
-    "Get in touch with Cristian Cusumano, Senior Game Engineer and Technical Artist, based in Santos, Brazil and working with teams internationally.",
+    "Get in touch with Cristian Cusumano, Senior Game Engineer and Technical Artist, based in Santos, Brazil and working with studios and teams internationally.",
   alternates: { canonical: "/contact" },
 };
 
