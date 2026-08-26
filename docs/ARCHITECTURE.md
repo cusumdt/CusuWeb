@@ -33,11 +33,28 @@ scripts/optimize-media.mjs     sharp: alpha trim, resize, AVIF + WebP, blur
 public/work/<slug>/            what actually ships
 ```
 
-Images with an alpha channel are cropped to their subject before resizing, so an
-isolated prop fills its tile instead of floating in the margin its render was
-exported with. Because that changes aspect ratios, `scripts/sync-dimensions.mjs`
-has to run after it: the width and height in `projects.ts` reserve the box before
-an image decodes, and a stale pair is a layout shift.
+Images with an alpha channel are cropped to their subject, then padded back out
+to one shared canvas per project. Cropping alone made every tile a different
+shape and left small subjects stretched to fill their slot; the shared canvas
+keeps a gallery even and preserves the real relative scale between props, so a
+tier-one tower still reads smaller than a tier-three one.
+
+The canvas is computed in normalized units, not raw source pixels, because a
+project can mix a 3840 render with a 1920 one. It is also capped so no subject
+is ever enlarged past the resolution it actually has.
+
+Two things that bite here. sharp applies extract, then resize, then extend, in
+that order regardless of how you chain them, so trimming and padding have to be
+two passes or the padding lands in source-sized amounts on an already-resized
+image. And `next/image` caches optimized variants under `.next/cache/images`
+keyed by source path: after regenerating the files in `public/`, clear it, or
+the dev server keeps serving the previous sizes.
+
+Because all of this changes aspect ratios, `scripts/sync-dimensions.mjs` has to
+run after it. It writes back the width, height and transparency flag from the
+files that actually ship: the dimensions reserve the box before an image
+decodes, and the flag tells the components to drop the panel behind a cut-out
+and contain it rather than crop it.
 
 The manifest is committed so the conversion is reproducible. The originals are not committed. They are an archive of a lost repository and live only on disk. **Back them up somewhere off this machine.**
 

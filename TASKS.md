@@ -66,6 +66,7 @@ Two bugs found while finishing this phase, both of which had been shipping:
 - **The Peakmines video was fed to `next/image`.** Neither `Figure` nor `Gallery` branched on `Media.kind`, so an `.mp4` was going through the image optimizer, and the file had never been copied to `public/` either. The gallery had a broken tile. `Figure` now renders a real `<video>` and `Gallery` keeps videos out of the lightbox, since a button wrapper would swallow their controls.
 - **`optimize-media.mjs` reported videos instead of copying them**, so the pipeline was not actually the single path from source to `public/`. It copies them now.
 
+- [x] **3.8** Trim regression fixed, reported by Cusu 2026-08-26. The first trim pass made covers huge and soft, gave every tile a different shape, and left a visible panel behind the cut-outs. All three are addressed: shared canvas per project, transparency carried in the content model, and nothing rendered above its natural size. Details in `docs/ARCHITECTURE.md`.
 - [x] **3.6** Alpha trim, approved by Cusu and applied. Images with an alpha channel are cropped to their subject with a 4% margin before resizing, skipped when it reclaims under 6% of the frame. The isolated props reclaimed 69 to 87%: a tower that filled a quarter of its tile now fills it.
 - [x] **3.7** `scripts/sync-dimensions.mjs`. The trim changes aspect ratios, and a stale width/height pair is a layout shift. Run without a flag it reports drift and exits non-zero, so it can gate a deploy; `--write` fixes it.
 

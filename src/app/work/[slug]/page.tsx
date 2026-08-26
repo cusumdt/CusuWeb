@@ -87,7 +87,14 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
         </div>
       ) : project.cover ? (
         <div className="mx-auto w-full max-w-page px-gutter">
-          <Figure media={project.cover} priority sizes="(min-width: 1440px) 88rem, 100vw" />
+          {/* Capped at 70vh. A cut-out prop is portrait once trimmed, and at its
+              natural width it ran taller than the screen. */}
+          <Figure
+            media={project.cover}
+            priority
+            maxHeight="70vh"
+            sizes="(min-width: 1440px) 88rem, 100vw"
+          />
         </div>
       ) : null}
 

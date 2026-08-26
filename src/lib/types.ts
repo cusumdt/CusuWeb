@@ -20,6 +20,12 @@ export interface Media {
   height: number;
   /** base64 blur placeholder produced by scripts/optimize-media.mjs */
   blurDataURL?: string;
+  /**
+   * The asset has real transparency, so it must sit directly on the page
+   * ground with no panel behind it, and be contained rather than cropped.
+   * Set by scripts/sync-dimensions.mjs from the shipped file.
+   */
+  transparent?: boolean;
   /** Renders full-bleed instead of inside the figure grid */
   feature?: boolean;
   caption?: string;

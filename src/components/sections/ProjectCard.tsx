@@ -3,6 +3,7 @@ import Image from "next/image";
 import type { Project } from "@/lib/types";
 import { getBlur } from "@/lib/media";
 import { DISCIPLINE_LABELS } from "@/lib/disciplines";
+import { cn } from "@/lib/utils";
 import { MonoLabel } from "@/components/ui/MonoLabel";
 
 /**
@@ -37,8 +38,15 @@ export function ProjectCard({ project, priority = false }: { project: Project; p
         {visuals.status === "withheld" ? (
           <WithheldCover reason={visuals.reason} />
         ) : cover ? (
+          // Every card keeps the same 16:10 frame so the grid stays even. An
+          // opaque cover fills it; a cut-out prop is contained inside it and
+          // sits on the page ground, because cropping a prop to a landscape
+          // box beheads it and a panel behind it reads as a visible box.
           <div
-            className="relative w-full overflow-hidden bg-surface"
+            className={cn(
+              "relative w-full overflow-hidden",
+              cover.transparent ? "bg-transparent" : "bg-surface",
+            )}
             style={{ aspectRatio: "16 / 10" }}
           >
             <Image
@@ -51,8 +59,12 @@ export function ProjectCard({ project, priority = false }: { project: Project; p
               // Lighthouse fetch 750px files for 576px boxes.
               sizes="(min-width: 1408px) 40rem, (min-width: 768px) 45vw, calc(100vw - 2.5rem)"
               priority={priority}
-              className="object-cover transition-transform duration-slow ease-out-quint group-hover:scale-[1.02] motion-reduce:transition-none motion-reduce:group-hover:scale-100"
+              className={cn(
+                "transition-transform duration-slow ease-out-quint group-hover:scale-[1.02] motion-reduce:transition-none motion-reduce:group-hover:scale-100",
+                cover.transparent ? "object-contain" : "object-cover",
+              )}
               {...(() => {
+                if (cover.transparent) return {};
                 const blur = getBlur(cover.src);
                 return blur ? { placeholder: "blur" as const, blurDataURL: blur } : {};
               })()}

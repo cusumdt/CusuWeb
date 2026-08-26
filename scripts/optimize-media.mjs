@@ -10,9 +10,11 @@
  * next/image serves AVIF to browsers that accept it, generated from those.
  * Source files in _legacy-scrape/ are never modified.
  *
- * Images with an alpha channel are cropped to their subject first. The isolated
- * prop renders carry wide empty margins, which left the subject filling a
- * fraction of its tile in the gallery.
+ * Images with an alpha channel are cropped to their subject, then padded back
+ * out to one shared canvas per project. The isolated prop renders carry wide
+ * empty margins, which left each subject filling a fraction of its tile; the
+ * shared canvas keeps the grid even and preserves relative scale between
+ * props.
  *
  * Videos are copied through unconverted. They are already H.264 in an MP4
  * container, ffmpeg is not a dependency of this project, and the clips are
@@ -51,16 +53,15 @@ const fmt = (b) => `${(b / 1024 / 1024).toFixed(2)} MB`;
 const ALPHA_THRESHOLD = 8;
 /** Breathing room around the trimmed subject, as a share of its longest edge. */
 const TRIM_PADDING = 0.04;
-/** Skip the trim unless it reclaims at least this share of the frame. */
-const TRIM_MIN_GAIN = 0.06;
 
 /**
  * Bounding box of the non-transparent pixels.
  *
  * The isolated prop renders were exported with generous empty margins, which
  * left the subject occupying a fraction of its tile in the gallery. Returns
- * null when there is nothing worth reclaiming, so opaque images and tightly
- * cropped ones pass through untouched.
+ * null for an opaque image, which passes through untouched. Every image that
+ * does have alpha is trimmed, even one already tight: the project canvas pads
+ * it back, and skipping it would leave one odd-sized tile in an even grid.
  */
 async function alphaTrimBox(source) {
   const image = sharp(source);
@@ -101,8 +102,6 @@ async function alphaTrimBox(source) {
   box.height = Math.min(bottom + pad, info.height - 1) - box.top + 1;
 
   const gain = 1 - (box.width * box.height) / (info.width * info.height);
-  if (gain < TRIM_MIN_GAIN) return null;
-
   return { ...box, gain };
 }
 
@@ -126,9 +125,64 @@ async function readBlurMap() {
   }
 }
 
+/**
+ * One canvas per project, sized to the largest trimmed subject in it.
+ *
+ * Trimming each image to its own bounds made every tile a different shape and
+ * left small subjects upscaled to fill their slot. Padding them all back out
+ * to a shared canvas, with transparent padding, keeps the grid even and keeps
+ * the props at their true relative sizes: a small tower still reads smaller
+ * than a big one, which is what a turntable sheet is supposed to show.
+ */
+async function projectCanvases(entries) {
+  const boxes = new Map();
+  const norms = new Map();
+  const perProject = new Map();
+
+  for (const entry of entries) {
+    if (entry.kind !== "image") continue;
+    const source = path.join(ROOT, entry.source);
+    if (!existsSync(source)) continue;
+
+    const meta = await sharp(source).metadata();
+    const trim = await alphaTrimBox(source);
+    boxes.set(entry.dest, trim);
+    if (!trim || !meta.width || !meta.height) continue;
+
+    // Normalized against its own source, because one project can mix a 3840
+    // render with a 1920 one. Comparing raw pixel boxes across those makes the
+    // shared canvas meaningless and blows small sources up to fit it.
+    const norm = { w: trim.width / meta.width, h: trim.height / meta.height };
+    norms.set(entry.dest, norm);
+
+    const cur = perProject.get(entry.project) ?? { w: 0, h: 0, minSourceEdge: Infinity };
+    perProject.set(entry.project, {
+      w: Math.max(cur.w, norm.w),
+      h: Math.max(cur.h, norm.h),
+      minSourceEdge: Math.min(cur.minSourceEdge, Math.max(meta.width, meta.height)),
+    });
+  }
+
+  // Turn each normalized canvas into real pixels, capped so no subject in the
+  // project is ever enlarged past the resolution it actually has.
+  const canvases = new Map();
+  for (const [project, c] of perProject) {
+    const scale = Math.min(MAX_EDGE.body / Math.max(c.w, c.h), c.minSourceEdge);
+    canvases.set(project, {
+      scale,
+      width: Math.round(c.w * scale),
+      height: Math.round(c.h * scale),
+    });
+  }
+
+  return { boxes, norms, canvases };
+}
+
 async function main() {
   const manifest = JSON.parse(await readFile(MANIFEST, "utf8"));
   const entries = projectFilter ? manifest.filter((m) => m.project === projectFilter) : manifest;
+
+  const { boxes, norms, canvases } = await projectCanvases(entries);
 
   let srcBytes = 0;
   let outBytes = 0;
@@ -172,38 +226,66 @@ async function main() {
 
     const isHero = !seenProject.has(entry.project);
     seenProject.add(entry.project);
+    const trim = boxes.get(entry.dest);
+    const canvas = trim ? canvases.get(entry.project) : null;
+
     // A manifest entry can cap itself, for assets whose display size is known
-    // and much smaller than a full-bleed hero.
-    const maxEdge = entry.maxEdge ?? (isHero ? MAX_EDGE.hero : MAX_EDGE.body);
+    // and much smaller than a full-bleed hero. Padded images all take the body
+    // edge, hero included: they share one canvas, so they have to share one
+    // resize or the cover lands on a different size than its own gallery.
+    const maxEdge =
+      entry.maxEdge ?? (canvas ? MAX_EDGE.body : isHero ? MAX_EDGE.hero : MAX_EDGE.body);
 
     if (!FORCE && existsSync(dest)) {
       // Already converted, but backfill the placeholder if it went missing.
       if (!blur[entry.dest]) {
-        blur[entry.dest] = await blurPlaceholder(source, await alphaTrimBox(source));
+        blur[entry.dest] = await blurPlaceholder(source, boxes.get(entry.dest));
       }
       skipped++;
       continue;
     }
 
-    const trim = await alphaTrimBox(source);
+    if (trim && canvas) {
+      // Two passes on purpose. sharp always runs extract, then resize, then
+      // extend, whatever order you call them in, so padding in one pass would
+      // add source-sized margins to an already-resized image.
+      const norm = norms.get(entry.dest);
+      const subject = await sharp(source)
+        .rotate()
+        .extract({ left: trim.left, top: trim.top, width: trim.width, height: trim.height })
+        .resize({
+          width: Math.max(1, Math.round(norm.w * canvas.scale)),
+          height: Math.max(1, Math.round(norm.h * canvas.scale)),
+          fit: "fill",
+        })
+        .toBuffer();
 
-    let pipeline = sharp(source).rotate();
-    if (trim) {
-      pipeline = pipeline.extract({
-        left: trim.left,
-        top: trim.top,
-        width: trim.width,
-        height: trim.height,
-      });
+      const meta = await sharp(subject).metadata();
+      const extraX = Math.max(0, canvas.width - (meta.width ?? 0));
+      const extraY = Math.max(0, canvas.height - (meta.height ?? 0));
+
+      await sharp(subject)
+        .extend({
+          left: Math.floor(extraX / 2),
+          right: Math.ceil(extraX / 2),
+          top: Math.floor(extraY / 2),
+          bottom: Math.ceil(extraY / 2),
+          background: { r: 0, g: 0, b: 0, alpha: 0 },
+        })
+        .webp(WEBP)
+        .toFile(dest);
+    } else {
+      await sharp(source)
+        .rotate()
+        .resize({
+          width: maxEdge,
+          height: maxEdge,
+          fit: "inside",
+          withoutEnlargement: true,
+        })
+        .webp(WEBP)
+        .toFile(dest);
     }
-    pipeline = pipeline.resize({
-      width: maxEdge,
-      height: maxEdge,
-      fit: "inside",
-      withoutEnlargement: true,
-    });
-
-    await pipeline.clone().webp(WEBP).toFile(dest);
 
     const [sIn, sOut] = await Promise.all([stat(source), stat(dest)]);
     srcBytes += sIn.size;
