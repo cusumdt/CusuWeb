@@ -78,6 +78,13 @@ Projects marked `draft: true` are excluded from listings, the sitemap and `gener
 
 Enforced by the `perf-a11y` agent before any deploy.
 
+Measured against `npx next start`, never the dev server. Lighthouse's mobile
+preset simulates throttling from observed CPU work, so **record
+`environment.benchmarkIndex` alongside any timing number**: this machine has
+swung between 4286 and 2118 in a day, which alone doubles simulated LCP and
+makes two runs look like a regression when nothing changed. For a figure worth
+trusting, run PageSpeed Insights against the deployed URL.
+
 | Metric | Limit |
 |---|---|
 | First-load JS, any route | < 250 KB gzipped |

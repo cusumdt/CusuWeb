@@ -331,7 +331,7 @@ async function main() {
   console.log(`converted ${converted}, skipped ${skipped}`);
   if (converted) {
     console.log(
-      `source ${fmt(srcBytes)} -> avif ${fmt(outBytes)} ` +
+      `images ${fmt(srcBytes)} -> ${fmt(outBytes)} webp ` +
         `(${(100 - (outBytes / srcBytes) * 100).toFixed(1)}% smaller)`,
     );
   }

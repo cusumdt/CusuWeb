@@ -79,9 +79,12 @@ export default function Home() {
           </Link>
         </div>
 
+        {/* No priority here. Selected work sits far below the fold, and marking
+            these eager emitted two image preloads that competed with the fonts
+            for the hero text, which is the LCP element. */}
         <div className="mt-12 grid gap-x-8 gap-y-16 md:grid-cols-2">
-          {homeProjects.map((project, i) => (
-            <ProjectCard key={project.slug} project={project} priority={i < 2} />
+          {homeProjects.map((project) => (
+            <ProjectCard key={project.slug} project={project} />
           ))}
         </div>
       </section>

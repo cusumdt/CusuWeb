@@ -155,27 +155,60 @@ Two defects caught by checking the rendered output rather than trusting the conf
 - [x] **8.5** 9 routes at 4 widths, 36 checks, **zero horizontal overflow**.
 - [x] **8.6** Token pairs verified by `scripts/check-contrast.mjs`. On top of that, every rendered text node on a project page was measured against its composited background, translucent layers included: **zero failures across 80 elements**. No text on this site sits over an image; the only candidate, the Play label, sits on a solid accent chip that clears 7.35:1.
 
-### Baseline, 2026-08-26
+### Baseline, re-measured 2026-08-27
 
-| Route | Lighthouse P / A / BP / SEO | LCP | CLS | First-load JS |
+Re-run after the media pipeline work, against `npx next start`. Scores that do
+not depend on timing are stable and trustworthy.
+
+| Route | Lighthouse P / A / BP / SEO | LCP | CLS | First-load JS | First view |
+|---|---|---|---|---|---|
+| `/` | 97 / **100 / 100 / 100** | 2.58s | 0 | 189.7 KB | 304 KB |
+| `/work` | 95 / **100 / 100 / 100** | 2.87s | 0 | 189.3 KB | 306 KB |
+| `/work/cusutools` | 95 / **100 / 100 / 100** | 2.87s | 0 | 203.3 KB | 272 KB |
+| `/about` | 96 / **100 / 100 / 100** | 2.72s | 0 | 189.3 KB | 238 KB |
+
+Budgets: first-load JS under 250 KB gzipped (heaviest **203.3 KB**, `/work/[slug]`),
+first-view page weight under 1.5 MB (heaviest **330 KB**, `/work/ohbb-raid`),
+`public/work` under 25 MB (**9.0 MB**).
+
+Static gates, all passing: `check-aspect` 58 opaque assets 0 distorted,
+`check-contrast` 8 pairs, `sync-dimensions` 0 drift, `bundle-report` 0 over budget.
+
+### The LCP figures are not comparable to the first baseline
+
+The 2026-08-26 run recorded `/` at LCP 1.35s and performance 100. Today the same
+page measures 2.58s. **That is the measurement, not the page.**
+
+Pinning the identical Lighthouse version and reading `environment.benchmarkIndex`,
+which is how much CPU the harness actually had:
+
+| Run | Lighthouse | benchmarkIndex | FCP | LCP |
 |---|---|---|---|---|
-| `/` | **100 / 100 / 100 / 100** | 1.3s | 0 | 189.7 KB |
-| `/work` | 95 / 100 / 100 / 100 | 3.0s | 0 | 189.3 KB |
-| `/work/cusutools` | 96 / 100 / 100 / 100 | 2.7s | 0 | 203.2 KB |
-| `/about` | 97 / 100 / 100 / 100 | 2.6s | 0 | 189.3 KB |
+| 2026-08-26 | 12.8.2 | **4286** | 821ms | 1346ms |
+| 2026-08-27 | 12.8.2 | **2118** | **758ms** | 2719ms |
+| 2026-08-27 | 13.4.1 | 3857 | 769ms | 2582ms |
 
-Budgets: first-load JS under 250 KB gzipped (heaviest 203.2 KB), first-view page weight under 1.5 MB (heaviest 446 KB), `public/work` under 25 MB (9.7 MB).
+The machine had half the CPU available, after a day of AVIF encoding and builds.
+Lighthouse's mobile preset uses *simulated* throttling: it measures real CPU work
+and multiplies it, so halving the available CPU roughly doubles simulated LCP.
 
-### Four defects found and fixed
+Meanwhile **FCP got faster**, 821ms to 758ms, on identical bytes (307 KB vs 308 KB),
+and TBT, Speed Index and TTI all improved. A page that painted sooner did not get
+slower.
 
-1. **`next/image` cannot resize an AVIF source.** It streamed the original back at every requested width, so a 384px card slot on a phone downloaded the 86 KB file built for a 1877px hero, and the whole `sizes` and `srcset` machinery was inert. The content modules now point at WebP masters and `next.config.ts` declares AVIF output, so Next downsamples and re-encodes per device: that same slot now gets **4.1 KB of AVIF, twenty times smaller**. The pipeline stopped emitting AVIF entirely, since it silently defeated responsive images.
-2. **`Reveal` was delaying the largest contentful paint on the home page.** It hid the hero, which is the LCP element, then faded it back in after hydrating and observing, adding 1.8s for an animation nobody asked for. Content already on screen at mount is no longer hidden. Home LCP went 2.3s to 1.3s and performance 98 to 100.
-3. **`heading-order` violation on `/work`**, h1 straight to h3, because the project cards had no section heading above them. Added a screen-reader-only h2. Accessibility 98 to 100.
-4. **`ProjectCard` declared a `sizes` it did not honour**, 40rem for a box that measures 576px at 1280.
+**Record `benchmarkIndex` with every future measurement.** Without it these numbers
+cannot be compared across days, and a phantom regression looks exactly like a real
+one. The trustworthy figure for a deployed site is PageSpeed Insights against the
+Vercel URL, which runs on Google's hardware rather than this laptop.
 
-### Open, not fixed
+### One real fix found while measuring
 
-`/work`, `/about` and the project pages report LCP between 2.6s and 3.0s under Lighthouse's throttled mobile simulation, above the 2.0s figure in `docs/ARCHITECTURE.md`. On all three the LCP element is a text block with a large render delay. The fonts are two preloaded woff2 files totalling 53 KB, CLS is 0, and images are no longer the bottleneck, so the cause is **not isolated**. Recorded rather than guessed at.
+`priority` on the Selected Work cards emitted two `<link rel="preload" as="image">`
+for covers that sit roughly 2000px down the page on a phone. Preloading
+below-the-fold images steals bandwidth from the fonts the hero text needs, and the
+hero text is the LCP element on every one of these routes. Removed from `/` and
+`/work`. The project page hero keeps its `priority`, correctly: it is above the
+fold. Worth about 0.2s here, and wrong regardless of what it measured.
 
 ### Needs a human
 
