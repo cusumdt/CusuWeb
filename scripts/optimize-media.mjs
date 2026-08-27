@@ -36,6 +36,8 @@ const projectFilter = args.includes("--project")
 
 /** Longest edge per role. First asset of a project is its cover/hero. */
 const MAX_EDGE = { hero: 2400, body: 1600 };
+/** Arbitrary common space that mixed source resolutions are compared in. */
+const REFERENCE_SPACE = 1000;
 /**
  * WebP is the master that ships. next/image downsamples and re-encodes from it
  * to AVIF per device, so quality is set high here: this file is the input to
@@ -73,6 +75,19 @@ async function alphaTrimBox(source) {
     .extractChannel("alpha")
     .raw()
     .toBuffer({ resolveWithObject: true });
+
+  // Having an alpha channel is not the same as using it. These renders are
+  // exported RGBA whether or not anything is cut out, and treating a fully
+  // opaque photograph as a cut-out is how the Mercedes shots ended up squashed
+  // into a square canvas.
+  let usesAlpha = false;
+  for (let i = 0; i < data.length; i += 13) {
+    if (data[i] < 250) {
+      usesAlpha = true;
+      break;
+    }
+  }
+  if (!usesAlpha) return null;
 
   let top = info.height;
   let left = info.width;
@@ -149,17 +164,21 @@ async function projectCanvases(entries) {
     boxes.set(entry.dest, trim);
     if (!trim || !meta.width || !meta.height) continue;
 
-    // Normalized against its own source, because one project can mix a 3840
-    // render with a 1920 one. Comparing raw pixel boxes across those makes the
-    // shared canvas meaningless and blows small sources up to fit it.
-    const norm = { w: trim.width / meta.width, h: trim.height / meta.height };
+    // One scale factor per source, not one per axis. A per-axis fraction only
+    // preserves aspect when the source is square; on a 1877x789 render it
+    // reports a full-frame subject as 1.0 by 1.0 and squashes it to a square.
+    // Scaling every source into a common space keeps each subject's real shape
+    // and its real size relative to the others.
+    const k = REFERENCE_SPACE / Math.max(meta.width, meta.height);
+    const norm = { w: trim.width * k, h: trim.height * k };
     norms.set(entry.dest, norm);
 
-    const cur = perProject.get(entry.project) ?? { w: 0, h: 0, minSourceEdge: Infinity };
+    const cur = perProject.get(entry.project) ?? { w: 0, h: 0, maxScale: Infinity };
     perProject.set(entry.project, {
       w: Math.max(cur.w, norm.w),
       h: Math.max(cur.h, norm.h),
-      minSourceEdge: Math.min(cur.minSourceEdge, Math.max(meta.width, meta.height)),
+      // Never enlarge: the subject cannot be scaled past the pixels it has.
+      maxScale: Math.min(cur.maxScale, trim.width / norm.w),
     });
   }
 
@@ -167,7 +186,7 @@ async function projectCanvases(entries) {
   // project is ever enlarged past the resolution it actually has.
   const canvases = new Map();
   for (const [project, c] of perProject) {
-    const scale = Math.min(MAX_EDGE.body / Math.max(c.w, c.h), c.minSourceEdge);
+    const scale = Math.min(MAX_EDGE.body / Math.max(c.w, c.h), c.maxScale);
     canvases.set(project, {
       scale,
       width: Math.round(c.w * scale),
@@ -256,7 +275,7 @@ async function main() {
         .resize({
           width: Math.max(1, Math.round(norm.w * canvas.scale)),
           height: Math.max(1, Math.round(norm.h * canvas.scale)),
-          fit: "fill",
+          fit: "inside",
         })
         .toBuffer();
 

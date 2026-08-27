@@ -22,7 +22,8 @@ npm run dev
 | `npm run lint` | ESLint |
 | `npx tsc --noEmit` | Typecheck |
 | `node scripts/optimize-media.mjs` | Convert archived source images to AVIF + WebP in `public/work/`, trimming transparent margins |
-| `node scripts/sync-dimensions.mjs` | Report width/height drift between `projects.ts` and the shipped files; `--write` to fix |
+| `node scripts/sync-dimensions.mjs` | Report width/height/transparency drift between `projects.ts` and the shipped files; `--write` to fix |
+| `node scripts/check-aspect.mjs` | Fail if any opaque asset ships at a different aspect ratio than its source |
 | `node scripts/check-contrast.mjs` | Verify the palette against the contrast floors in `docs/DESIGN.md` |
 
 ## Where things are
