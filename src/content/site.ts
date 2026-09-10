@@ -17,6 +17,20 @@ export const site = {
   ],
 } as const;
 
+/**
+ * The home hero image. Cusu's own pick: the Invader Zim street he already
+ * leads with on LinkedIn.
+ *
+ * Stored as a pointer, not a copy. The Media object is resolved from
+ * `projects.ts` at render, so `scripts/sync-dimensions.mjs` keeps its width and
+ * height honest and the hero cannot drift from the file that ships.
+ */
+export const heroImage = {
+  projectSlug: "ohbb-kart-invader-zim",
+  src: "/work/ohbb-kart-invader-zim/01-invader-zim-key-art.webp",
+  credit: "Invader Zim Kart, environment",
+} as const;
+
 /** Shot 2026-08-26. The only photograph of Cusu the site publishes. */
 export const portrait = {
   src: "/portrait/cusu.webp",
