@@ -234,13 +234,13 @@ The focus ring still has no visual confirmation. The compiled production CSS car
 
 - [x] ~~**B.1** Media for the flagship work~~, **resolved 2026-08-26.** Mercedes-Benz Actros VR and Chevrolet may be **named and described but never shown** (unreleased / under contract). Both are now listed with `visuals: withheld` instead of hidden. See the restrictions table in `docs/CONTENT.md`.
 - [x] ~~**B.1b** CusuTools captures~~, **resolved 2026-08-26.** 8 images sourced from the UVPackerPro repo plus the YouTube demo. Now `visuals: public`.
-- [ ] **B.1c** Design how a `withheld` project renders. It must read as deliberate and confidential, not as a broken image. This is a `design-system` decision before `frontend-builder` implements it.
+- [x] ~~**B.1c** How a `withheld` project renders~~, **done in Phase 5.** `WithheldCover` in `ProjectCard` and the hero block on the project page: a composed panel with an accent "Visuals withheld" label and the reason stated in the reader's own words, followed by the full written case study. It reads as confidential rather than as a failed image load.
 - [x] ~~**B.2** PreflightKit URL~~, **resolved 2026-08-26.** There is no URL because PreflightKit has not been released. It is marked `in-development` and `/tools` presents it as such, with no buy link.
 - [x] ~~**B.7** Résumé claims PreflightKit is released~~, **fixed 2026-08-26.** The PDF now reads "Currently developing PreflightKit". Verified by re-extracting the text.
 
 - [x] ~~**B.3** Domain~~, **decided 2026-08-26.** Staying on `cusu-dev.vercel.app`. A custom domain is a purchase Cusu is not making right now; the Vercel subdomain is the canonical URL and `site.url` points at it.
 
-- [x] ~~**B.4** A photo of you~~, **done 2026-08-26.** Shot fresh and now on `/about`, in the left column beside the narrative. 896x1200, 40 KB AVIF. It is the first photograph of Cusu the site has ever published: the 1024px avatar recovered from the old site was never wired in anywhere.
+- [x] ~~**B.4** A photo of you~~, **done 2026-08-26.** Shot fresh and now on `/about`, in the left column beside the narrative. 896x1200. The master is WebP and `next/image` re-encodes to AVIF per device. It is the first photograph of Cusu the site has ever published: the 1024px avatar recovered from the old site was never wired in anywhere.
 
 - [!] **B.5** **Résumé PDF.** Decide whether to offer a download on the site.
 - [!] **B.6** **Analytics** Vercel Analytics or nothing. Your call.
