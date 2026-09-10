@@ -284,7 +284,7 @@ completeness.
 - [x] **9.3** Deployed on Vercel, **https://cusu-dev.vercel.app**
 - [ ] **9.4** Verify the live site once real pages exist, not just a green build.
 - [x] **9.5** No custom domain. `cusu-dev.vercel.app` is canonical, see B.3.
-- [ ] **9.7** Set the repo's About → Website field on GitHub to `https://cusu-dev.vercel.app`. Needs Cusu's account, no `gh` CLI authenticated here.
+- [x] **9.7** Repo About → Website set to `https://cusu-dev.vercel.app`, verified 2026-09-10 against the public API.
 - [!] **9.6** Retire `cristiancusu.netlify.app`. The redirect bundle is built and
   verified in `_netlify-retire/`: 14 old case study URLs mapped individually to
   the case studies that replaced them, plus the taxonomy and pagination, plus a
@@ -314,10 +314,14 @@ assignments under a claim of nine years and shipped products. It subtracts.
   the media pipeline, the four gates that fail rather than warn, the typed
   content model, and the two traps worth knowing. It has to work as evidence in
   sixty seconds.
-- [!] **11.4** **Cusu makes `CusuWeb` public**, or removes the GitHub link from
-  the site. Not linking beats linking to 2020.
-- [ ] **11.5** Once public: set the repo description and topics, and pin it on
-  the profile so it is the first thing seen rather than `Parcial2IA`.
+- [x] **11.4** `CusuWeb` is public, verified 2026-09-10 unauthenticated:
+  `private: false`, `visibility: "public"`. Nothing gitignored leaked.
+  `docs/PRIVATE-NOTES.md`, `_legacy-scrape/` and `.env*` all return 404 on the
+  public contents API, and a secret scan across the 196 tracked files was clean.
+- [x] **11.5** Description and four topics set (`nextjs`, `typescript`,
+  `portfolio`, `image-optimization`), and `CusuWeb` is now the only pinned repo.
+  The site links `github.com/cusumdt`, not the repo, so the pin is what decides
+  what a visitor actually sees.
 
 ---
 
