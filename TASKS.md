@@ -294,6 +294,33 @@ completeness.
 
 ---
 
+## Phase 11, GitHub  · `deploy-ops`
+
+Cusu's public GitHub currently shows 24 repos whose newest commit is December
+2020, all university coursework. The site links it from the footer, `/contact`
+and the JSON-LD `sameAs`, so an engineer who clicks finds six-year-old exam
+assignments under a claim of nine years and shipped products. It subtracts.
+`CusuWeb` is the one modern repo and it is private.
+
+- [x] **11.1** Privacy audit before anything goes public. Three kinds of note
+  were in tracked files: commentary on Cusu's own CV being wrong, a narration of
+  a client's approval process, and the Steban Goca modeling credit. The first
+  two moved to `docs/PRIVATE-NOTES.md`, gitignored. The third stays: crediting a
+  collaborator by name is correct and is already on the live site.
+- [x] **11.2** `docs/CONTENT.md` keeps every guardrail with the sensitive
+  framing removed. The Mercedes rule now states the ceiling without narrating
+  how it was granted.
+- [x] **11.3** README rewritten for the audience that would actually read it:
+  the media pipeline, the four gates that fail rather than warn, the typed
+  content model, and the two traps worth knowing. It has to work as evidence in
+  sixty seconds.
+- [!] **11.4** **Cusu makes `CusuWeb` public**, or removes the GitHub link from
+  the site. Not linking beats linking to 2020.
+- [ ] **11.5** Once public: set the repo description and topics, and pin it on
+  the profile so it is the first thing seen rather than `Parcial2IA`.
+
+---
+
 ## Blocked on Cusu  `[!]`
 
 - [x] ~~**B.8** Save the two approved Mercedes renders~~, **done 2026-08-26.** Both converted, wired in, and live on `/work/mercedes-actros-vr`. Only these two are cleared.
@@ -302,7 +329,7 @@ completeness.
 - [x] ~~**B.1b** CusuTools captures~~, **resolved 2026-08-26.** 8 images sourced from the UVPackerPro repo plus the YouTube demo. Now `visuals: public`.
 - [x] ~~**B.1c** How a `withheld` project renders~~, **done in Phase 5.** `WithheldCover` in `ProjectCard` and the hero block on the project page: a composed panel with an accent "Visuals withheld" label and the reason stated in the reader's own words, followed by the full written case study. It reads as confidential rather than as a failed image load.
 - [x] ~~**B.2** PreflightKit URL~~, **resolved 2026-08-26.** There is no URL because PreflightKit has not been released. It is marked `in-development` and `/tools` presents it as such, with no buy link.
-- [x] ~~**B.7** Résumé claims PreflightKit is released~~, **fixed 2026-08-26.** The PDF now reads "Currently developing PreflightKit". Verified by re-extracting the text.
+- [x] ~~**B.7** Résumé wording~~, **resolved 2026-08-26.** Verified against the published PDF.
 
 - [x] ~~**B.3** Domain~~, **decided 2026-08-26.** Staying on `cusu-dev.vercel.app`. A custom domain is a purchase Cusu is not making right now; the Vercel subdomain is the canonical URL and `site.url` points at it.
 

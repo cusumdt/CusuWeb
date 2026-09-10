@@ -48,3 +48,6 @@ next-env.d.ts
 
 # staged master assets for the media pipeline, converted output ships instead
 /_source-assets/
+
+# working notes about the CV and a client's approvals, not for a public repo
+/docs/PRIVATE-NOTES.md

@@ -49,16 +49,14 @@ These are the only numbers with a source. Do not round them up or invent others.
 - 60fps target on mid-range mobile devices
 - UE 5.5 → 5.7 engine migration
 - **30 artists directed at peak** at DIGI Learnnials: 6 in-house plus 24 from a
-  partner studio supporting the project. It started at 6 and grew over the
-  project. Corrected by Cusu on 2026-09-10; the résumé states only the starting
-  6 and understates the role. Quote it with the structure, not as a bare 30:
-  the two-studio coordination is the part that is hard, and a flat number reads
-  as inflation.
+  partner studio supporting the project, having started at 6. Quote it with that
+  structure, never as a bare 30: the two-studio coordination is the part that is
+  hard, and a flat number reads as inflation.
 - Children aged 8–11 as the Disney platform's audience
 
 ## Publication restrictions. Read before adding any image.
 
-Confirmed by Cusu on 2026-08-26. These are contractual and pre-release limits, not preferences. **Violating one is a real problem for him, not a style error.**
+These are contractual and pre-release limits, not preferences. **Violating one is a real problem for him, not a style error.**
 
 | Project | May be named | May be shown |
 |---|---|---|
@@ -66,16 +64,20 @@ Confirmed by Cusu on 2026-08-26. These are contractual and pre-release limits, n
 | **Chevrolet configurator** | ✅ yes, role, stack and technical detail in full | ❌ **no imagery, by contract.** No expiry given. |
 | Everything else | ✅ | ✅ |
 
-### Mercedes-Benz Actros VR, approved imagery
+### Mercedes-Benz Actros VR, publishable imagery
 
-On 2026-08-26 Cusu received clearance for **two specific renders**, and only those two:
+Two renders may be shown, and only those two. Both are already published: the
+exterior with the trailer, and the cabin interior.
 
-1. An interior cabin view: steering wheel, instrument cluster and the tan upper dash.
-2. An exterior view: the blue Actros 2653 tractor with a silver trailer, in the dark showroom.
+**This is a ceiling, not a starting point.** The project is unreleased. Any other
+Mercedes-Benz render, screenshot or capture is unpublishable until Cusu says
+otherwise about that specific asset. Do not infer from the two that the
+restriction has lifted.
 
-**This is not blanket approval for the project.** Any other Mercedes-Benz render, screenshot or capture stays unpublishable until Cusu confirms clearance for that specific asset. The project remains in development. Do not infer from these two that the restriction has lifted.
-
-Both are modelled as `visuals: { status: "withheld", reason }` in `src/content/projects.ts`: listed and described in full, rendered without media, with the reason shown to the reader. A withheld project is **never** promoted to `public` without Cusu confirming the restriction has lifted.
+Both are modelled as `visuals: { status: "withheld", reason }` in
+`src/content/projects.ts`: listed and described in full, rendered without media,
+with the reason shown to the reader. A withheld project is **never** promoted to
+`public` without Cusu confirming it.
 
 ## Portfolio media
 
@@ -111,9 +113,7 @@ Facts taken from Cusu's own product site, so all of it is publishable:
 - Presets (3 built-in), export per-island data as JSON / CSV, and a color-coded SVG layout for Substance or Photoshop
 - Product site is localized in English, Spanish, Portuguese and Chinese
 
-**PreflightKit:** pre-flight asset validator that checks and exports game-ready assets, catching errors in naming, scale, transforms and materials. **Still in development, not released.** Confirmed by Cusu on 2026-08-26.
-
-> **Factual conflict to resolve.** The 2026 résumé states "Released PreflightKit, a pre-flight asset validator that checks and exports game-ready assets" under CusuTools. Cusu has since confirmed it is not released. The site follows Cusu, not the résumé. **The résumé itself should be corrected**, since it currently claims a shipped product that does not exist yet.
+**PreflightKit:** pre-flight asset validator that checks and exports game-ready assets, catching errors in naming, scale, transforms and materials. **Still in development, not released.** Never describe it as shipped.
 
 ## Copy rules
 
