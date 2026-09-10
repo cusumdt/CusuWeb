@@ -12,7 +12,7 @@ Everything the site claims must trace back to this file. Facts come from the 202
 - Live site: https://cusu-dev.vercel.app
 - Languages: Spanish (native), Portuguese (fluent), English (professional working)
 
-**Positioning:** 9+ years bridging code and art. Currently leads the technical architecture of Unreal Engine 5 VR/XR projects. Track record across mobile games, real-time web 3D, and educational software for Mercedes-Benz, Disney, Chevrolet and Oh Baby Games. Also ships and supports commercial Blender tooling independently.
+**Positioning:** 9+ years bridging code and art. Currently leads the technical architecture of Unreal Engine 5 VR/XR projects. Track record across mobile games, PC, real-time web 3D, and educational software for Mercedes-Benz, Disney, Chevrolet and Oh Baby Games. Also ships and supports commercial Blender tooling independently.
 
 ## Clients and IPs that may be named
 

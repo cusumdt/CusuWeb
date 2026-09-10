@@ -7,11 +7,11 @@ media = json.load(open(ROOT / "scripts" / "_media_by_project.json", encoding="ut
 
 META = {
     "mercedes-actros-vr": dict(
-        title="Mercedes-Benz Actros — PC VR Showroom",
+        title="Mercedes-Benz Actros: PC VR Showroom",
         tagline="High-fidelity VR truck configurator built in Unreal Engine 5.",
         client="Mercedes-Benz", studio="Agência DADS", year="2026",
         platform="PC VR (Unreal Engine 5)",
-        role="Senior Game Engineer — technical architecture, rendering, asset pipeline",
+        role="Senior Game Engineer: technical architecture, rendering, asset pipeline",
         disciplines=["engine", "technical-art"],
         stack=["Unreal Engine 5", "C++", "Blueprints", "VR", "Lumen", "Nanite", "Blender"],
         summary="A high-fidelity PC VR showroom that lets a viewer stand inside an Actros and reconfigure it in real time. A server-driven configurator UI switches cabin, chassis, lighting and trailer variants without leaving the scene.",
@@ -25,7 +25,7 @@ META = {
         outcome="In production.", featured=True, draft=True,
     ),
     "cusutools": dict(
-        title="CusuTools — Blender Addons",
+        title="CusuTools: Blender Addons",
         tagline="Commercial pipeline tooling for 3D artists: TexelPack and PreflightKit.",
         client="Independent product", studio="CusuTools", year="2026",
         platform="Blender (Python / bpy)",
@@ -41,7 +41,7 @@ META = {
         outcome="Both addons released and in active use.", featured=True, draft=True,
     ),
     "chevrolet-configurator": dict(
-        title="Chevrolet — Web 3D Vehicle Configurator",
+        title="Chevrolet: Web 3D Vehicle Configurator",
         tagline="Real-time car customization in the browser with Three.js and WebGL.",
         client="Chevrolet", studio="Freelance", year="2023-2024",
         platform="Web (Three.js / WebGL)",
@@ -58,7 +58,7 @@ META = {
         outcome="Delivered.", featured=True, draft=True,
     ),
     "historias-para-armar": dict(
-        title="Historias Para Armar — Disney",
+        title="Historias Para Armar: Disney",
         tagline="Art direction and Unity WebGL for a Disney educational platform.",
         client="Disney", studio="DIGI Learnnials", year="2020-2021",
         platform="Web (Unity WebGL)",
@@ -76,7 +76,7 @@ META = {
         outcome="Shipped.", featured=True, draft=False,
     ),
     "ohbb-kart-spongebob": dict(
-        title="SpongeBob Kart — Bikini Bottom",
+        title="SpongeBob Kart: Bikini Bottom",
         tagline="Environment and character art for a licensed mobile kart racer.",
         client="SpongeBob SquarePants (Nickelodeon)", studio="Oh Baby Games", year="2022-2025",
         platform="Mobile (Unity)",
@@ -93,7 +93,7 @@ META = {
         outcome="Shipped.", featured=True, draft=False,
     ),
     "ohbb-kart-invader-zim": dict(
-        title="Invader Zim Kart — Environment",
+        title="Invader Zim Kart: Environment",
         tagline="Full environment set for the Invader Zim track.",
         client="Invader Zim (Nickelodeon)", studio="Oh Baby Games", year="2022-2025",
         platform="Mobile (Unity)",
@@ -110,7 +110,7 @@ META = {
         outcome="Shipped.", featured=True, draft=False,
     ),
     "ohbb-kart-tower-of-god": dict(
-        title="Tower of God Kart — Characters",
+        title="Tower of God Kart: Characters",
         tagline="Rak, Baam and Ha-Yuri modeled, unwrapped and textured.",
         client="Tower of God", studio="Oh Baby Games", year="2022-2025",
         platform="Mobile (Unity)",
@@ -127,7 +127,7 @@ META = {
         outcome="Shipped.", featured=False, draft=False,
     ),
     "ohbb-kart-characters": dict(
-        title="OHBB Kart — Original Characters",
+        title="OHBB Kart: Original Characters",
         tagline="Original character work outside the licensed roster.",
         client="Oh Baby Games", studio="Oh Baby Games", year="2022-2025",
         platform="Mobile (Unity)",
@@ -140,7 +140,7 @@ META = {
         outcome="Shipped.", featured=False, draft=False,
     ),
     "ohbb-raid": dict(
-        title="OHBB Raid — Environment, Monster & Materials",
+        title="OHBB Raid: Environment, Monster & Materials",
         tagline="Environment art, a hand-painted ice monster, and Substance Designer materials.",
         client="Oh Baby Games", studio="Oh Baby Games", year="2022-2025",
         platform="Mobile (Unity)",
@@ -157,7 +157,7 @@ META = {
         outcome="Shipped.", featured=True, draft=False,
     ),
     "tower-defense-props": dict(
-        title="Tower Defense — Prop Library",
+        title="Tower Defense: Prop Library",
         tagline="A full prop library built for a tower defense prototype.",
         client="Oh Baby Games", studio="Oh Baby Games", year="2022-2025",
         platform="Mobile (Unity)",
@@ -170,7 +170,7 @@ META = {
         outcome="Prototype delivered.", featured=False, draft=False,
     ),
     "weapons-props": dict(
-        title="Weapon Set — Game-Ready Props",
+        title="Weapon Set: Game-Ready Props",
         tagline="Four game-ready weapons: pistol, shotgun, rifle, rocket launcher.",
         client="Oh Baby Games", studio="Oh Baby Games", year="2022-2025",
         platform="Mobile (Unity)",
@@ -183,7 +183,7 @@ META = {
         outcome="Prototype delivered.", featured=False, draft=False,
     ),
     "peakmines": dict(
-        title="Peakmines — Art & Technical Direction",
+        title="Peakmines: Art & Technical Direction",
         tagline="Art direction, 2D and 3D production for an indie title.",
         client="Peakmines", studio="Inflextion Studios", year="2021-2022",
         platform="PC (Unity)",

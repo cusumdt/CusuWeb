@@ -207,7 +207,7 @@ async function main() {
   let outBytes = 0;
   let converted = 0;
   let skipped = 0;
-  // Merged, never replaced — a --project run must not drop other projects' placeholders.
+  // Merged, never replaced. A --project run must not drop other projects' placeholders.
   const blur = await readBlurMap();
   const videos = [];
 
