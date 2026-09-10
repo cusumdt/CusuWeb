@@ -18,17 +18,22 @@ export const site = {
 } as const;
 
 /**
- * The home hero image. Cusu's own pick: the Invader Zim street he already
- * leads with on LinkedIn.
+ * The home hero image. Cusu's pick: the Invader Zim street he already leads
+ * with on LinkedIn.
  *
- * Stored as a pointer, not a copy. The Media object is resolved from
- * `projects.ts` at render, so `scripts/sync-dimensions.mjs` keeps its width and
- * height honest and the hero cannot drift from the file that ships.
+ * Cropped from the original capture, which was taken in Unity's Scene view and
+ * carried the axis gizmo and a "Persp" label in the top right. Shipping an
+ * editor screenshot as the first thing a studio sees would undercut the work,
+ * so the top 16% is gone. See TASKS 10.6: a clean Game view render would be
+ * better still.
  */
 export const heroImage = {
   projectSlug: "ohbb-kart-invader-zim",
-  src: "/work/ohbb-kart-invader-zim/01-invader-zim-key-art.webp",
   credit: "Invader Zim Kart, environment",
+  src: "/hero/invader-zim-street.webp",
+  alt: "Night street on the Invader Zim track: pink, teal and purple houses with lit windows, a street lamp, and a swirling violet sky overhead.",
+  width: 1913,
+  height: 741,
 } as const;
 
 /** Shot 2026-08-26. The only photograph of Cusu the site publishes. */

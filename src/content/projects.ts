@@ -1149,17 +1149,3 @@ export const illustratedProjects = publishedProjects.filter(
 export function getProject(slug: string) {
   return projects.find((p) => p.slug === slug);
 }
-
-/**
- * Finds one media object by its public path, across every project's cover and
- * gallery. Lets a page reference an image without copying its dimensions, which
- * would drift the moment the pipeline re-encodes it.
- */
-export function getMedia(src: string) {
-  for (const project of projects) {
-    if (project.cover?.src === src) return project.cover;
-    const hit = project.media.find((m) => m.src === src);
-    if (hit) return hit;
-  }
-  return undefined;
-}

@@ -237,7 +237,33 @@ pure text. It was laid out like a resume rather than a portfolio.
   reached 2.87, because the 127px `h1` pushed it into the thin part of the
   gradient. Moving the role below the name put it in the opaque zone at
   **7.26:1**. Zero failures, and the name leading is the better hierarchy.
-- [ ] **10.5** Cusu to look at it and say whether it now reads as a portfolio.
+- [x] **10.5** Reviewed by Cusu. Three findings, two fixed below, one open.
+- [x] **10.6** The hero art was barely visible. The bottom-up scrim dark enough
+  to carry the type had buried it. Now it runs left to right: the copy sits on
+  near-solid ink, the right half of the frame stays readable as a night street,
+  and a light veil along the bottom edge catches the buttons and the credit.
+  Contrast re-measured against the glyph runs rather than the element boxes,
+  which is what caused two phantom failures on the first pass. Zero failures at
+  375 and at 1440.
+- [!] **10.7** **The hero was an editor screenshot.** The original capture was
+  taken in Unity's Scene view and carried the axis gizmo and a "Persp" label in
+  the top right. Shipping that as the first thing a studio sees would undercut
+  the work. Cropped the top 16% out as an interim fix, in
+  `_source-assets/hero/`. **A clean Game view render would be better**, and is a
+  minute of Cusu's time in a project he still has.
+- [x] **10.8** Dropped the 15M triangle figure at Cusu's request. Replaced with
+  **6 artists directed on a Disney education platform**: the band already had
+  two geometry-throughput numbers saying the same thing, and leadership is what
+  separates a senior from a mid. "Satisfied clients" was asked for and not used,
+  because no such number exists in `docs/CONTENT.md` and this repo does not
+  invent figures.
+- [x] **10.9** Split clients from licensed IPs. SpongeBob, Invader Zim and Tower
+  of God were listed under "Shipped for" beside Mercedes-Benz, which claims a
+  relationship with Nickelodeon that does not exist. Companies commissioned the
+  work; properties are what he built games on.
+- [ ] **10.10** Client logos, scrolling. Raised by Cusu. See the notes in the
+  reply: it collides with the marquee ban in `docs/DESIGN.md`, with the
+  clients-versus-IPs distinction above, and with trademark use. Undecided.
 
 Home first view got **lighter**, 304 KB to 268 KB, because one hero image
 replaced the two card covers that used to load eagerly. Bundle unchanged at

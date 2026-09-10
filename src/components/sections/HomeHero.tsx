@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import { site, heroImage } from "@/content/site";
-import { getMedia } from "@/content/projects";
 import { MonoLabel } from "@/components/ui/MonoLabel";
 import { Button } from "@/components/ui/Button";
 
@@ -16,41 +15,39 @@ import { Button } from "@/components/ui/Button";
  * a job, not wallpaper, and a reader who likes it can go straight to the case
  * study.
  *
- * Text sits on a scrim, not on the render. `docs/DESIGN.md` requires contrast
- * to be measured rather than eyeballed, and the underlying art is bright pink
- * and violet in places.
+ * The scrim runs left to right, not bottom to top. A bottom-up gradient dark
+ * enough to carry the type buried the art, which was the first thing Cusu said
+ * about it. Sideways, the copy sits on near-solid ink and the right half of the
+ * frame stays legible as a night street. Contrast is measured against the
+ * brightest pixel under each text node, not estimated.
  */
 export function HomeHero() {
-  const media = getMedia(heroImage.src);
-
   return (
     <section className="relative isolate flex min-h-[86vh] items-end overflow-hidden">
-      {media ? (
-        <Image
-          src={media.src}
-          alt={media.alt}
-          fill
-          priority
-          sizes="100vw"
-          className="-z-20 object-cover"
-        />
-      ) : null}
+      <Image
+        src={heroImage.src}
+        alt={heroImage.alt}
+        fill
+        priority
+        sizes="100vw"
+        className="-z-20 object-cover"
+      />
 
-      {/* Scrim. Measured, not guessed: at the first pass the accent eyebrow
-          came out at 2.69:1 against a bright yellow patch of the art. The
-          gradient now reaches near-opacity by the time it meets the type, and
-          the art keeps the top third of the frame. */}
       <div
         aria-hidden
-        className="absolute inset-0 -z-10 bg-gradient-to-t from-ink from-45% via-ink/92 via-70% to-ink/30"
+        className="absolute inset-0 -z-10 bg-gradient-to-r from-ink from-25% via-ink/80 via-60% to-ink/25"
+      />
+      {/* A light veil along the bottom edge so the credit line and the buttons
+          keep their footing wherever the art happens to be bright. */}
+      <div
+        aria-hidden
+        className="absolute inset-x-0 bottom-0 -z-10 h-1/3 bg-gradient-to-t from-ink to-transparent"
       />
 
       <div className="mx-auto w-full max-w-page px-gutter pt-24 pb-20">
         {/* The role sits under the name rather than above it. The h1 runs to
-            127px, which pushed an eyebrow into the top of the frame where the
-            scrim is thin: measured at 2.87:1 against the bright art, under the
-            4.5 floor. Below the name it lands in the opaque zone, and the name
-            leads, which is the better hierarchy anyway. */}
+            127px, which pushed an eyebrow into the thin part of the scrim:
+            measured at 2.87:1 against the bright art, under the 4.5 floor. */}
         {/* The space before the break keeps the accessible name "Cristian Cusumano". */}
         <h1 className="text-hero">
           Cristian <br />

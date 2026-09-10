@@ -1,5 +1,15 @@
 [
  {
+  "project": "hero",
+  "source": "_source-assets/hero/invader-zim-street.png",
+  "dest": "/hero/invader-zim-street.webp",
+  "kind": "image",
+  "maxEdge": 2400,
+  "sourceWidth": 1913,
+  "sourceHeight": 741,
+  "sourceBytes": 1576793
+ },
+ {
   "project": "portrait",
   "source": "_source-assets/portrait/Portrait.jpeg",
   "dest": "/portrait/cusu.webp",
