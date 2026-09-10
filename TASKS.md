@@ -216,6 +216,41 @@ The focus ring still has no visual confirmation. The compiled production CSS car
 
 ---
 
+## Phase 10, The home page reads as a wall of text  · `design-system`
+
+Raised by Cusu 2026-09-10: the site looks right but nothing highlights his
+profile. Measured and confirmed. The home page was 4718px tall with the first
+image at **1715px**, nearly two screens down, and four of its five sections were
+pure text. It was laid out like a resume rather than a portfolio.
+
+- [x] **10.1** Full-bleed hero on his own environment art, the Invader Zim
+  street he already leads with on LinkedIn, his pick. Credited and linked to the
+  case study, so it is a portfolio piece rather than wallpaper. First image now
+  at **65px**.
+- [x] **10.2** Proof band under the hero: the clients he may name and four
+  sourced figures, large in mono and in the accent. The profile is legible
+  without reading a paragraph. Every number traces to `docs/CONTENT.md`.
+- [x] **10.3** Selected work moved ahead of the written sections.
+- [x] **10.4** Contrast over the art measured properly: sampled the brightest
+  pixel under every text node, composited the scrim at that height, computed the
+  real ratio. The accent eyebrow failed at **2.69:1**. A stronger scrim only
+  reached 2.87, because the 127px `h1` pushed it into the thin part of the
+  gradient. Moving the role below the name put it in the opaque zone at
+  **7.26:1**. Zero failures, and the name leading is the better hierarchy.
+- [ ] **10.5** Cusu to look at it and say whether it now reads as a portfolio.
+
+Home first view got **lighter**, 304 KB to 268 KB, because one hero image
+replaced the two card covers that used to load eagerly. Bundle unchanged at
+189.3 KB. Verified at 375, 768, 1280 and 1920 with no horizontal overflow.
+
+Lighthouse after the change: **a11y 100, best practices 100, SEO 100, CLS 0**,
+no failing audits, FCP 762ms against 769ms before. Performance 96 at
+`benchmarkIndex` **1889**, which is less than half the 4286 of the original
+baseline, so that figure is not comparable to anything and is recorded only for
+completeness.
+
+---
+
 ## Phase 9, Ship  · `deploy-ops`
 
 - [x] **9.1** `.gitignore` excludes `_legacy-scrape/`, `node_modules/`, `.next/`, `.env*`: verified against `git status`.
