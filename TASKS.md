@@ -285,7 +285,12 @@ completeness.
 - [ ] **9.4** Verify the live site once real pages exist, not just a green build.
 - [x] **9.5** No custom domain. `cusu-dev.vercel.app` is canonical, see B.3.
 - [ ] **9.7** Set the repo's About → Website field on GitHub to `https://cusu-dev.vercel.app`. Needs Cusu's account, no `gh` CLI authenticated here.
-- [ ] **9.6** Redirect or retire `cristiancusu.netlify.app` so there is one canonical portfolio.
+- [!] **9.6** Retire `cristiancusu.netlify.app`. The redirect bundle is built and
+  verified in `_netlify-retire/`: 14 old case study URLs mapped individually to
+  the case studies that replaced them, plus the taxonomy and pagination, plus a
+  catch-all. **Cusu deploys it**, by dragging that folder onto the site's Deploys
+  page in Netlify. The original repository is gone, so it has to be a manual
+  deploy. Instructions and the verification command are in its README.
 
 ---
 

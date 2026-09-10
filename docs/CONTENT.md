@@ -48,7 +48,12 @@ These are the only numbers with a source. Do not round them up or invent others.
 - 14–15M triangle raw CAD meshes, decimated and retopologized
 - 60fps target on mid-range mobile devices
 - UE 5.5 → 5.7 engine migration
-- Team of 6 artists directed at DIGI Learnnials
+- **30 artists directed at peak** at DIGI Learnnials: 6 in-house plus 24 from a
+  partner studio supporting the project. It started at 6 and grew over the
+  project. Corrected by Cusu on 2026-09-10; the résumé states only the starting
+  6 and understates the role. Quote it with the structure, not as a bare 30:
+  the two-studio coordination is the part that is hard, and a flat number reads
+  as inflation.
 - Children aged 8–11 as the Disney platform's audience
 
 ## Publication restrictions. Read before adding any image.

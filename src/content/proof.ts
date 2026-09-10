@@ -23,8 +23,8 @@ export const metrics: { value: string; label: string }[] = [
     label: "years bridging engine code and 3D art",
   },
   {
-    value: "6",
-    label: "artists directed on a Disney education platform",
+    value: "30",
+    label: "artists directed at peak on a Disney platform, his own team of 6 plus 24 from a partner studio",
   },
   {
     value: "60fps",

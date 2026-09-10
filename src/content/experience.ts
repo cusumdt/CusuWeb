@@ -109,7 +109,7 @@ export const experience: Role[] = [
     summary:
       "Led art direction and Unity WebGL development for an educational platform built for Disney.",
     highlights: [
-      "Directed a team of 6 artists creating character designs and visual assets for children ages 8-11.",
+      "Grew from directing a team of 6 artists to 30 by the end of the project, 6 in-house plus 24 from a partner studio brought in to support, on character design and visual assets for children ages 8-11.",
       "Developed an interactive scene and character editor in C# that let students build narrative arcs.",
       "Implemented a teacher dashboard and activity creation tools for classroom integration.",
       "Worked with educational experts so the platform met pedagogical standards.",

@@ -1,0 +1,53 @@
+# Retires the old portfolio. Every rule is a permanent redirect, so search
+# engines transfer the old URLs to the new site rather than indexing both.
+#
+# Generated from the crawl of the old site, which is the only record of it
+# that survives. See _legacy-scrape/content-inventory.json.
+
+# Case studies, mapped to what replaced them.
+/posts/f8a29532    https://cusu-dev.vercel.app/work/ohbb-kart-spongebob    301!
+/posts/f8a29532/   https://cusu-dev.vercel.app/work/ohbb-kart-spongebob    301!
+/posts/c8b8dbb7    https://cusu-dev.vercel.app/work/ohbb-kart-spongebob    301!
+/posts/c8b8dbb7/   https://cusu-dev.vercel.app/work/ohbb-kart-spongebob    301!
+/posts/aefdbb1a    https://cusu-dev.vercel.app/work/ohbb-kart-tower-of-god    301!
+/posts/aefdbb1a/   https://cusu-dev.vercel.app/work/ohbb-kart-tower-of-god    301!
+/posts/d147e761    https://cusu-dev.vercel.app/work/ohbb-kart-invader-zim    301!
+/posts/d147e761/   https://cusu-dev.vercel.app/work/ohbb-kart-invader-zim    301!
+/posts/289ba8d6    https://cusu-dev.vercel.app/work/ohbb-kart-characters    301!
+/posts/289ba8d6/   https://cusu-dev.vercel.app/work/ohbb-kart-characters    301!
+/posts/08a3de9f    https://cusu-dev.vercel.app/work/ohbb-raid    301!
+/posts/08a3de9f/   https://cusu-dev.vercel.app/work/ohbb-raid    301!
+/posts/15c78ccd    https://cusu-dev.vercel.app/work/peakmines    301!
+/posts/15c78ccd/   https://cusu-dev.vercel.app/work/peakmines    301!
+/posts/45914e1f    https://cusu-dev.vercel.app/work/peakmines    301!
+/posts/45914e1f/   https://cusu-dev.vercel.app/work/peakmines    301!
+/posts/bf114717    https://cusu-dev.vercel.app/work/historias-para-armar    301!
+/posts/bf114717/   https://cusu-dev.vercel.app/work/historias-para-armar    301!
+/posts/74444805    https://cusu-dev.vercel.app/work/ohbb-kart-characters    301!
+/posts/74444805/   https://cusu-dev.vercel.app/work/ohbb-kart-characters    301!
+/posts/9ea49004    https://cusu-dev.vercel.app/work/ohbb-raid    301!
+/posts/9ea49004/   https://cusu-dev.vercel.app/work/ohbb-raid    301!
+/posts/8d268ff4    https://cusu-dev.vercel.app/work/ohbb-raid    301!
+/posts/8d268ff4/   https://cusu-dev.vercel.app/work/ohbb-raid    301!
+/posts/35755a84    https://cusu-dev.vercel.app/work/tower-defense-props    301!
+/posts/35755a84/   https://cusu-dev.vercel.app/work/tower-defense-props    301!
+/posts/1c4e18e6    https://cusu-dev.vercel.app/work/weapons-props    301!
+/posts/1c4e18e6/   https://cusu-dev.vercel.app/work/weapons-props    301!
+
+# Pages that still exist under a different name.
+/about        https://cusu-dev.vercel.app/about       301!
+/about/       https://cusu-dev.vercel.app/about       301!
+/archive      https://cusu-dev.vercel.app/work        301!
+/archive/     https://cusu-dev.vercel.app/work        301!
+
+# Listing pages, pagination and the tag/category taxonomy have no
+# equivalent: the new site is not a blog. They go to the work index.
+/categories/*  https://cusu-dev.vercel.app/work    301!
+/tags/*        https://cusu-dev.vercel.app/work    301!
+/2             https://cusu-dev.vercel.app/work    301!
+/3             https://cusu-dev.vercel.app/work    301!
+
+# Everything else goes to the new home, not to the same path. The old site
+# served its images from /image/... and its listings from a blog taxonomy;
+# preserving the path would just move a 404 from one domain to the other.
+/*    https://cusu-dev.vercel.app/    301!
