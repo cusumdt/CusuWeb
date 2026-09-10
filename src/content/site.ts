@@ -9,7 +9,6 @@ export const site = {
   url: "https://cusu-dev.vercel.app",
   description:
     "Senior Game Engineer and Technical Artist, 9+ years bridging code and art. Unreal Engine 5 VR, real-time web 3D and shipped Blender tooling for Mercedes-Benz.",
-  availability: "Open to senior engine and technical art roles",
   languages: [
     { name: "Spanish", level: "Native" },
     { name: "Portuguese", level: "Fluent" },
@@ -34,6 +33,41 @@ export const heroImage = {
   alt: "Night street on the Invader Zim track: pink, teal and purple houses with lit windows, a street lamp, and a swirling violet sky overhead.",
   width: 1913,
   height: 741,
+} as const;
+
+/**
+ * The CV, served as a file rather than only as a page.
+ *
+ * A recruiter forwards a PDF internally; they do not send their lead a link and
+ * hope he scrolls. The URL is deliberately stable and unversioned so a copy
+ * someone saved months ago still resolves, and the date below is what the UI
+ * shows instead.
+ */
+export const resume = {
+  href: "/Cristian-Cusumano-CV.pdf",
+  updated: "August 2026",
+  pages: 2,
+  sizeKb: 46,
+} as const;
+
+/**
+ * How Cusu works, stated plainly. Confirmed by him on 2026-09-10.
+ *
+ * For a studio abroad this is the gating question, and leaving it unsaid gets a
+ * candidate filtered out before anyone writes. The remote claim is not an
+ * aspiration: the roles in `experience.ts` were run with teams in Australia,
+ * Spain and Argentina from Brazil.
+ */
+export const availability = {
+  headline: "Open to senior engine and technical art roles",
+  modes: [
+    "Remote, working from Brazil",
+    "Open to relocating for the right role",
+    "Hybrid or on-site around Santos and São Paulo",
+  ],
+  engagements: ["Full-time employment", "Targeted technical consulting"],
+  timezone: "UTC-3, overlapping a European morning and an Australian evening",
+  note: "Nine years of this has been remote, across teams in Australia, Spain and Argentina.",
 } as const;
 
 /** Shot 2026-08-26. The only photograph of Cusu the site publishes. */

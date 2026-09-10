@@ -1,4 +1,4 @@
-import { site, links } from "@/content/site";
+import { site, links, availability } from "@/content/site";
 import { MonoLabel } from "@/components/ui/MonoLabel";
 
 const ELSEWHERE = [
@@ -15,7 +15,7 @@ export function Footer() {
       <div className="mx-auto grid w-full max-w-page gap-12 px-gutter py-16 md:grid-cols-3">
         <div>
           <MonoLabel tone="accent">Available</MonoLabel>
-          <p className="mt-4 max-w-measure text-small text-muted">{site.availability}</p>
+          <p className="mt-4 max-w-measure text-small text-muted">{availability.headline}</p>
         </div>
 
         <div>

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { site } from "@/content/site";
+import { site, availability, resume } from "@/content/site";
 import { experience } from "@/content/experience";
 import { strengths } from "@/content/skills";
 import { publishedProjects, homeProjects } from "@/content/projects";
@@ -101,10 +101,21 @@ export default function Home() {
           <MonoLabel as="h2" tone="accent">
             Next
           </MonoLabel>
-          <p className="mt-8 max-w-measure text-title">{site.availability}</p>
-          <div className="mt-12 flex flex-wrap gap-4">
+          <p className="mt-8 max-w-measure text-title">{availability.headline}</p>
+          <ul className="mt-8 flex flex-wrap gap-x-8 gap-y-2">
+            {availability.modes.map((mode) => (
+              <li key={mode} className="font-mono text-meta text-muted">
+                {mode}
+              </li>
+            ))}
+          </ul>
+
+          <div className="mt-12 flex flex-wrap items-center gap-4">
             <Button href={`mailto:${site.email}`}>{site.email}</Button>
-            <Button href="/contact" variant="secondary">
+            <Button href={resume.href} variant="secondary">
+              Download the CV
+            </Button>
+            <Button href="/contact" variant="ghost">
               Other ways to reach me
             </Button>
           </div>

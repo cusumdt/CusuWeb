@@ -303,7 +303,16 @@ completeness.
 
 - [x] ~~**B.4** A photo of you~~, **done 2026-08-26.** Shot fresh and now on `/about`, in the left column beside the narrative. 896x1200. The master is WebP and `next/image` re-encodes to AVIF per device. It is the first photograph of Cusu the site has ever published: the 1024px avatar recovered from the old site was never wired in anywhere.
 
-- [!] **B.5** **Résumé PDF.** Decide whether to offer a download on the site.
+- [x] ~~**B.5** Résumé PDF~~, **done 2026-09-10.** Served at
+  `/Cristian-Cusumano-CV.pdf`, with a button on `/`, `/about` and `/contact`, and
+  the page count, size and date beside it so nobody clicks blind. The URL is
+  unversioned on purpose: a copy someone saved months ago still resolves.
+- [x] **B.9** **Availability, stated.** Confirmed by Cusu 2026-09-10: remote
+  from Brazil, open to relocating, hybrid around Santos and São Paulo; full-time
+  employment or targeted technical consulting. For a studio abroad this is the
+  gating question, and leaving it unsaid filters a candidate out before anyone
+  writes. Lives in `site.ts` and drives `/contact`, the home closing section and
+  the footer from one source.
 - [!] **B.6** **Analytics** Vercel Analytics or nothing. Your call.
 
 ---

@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
-import { site, links } from "@/content/site";
+import { site, links, availability, resume } from "@/content/site";
 import { PageHeader } from "@/components/sections/PageHeader";
 import { MonoLabel } from "@/components/ui/MonoLabel";
+import { Button } from "@/components/ui/Button";
 
 export const metadata: Metadata = {
   title: "Contact",
@@ -30,7 +31,7 @@ export default function ContactPage() {
       <PageHeader
         eyebrow="Get in touch"
         title="Contact"
-        lead={site.availability}
+        lead={availability.headline}
       />
 
       <section className="border-t border-line py-section">
@@ -53,7 +54,37 @@ export default function ContactPage() {
           ))}
         </ul>
 
+        {/* Availability is the gating question for a studio abroad. Leaving it
+            unsaid gets a candidate filtered out before anyone writes. */}
         <div className="mt-16 grid gap-12 md:grid-cols-2">
+          <div>
+            <MonoLabel as="h2" tone="accent">
+              How I work
+            </MonoLabel>
+            <ul className="mt-4 space-y-2">
+              {availability.modes.map((mode) => (
+                <li key={mode} className="border-l border-accent-dim pl-4 text-body text-text">
+                  {mode}
+                </li>
+              ))}
+            </ul>
+            <p className="mt-5 max-w-measure text-small text-muted">{availability.note}</p>
+          </div>
+
+          <div>
+            <MonoLabel as="h2" tone="accent">
+              Open to
+            </MonoLabel>
+            <ul className="mt-4 space-y-2">
+              {availability.engagements.map((item) => (
+                <li key={item} className="border-l border-line pl-4 text-body text-text">
+                  {item}
+                </li>
+              ))}
+            </ul>
+            <p className="mt-5 font-mono text-meta text-muted">{availability.timezone}</p>
+          </div>
+
           <div>
             <MonoLabel as="h2" tone="accent">
               Based in
@@ -75,6 +106,21 @@ export default function ContactPage() {
                 </li>
               ))}
             </ul>
+          </div>
+        </div>
+
+        <div className="mt-16 border-t border-line pt-10">
+          <MonoLabel as="h2" tone="accent">
+            CV
+          </MonoLabel>
+          <p className="mt-4 max-w-measure text-body text-muted">
+            The full record, as a file you can forward.
+          </p>
+          <div className="mt-6 flex flex-wrap items-center gap-5">
+            <Button href={resume.href}>Download the CV</Button>
+            <span className="font-mono text-meta text-muted">
+              PDF, {resume.pages} pages, {resume.sizeKb} KB, updated {resume.updated}
+            </span>
           </div>
         </div>
       </section>

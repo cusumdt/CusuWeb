@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
-import { site, portrait } from "@/content/site";
+import { site, portrait, resume } from "@/content/site";
 import { experience, education } from "@/content/experience";
 import { skills, strengths } from "@/content/skills";
 import { aboutLead, aboutNarrative } from "@/content/about";
 import { PageHeader } from "@/components/sections/PageHeader";
 import { MonoLabel } from "@/components/ui/MonoLabel";
 import { Figure } from "@/components/ui/Figure";
+import { Button } from "@/components/ui/Button";
 import { Tag } from "@/components/ui/Tag";
 import { formatRange } from "@/lib/utils";
 
@@ -42,6 +43,16 @@ export default function AboutPage() {
             <MonoLabel as="h2" tone="accent" className="mt-6">
               In my words
             </MonoLabel>
+
+            {/* A recruiter forwards a file, not a link. */}
+            <div className="mt-8">
+              <Button href={resume.href} variant="secondary">
+                Download the CV
+              </Button>
+              <p className="mt-3 font-mono text-meta text-muted">
+                PDF, {resume.pages} pages, {resume.sizeKb} KB
+              </p>
+            </div>
           </div>
           <div className="space-y-14">
             {aboutNarrative.map((block) => (

@@ -30,7 +30,12 @@ export function Button({ children, variant = "primary", className, ...props }: P
 
   if (typeof props.href === "string") {
     const { href, ...rest } = props;
-    const external = /^(https?:|mailto:|tel:)/.test(href);
+    const protocol = /^(https?:|mailto:|tel:)/.test(href);
+    // A path with a file extension is an asset, not a route. next/link would
+    // try to route to it client-side and only fall back to a real navigation
+    // after failing to match, so the CV gets a plain anchor.
+    const asset = /\.[a-z0-9]{2,4}$/i.test(href.split(/[?#]/)[0]);
+    const external = protocol || asset;
 
     if (external) {
       return (
