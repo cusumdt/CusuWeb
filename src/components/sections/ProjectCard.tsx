@@ -5,6 +5,7 @@ import { getBlur } from "@/lib/media";
 import { DISCIPLINE_LABELS } from "@/lib/disciplines";
 import { cn } from "@/lib/utils";
 import { MonoLabel } from "@/components/ui/MonoLabel";
+import { WithheldPanel } from "@/components/ui/WithheldPanel";
 
 /**
  * Stands in for the cover when a project's visuals cannot be published.
@@ -14,10 +15,10 @@ import { MonoLabel } from "@/components/ui/MonoLabel";
  */
 function WithheldCover({ reason }: { reason: string }) {
   return (
-    <div className="flex aspect-[16/10] w-full flex-col justify-between border border-line bg-surface p-6">
+    <WithheldPanel className="flex aspect-[16/10] w-full flex-col justify-between p-6">
       <MonoLabel tone="accent">Visuals withheld</MonoLabel>
       <p className="max-w-[32ch] text-small text-muted">{reason}</p>
-    </div>
+    </WithheldPanel>
   );
 }
 

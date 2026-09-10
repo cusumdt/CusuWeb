@@ -23,7 +23,7 @@ relative scale, resizes without ever enlarging past the pixels an asset actually
 has, and emits a blur placeholder generated from the same crop that ships.
 221 MB of source becomes 9 MB.
 
-**Four gates that fail rather than warn.** Each exits non-zero, so any of them
+**Five gates that fail rather than warn.** Each exits non-zero, so any of them
 can block a deploy.
 
 | Gate | What it refuses to let through |
@@ -31,11 +31,14 @@ can block a deploy.
 | `check-aspect.mjs` | an opaque asset shipping at a different aspect ratio than its source |
 | `sync-dimensions.mjs` | declared width, height or transparency drifting from the shipped file |
 | `check-contrast.mjs` | a palette pair under its WCAG floor |
+| `check-mesh-contrast.mjs` | text losing contrast against the wireframe behind a withheld panel |
 | `bundle-report.mjs` | a route over the 250 KB gzipped first-load budget |
 
-Three of the four exist because a real defect got through first. `check-aspect`
+Four of the five exist because a real defect got through first. `check-aspect`
 was written after a per-axis normalization squashed a 1877x789 render into a
-square and nothing in the build noticed.
+square and nothing in the build noticed. `check-mesh-contrast` was written
+after the palette checker passed a card that was shipping 3.19:1 text, because
+a gate that compares two flat colors cannot see an image behind the words.
 
 **Content that cannot drift from the files.** Copy, projects and metadata live
 in typed modules under `src/content/`, validated against `src/lib/types.ts`.
@@ -67,6 +70,8 @@ npm run dev
 | `node scripts/sync-dimensions.mjs` | Report dimension and transparency drift; `--write` to fix |
 | `node scripts/check-aspect.mjs` | Fail if any opaque asset ships at a distorted aspect ratio |
 | `node scripts/check-contrast.mjs` | Verify the palette against the floors in `docs/DESIGN.md` |
+| `node scripts/make-mesh.mjs` | Rebuild the wireframes behind withheld projects |
+| `node scripts/check-mesh-contrast.mjs` | Fail if text over those wireframes drops under its WCAG floor |
 | `node scripts/bundle-report.mjs` | First-load JS per route against the budget, needs `next start` |
 
 ## Where things are

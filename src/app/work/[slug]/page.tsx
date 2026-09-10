@@ -6,6 +6,7 @@ import { DISCIPLINE_LABELS } from "@/lib/disciplines";
 import { MonoLabel } from "@/components/ui/MonoLabel";
 import { Tag } from "@/components/ui/Tag";
 import { Figure } from "@/components/ui/Figure";
+import { WithheldPanel } from "@/components/ui/WithheldPanel";
 import { Gallery } from "@/components/sections/Lightbox";
 import { VideoFacade } from "@/components/sections/VideoFacade";
 import { ProjectJsonLd } from "@/components/seo/JsonLd";
@@ -77,13 +78,13 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
       {/* Hero. A withheld project states why instead of showing a broken frame. */}
       {project.visuals.status === "withheld" ? (
         <div className="mx-auto w-full max-w-page px-gutter">
-          <div className="border border-line bg-surface p-gutter py-16">
+          <WithheldPanel variant="wide" className="p-gutter py-16">
             <MonoLabel tone="accent">Visuals withheld</MonoLabel>
             <p className="mt-6 max-w-measure text-lead">{project.visuals.reason}</p>
             <p className="mt-4 max-w-measure text-small text-muted">
               The work is described in full below.
             </p>
-          </div>
+          </WithheldPanel>
         </div>
       ) : project.cover ? (
         <div className="mx-auto w-full max-w-page px-gutter">
